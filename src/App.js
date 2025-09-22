@@ -508,7 +508,7 @@ const Portfolio = () => {
               <div className="relative">
                 <div className="w-100 h-100 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                   <img
-                    src="/assets/dp_crop.jpg"
+                    src= {process.env.PUBLIC_URL+"/assets/dp_crop.jpg"}
                     alt="Lakmana Thabrew"
                     className="w-full h-full object-cover"
                   />
@@ -563,7 +563,7 @@ const Portfolio = () => {
             <div key={project.id} className={`bg-white rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} lg:flex`}>
               <div className="lg:w-1/2">
                 <img
-                  src={project.image}
+                  src={process.env.PUBLIC_URL + project.image}
                   alt={project.title}
                   className="w-full h-64 lg:h-full object-cover"
                 />
@@ -655,13 +655,13 @@ const Portfolio = () => {
                   <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
                     {design.type === "image" ? (
                       <img
-                        src={design.image}
+                        src={process.env.PUBLIC_URL + design.image}
                         alt={design.title}
                         className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
                       <video
-                        src={design.image}
+                        src={process.env.PUBLIC_URL + design.image}
                         className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
                         autoPlay
                         loop
@@ -1260,7 +1260,7 @@ const Portfolio = () => {
         return renderAboutPage();
       case 'projects':
         return renderProjectsPage();
-      case 'Designs':
+      case 'designs':
         return renderDesignsPage();
       case 'cv':
         return renderCVPage();
