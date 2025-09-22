@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Menu, X, Github, Linkedin, Mail, ExternalLink, Download,
+  Menu, X, Github, Linkedin, Mail, Download,
   User, Briefcase, FileText, Phone, ChevronRight, Calendar,
   MapPin, Award, Code, Database, Globe, Smartphone,
-  Home, Eye, Heart, Share2, LucideDecimalsArrowLeft,
-  PenTool
+  Home, PenTool, FacebookIcon, UniversityIcon,
+  InstagramIcon, MessageCircle, ExternalLink,
+  Languages, Gavel,
+  Settings,
+  GraduationCapIcon,
+  SearchIcon
 } from 'lucide-react';
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDesign, setSelectedDesign] = useState(null);
+
+  const openModal = (design) => {
+    setIsModalOpen(true);
+    setSelectedDesign(design)
+  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedDesign(null);
+  }
 
   // Enhanced personal information
   const personalInfo = {
@@ -22,7 +37,10 @@ const Portfolio = () => {
     subtitle_2: "Mobile App Developer | Entrepreneur",
     email: "lakmanathabrew123@gmail.com",
     phone: "0713278691",
+    whatsApp: "https://wa.me/94713278691",
     location: "Ambalangoda, Galle, Sri Lanka",
+    facebook: "https://www.facebook.com/profile.php?id=100090132404413",
+    instagram: "https://www.instagram.com/chulanka_lakmanath/",
     github: "https://github.com/lakaThabrew",
     linkedin: "https://linkedin.com/in/lakmana-thabrew",
     website: "https://lakaThabrew.dev",
@@ -130,184 +148,272 @@ const Portfolio = () => {
   const graphicDesigns = [
     {
       id: 1,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      tools: [""],
-      year: ""
+      title: "Catalyst 25",
+      client: "Rotaract UOM",
+      description: "Attractive Instagram Tile Poster",
+      image: "/assets/Designs/catalyst25.png",
+      tools: ["Canva"],
+      year: "2025",
+      type: "image"
     },
 
     {
       id: 2,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      tools: [""],
-      year: ""
+      title: "Binara Padura 25",
+      client: "Rotaract UOM",
+      description: "A singing Audition Happenning Now Video",
+      image: "/assets/Designs/binarapadurahappeningnow.mp4",
+      tools: ["canva", "Capcut"],
+      year: "2025",
+      type: "video"
     },
 
     {
       id: 3,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      tools: [""],
-      features: [""],
-      year: ""
+      title: "Annual General Meeting",
+      client: "IESL student Chapter UOM",
+      description: "A professional sounier for Award",
+      image: "/assets/Designs/sounier-AGM_IESL.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
     },
 
     {
       id: 4,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      tools: [""],
-      features: [""],
-      year: ""
+      title: "Top Movies @ Aug 25",
+      client: "Movies with DCLT",
+      description: "An elegant thumbnail for tiktok video",
+      image: "/assets/Designs/Heading.png",
+      tools: ["canva", "photoshop"],
+      year: "2025",
+      type: "image"
     },
 
     {
       id: 5,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      tools: [""],
-      features: [""],
-      year: ""
+      title: "Top Movies by Leonardo Dicaprio",
+      client: "Movies with Dclt",
+      description: "A black Grey Collage tiktok video thumbnail",
+      image: "/assets/Designs/Black Grey Bold Collage Fashion Collection Poster.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
     },
 
     {
       id: 6,
-      title: "",
-      category: "",
-      description: "",
-      longDescription: "",
-      image: "",
-      toolls: [""],
-      features: [""],
-      year: ""
-    }
+      title: "Top Movies @ July 25",
+      client: "Movies with DCLT",
+      description: "A black and red Minimalist tiktok thumbnail",
+      image: "/assets/Designs/White Photo Minimalist Fashion Poster.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 7,
+      title: "Top Movies @ Mar 25",
+      client: "Movies with DCLT",
+      description: "A elegant red and black minimalist tiktok thumbnail",
+      image: "/assets/Designs/Red And Black Minimalist Mystery Movie Poster.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 8,
+      title: "Best Movies by Chris Hemsworth",
+      client: "Movies with DCLT",
+      description: "A Greyscale Minimalist tiktok thumbnail",
+      image: "/assets/Designs/Greyscale Modern Woman Photo Collage.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 9,
+      title: "Boxoffice of Marvel Studio",
+      client: "Movies with DCLT",
+      description: "A black and simple Minimalist tiktok thumbnail",
+      image: "/assets/Designs/boxoffice.jpg",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 10,
+      title: "Top Movies @ MAY 25",
+      client: "Movies with DCLT",
+      description: "A brown and white modern tiktok thumbnail",
+      image: "/assets/Designs/Brown and White Modern New Fashion Poster.png",
+      tools: ["canva"],
+      year: "2025",
+      type: "image"
+    },
   ];
 
   // Enhanced skills with proficiency levels
   const skills = {
+    Programming: [
+      { name: "Python", level: 95 },
+      { name: "C", level: 85 },
+      { name: "C++", level: 90 },
+      { name: "Java", level: 90 },
+      { name: "Dart", level: 80 }
+    ],
+    Softwares: [
+      { name: "Adobe Photoshop", level: 85 },
+      { name: "Premiere Pro", level: 90 },
+      { name: "Adobe Illustrator", level: 95 },
+      { name: "Corel Draw ", level: 90 },
+      { name: "Canva", level: 95 }
+    ],
     frontend: [
-      { name: "React", level: 95, years: 4 },
-      { name: "Next.js", level: 90, years: 3 },
-      { name: "Vue.js", level: 85, years: 2 },
-      { name: "TypeScript", level: 90, years: 3 },
-      { name: "Tailwind CSS", level: 95, years: 3 },
-      { name: "React Native", level: 80, years: 2 }
+      { name: "React", level: 75 },
+      { name: "HTML", level: 90 },
+      { name: "Tailwind CSS", level: 95 },
+      { name: "CSS", level: 90 }
     ],
     backend: [
-      { name: "Node.js", level: 95, years: 5 },
-      { name: "Express.js", level: 90, years: 4 },
-      { name: "Python", level: 85, years: 3 },
-      { name: "Django", level: 80, years: 2 },
-      { name: "GraphQL", level: 85, years: 2 },
-      { name: "REST APIs", level: 95, years: 5 }
+      { name: "Node.js", level: 95 },
+      { name: "JavaScript", level: 90 },
+      { name: "Python", level: 85 },
+      { name: "REST APIs", level: 90 }
     ],
     database: [
-      { name: "MongoDB", level: 90, years: 4 },
-      { name: "PostgreSQL", level: 85, years: 3 },
-      { name: "Redis", level: 80, years: 2 },
-      { name: "MySQL", level: 85, years: 4 }
+      { name: "PostgreSQL", level: 85 },
+      { name: "MySQL", level: 85 }
     ],
     tools: [
-      { name: "AWS", level: 85, years: 3 },
-      { name: "Docker", level: 80, years: 2 },
-      { name: "Git", level: 95, years: 5 },
-      { name: "Jenkins", level: 75, years: 2 }
+      { name: "Flutter", level: 85 },
+      { name: "Dart", level: 80 },
+      { name: "Git", level: 95 },
+      { name: "Vs Code", level: 95 },
+      { name: "ubuntu", level: 85 },
+      { name: "Figma", level: 85 },
     ]
   };
 
   // Experience data
-  const experience = [
+  const Voluntering = [
     {
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Solutions",
-      period: "2022 - Present",
-      location: "San Francisco, CA",
-      description: "Lead a team of 5 developers in building scalable web applications. Responsible for architecture decisions, code reviews, and mentoring junior developers.",
-      achievements: [
-        "Improved application performance by 40% through optimization",
-        "Led migration to microservices architecture",
-        "Implemented CI/CD pipelines reducing deployment time by 60%"
-      ]
+      title: "PR Team Member",
+      company: "Rotaract Club of University of Moratuwa",
+      period: "2025 Aug - Present",
+      location: "Moratuwa, Sri Lanka",
+      description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
     },
     {
-      title: "Full Stack Developer",
-      company: "StartupXYZ",
-      period: "2020 - 2022",
+      title: "Member of Marketing Pillar",
+      company: "IESL Student Chapter UOM",
+      period: "2025 Sep - Present",
+      location: "Moratuwa, Sri Lanka",
+      description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
+
+    },
+    {
+      title: "OC Member of Flyer Design Committee",
+      company: "Binara Padura, organized by Rotaract Club of University of Moratuwa",
+      period: "2025 Jul- 2025 Sep",
       location: "Remote",
-      description: "Developed and maintained multiple client projects using React, Node.js, and various databases. Collaborated with design teams to implement pixel-perfect UIs.",
-      achievements: [
-        "Built 10+ client projects from conception to deployment",
-        "Reduced bug reports by 50% through comprehensive testing",
-        "Mentored 3 junior developers"
-      ]
+      description: "design flyer for Binara Padura 25, a very exiciting Musical Event ",
     },
     {
-      title: "Frontend Developer",
-      company: "WebDesign Co",
-      period: "2019 - 2020",
-      location: "New York, NY",
-      description: "Focused on creating responsive web applications and improving user experience. Worked closely with UX designers to implement modern web interfaces.",
-      achievements: [
-        "Improved website loading speed by 35%",
-        "Implemented responsive design for 20+ websites",
-        "Collaborated with cross-functional teams of 15+ members"
-      ]
+      title: "Member",
+      company: "Maths Society, University of Moratuwa",
+      period: "2024- Present",
+      location: "Moratuwa, Sri Lanka",
+      description: "",
+    },
+    {
+      title: "Member",
+      company: " General Knowledge Society, Dharmasoka College, Ambalangoda, Sri Lanka",
+      period: "2018- 2021",
+      location: "Ambalangoda, Sri Lanka",
+      description: "",
     }
+
   ];
 
   // Education data
   const education = [
     {
-      degree: "Master of Science in Computer Science",
-      institution: "Stanford University",
-      period: "2017 - 2019",
-      gpa: "3.8/4.0",
-      specialization: "Software Engineering & AI"
+      degree: "Bachelor of Science Engineering(Hons)",
+      institution: "University of Moratuwa, Sri Lanka",
+      period: "2022 - present",
+      gpa: "3.85/4.0",
+      specialization: "Computer Science & Engineering"
     },
     {
-      degree: "Bachelor of Science in Computer Science",
-      institution: "UC Berkeley",
-      period: "2013 - 2017",
-      gpa: "3.6/4.0",
-      specialization: "Web Development & Database Systems"
+      degree: "Secondary Education",
+      institution: "G/ Dharmasoka College, Ambalangoda",
+      period: "2013 - 2021",
+      gpa: "2.8333",
+      specialization: "Ordinary and Advanced Level"
+    },
+    {
+      degree: "Primary Education",
+      institution: "G/ Devananda College, Ambalangoda",
+      period: "2007 - 2013",
+      gpa: "",
+      specialization: ""
     }
   ];
 
   // Certifications
   const certifications = [
     {
-      name: "AWS Certified Solutions Architect",
-      issuer: "Amazon Web Services",
+      name: "AgentX Bootcamp",
+      issuer: "Leo Club of University of Moratuwa ( UoM Leos)",
+      date: "2025",
+      credentialId: ""
+    },
+    {
+      name: "Python for Beginners",
+      issuer: "Department of Computer Science & Engineering, University of Moratuwa",
       date: "2023",
-      credentialId: "AWS-SAA-123456"
+      credentialId: "iY4PHJGxqy"
     },
     {
-      name: "Google Cloud Professional Developer",
-      issuer: "Google Cloud",
-      date: "2022",
-      credentialId: "GCP-PD-789012"
+      name: "Program Solving (Solve)",
+      issuer: "HackerRank",
+      date: "2025",
+      credentialId: "2cada0a0c6e9"
     },
     {
-      name: "MongoDB Certified Developer",
-      issuer: "MongoDB Inc.",
-      date: "2021",
-      credentialId: "MDB-DEV-345678"
+      name: "AI in Data Analysis",
+      issuer: "Sololearn",
+      date: "2025",
+      credentialId: "CC-LSNVYKQJ"
+    },
+    {
+      name: "ML for beginners",
+      issuer: "Sololearn",
+      date: "2025",
+      credentialId: "CC-QAVQM7IU"
+    },
+    {
+      name: "Java Intermediate",
+      issuer: "Sololearn",
+      date: "2025",
+      credentialId: "CC-6ZVSJRR8"
+    },
+    {
+      name: "Introduction for C++",
+      issuer: "Sololearn",
+      date: "2024",
+      credentialId: "CC-LD2L040J"
+    },
+    {
+      name: "Introduction for Java",
+      issuer: "Sololearn",
+      date: "2024",
+      credentialId: "CC-XYUXO4XP"
     }
   ];
 
@@ -320,9 +426,21 @@ const Portfolio = () => {
   }, []);
 
   const handleDownloadCV = () => {
-    // In a real app, this would trigger a download of your actual CV
-    alert('CV download would start here. Replace with actual CV file.');
+    const link = document.createElement("a");
+    link.href = "https://drive.google.com/uc?export=download&id=1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-";
+    link.setAttribute("download", "My_CV.pdf"); 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
+
+  const handleViewCV = () => {
+  window.open(
+    "https://drive.google.com/file/d/1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-/view?usp=sharing",
+    "_blank"
+  );
+};
+
 
   const renderHomePage = () => (
     <div className="pt-20">
@@ -366,6 +484,9 @@ const Portfolio = () => {
                 </button>
               </div>
               <div className="flex gap-6 mt-10">
+                <a href={personalInfo.whatsApp} className="text-gray-300 hover:text-white transition-colors">
+                  <MessageCircle size={28} />
+                </a>
                 <a href={personalInfo.github} className="text-gray-300 hover:text-white transition-colors">
                   <Github size={28} />
                 </a>
@@ -374,6 +495,12 @@ const Portfolio = () => {
                 </a>
                 <a href={`mailto:${personalInfo.email}`} className="text-gray-300 hover:text-white transition-colors">
                   <Mail size={28} />
+                </a>
+                <a href={personalInfo.facebook} className="text-gray-300 hover:text-white transition-colors">
+                  <FacebookIcon size={28} />
+                </a>
+                <a href={personalInfo.instagram} className="text-gray-300 hover:text-white transition-colors">
+                  <InstagramIcon size={28} />
                 </a>
               </div>
             </div>
@@ -524,29 +651,39 @@ const Portfolio = () => {
             >
               {/* Image */}
               <div className="relative overflow-hidden">
-                <img
-                  src={design.image}
-                  alt={design.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
+                    {design.type === "image" ? (
+                      <img
+                        src={design.image}
+                        alt={design.title}
+                        className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <video
+                        src={design.image}
+                        className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        alt={design.title}
+                      />
+                    )}
+                  </div>
+                </div>
+
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <button className="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/30 transition-colors">
-                          <Eye className="text-white" size={20} />
-                        </button>
-                        <button className="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/30 transition-colors">
-                          <Heart className="text-white" size={20} />
-                        </button>
-                        <button className="bg-white/20 backdrop-blur-sm rounded-full p-2 hover:bg-white/30 transition-colors">
-                          <Share2 className="text-white" size={20} />
-                        </button>
                       </div>
-                      <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
+                      <button
+                        onClick={() => openModal(design)}
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
                         <ExternalLink size={16} />
-                        View Project
+                        View Design
                       </button>
                     </div>
                   </div>
@@ -569,10 +706,52 @@ const Portfolio = () => {
                 <p className="text-gray-600 leading-relaxed">
                   {design.description}
                 </p>
+                <div className="flex flex-wrap gap-2">
+                  {design.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-md text-sm font-medium"
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Modal */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+            <div className="relative max-w-6xl max-h-[90vh] w-full mx-4">
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="flex items-center justify-center bg-white rounded-lg overflow-hidden max-h-[90vh]">
+                {selectedDesign.type === "video" ? (
+                  <video
+                    src={selectedDesign.image}
+                    controls
+                    autoPlay
+                    className="overflow-hidden + max-h-[90vh] w-full h-full object-contain"
+                  />
+                ) : (
+                  <img
+                    src={selectedDesign.image}
+                    alt={selectedDesign.title}
+                    className="overflow-hidden + max-h-[90vh] w-full h-full object-contain"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -589,12 +768,45 @@ const Portfolio = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 mb-20">
           <div>
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 text-white mb-8">
-              <h2 className="text-3xl font-bold mb-6">My Story</h2>
-              <p className="text-lg leading-relaxed mb-6">
-                {personalInfo.bio}
-              </p>
-              <div className="grid grid-cols-2 gap-4">
+            <div class="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 text-white mb-8">
+              <h2 class="text-3xl font-bold mb-6"><i>My Journey in Computer Science & Engineering</i></h2>
+              <div>
+                <h3 class="text-xl font-bold mb-6">The Spark That Started It All</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  My journey began at age 16 with a broken laptop everyone had given up on. After three days of YouTube tutorials and forums, I successfully recovered the corrupted hard drive. That moment of triumph ignited a passion that would define my path.
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">From Curiosity to Competence</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  As a Second-year Computer Science student at University of Moratuwa, Sri Lanka, I've built solid foundations through coursework and hands-on projects. 
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">Embracing Challenges</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  My growth accelerated during my past two years, navigating legacy code with minimal documentation. This taught me "code archaeology" and I optimized their data pipeline by 40%, learning that elegant solutions come from deep problem understanding.
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">Beyond the Code</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  I'm driven by technology's impact on people's lives—from campus systems saving organizers hours to mobile apps helping local businesses. As a teaching assistant for Introduction to Programming, I've learned that clear communication is as crucial as coding skills.
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">Looking Forward</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  Preparing for my next two year, I'm excited about AI and user experience intersection. I'm exploring how machine learning can create intuitive interfaces and make AI tools accessible to non-technical users. I seek opportunities to grow as both a technical problem-solver and collaborative team member.
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">Core Values</h3>
+                <p class="text-lg text-justify leading-relaxed mb-6">
+                  <strong>Continuous Learning:</strong> Embracing rapid technological evolution while building strong fundamentals.<br></br>
+                  <strong>User-Centric Thinking:</strong> Creating solutions that genuinely improve people's experiences.<br></br>
+                  <strong>Collaborative Growth:</strong> My best work happens through learning from others and team contribution.
+                </p>
+
+                <h3 class="text-xl font-bold mb-6">"The best way to predict the future is to create it. I'm excited to be part of building tomorrow's technological solutions."</h3>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
                 <div className="flex items-center">
                   <MapPin size={20} className="mr-2" />
                   <span>{personalInfo.location}</span>
@@ -612,18 +824,19 @@ const Portfolio = () => {
             {Object.entries(skills).map(([category, skillList]) => (
               <div key={category} className="mb-8">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 capitalize flex items-center">
+                  {category === 'Programming' && <Languages className="mr-2" size={24} />}
                   {category === 'frontend' && <Smartphone className="mr-2" size={24} />}
                   {category === 'backend' && <Code className="mr-2" size={24} />}
                   {category === 'database' && <Database className="mr-2" size={24} />}
-                  {category === 'tools' && <Globe className="mr-2" size={24} />}
+                  {category === 'tools' && <Gavel className="mr-2" size={24} />}
+                  {category === 'Softwares' && <Settings className="mr-2" size={24} />}
                   {category}
                 </h3>
                 <div className="space-y-3">
-                  {skillList.slice(0, 4).map((skill) => (
+                  {skillList.slice(0, 10).map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-gray-700 font-medium">{skill.name}</span>
-                        <span className="text-sm text-gray-500">{skill.years}y exp</span>
                       </div>
                       <div className="bg-gray-200 rounded-full h-2">
                         <div
@@ -638,8 +851,8 @@ const Portfolio = () => {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 
   const renderCVPage = () => (
@@ -649,7 +862,7 @@ const Portfolio = () => {
           {/* CV Header */}
           <div className="text-center border-b pb-8 mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">{personalInfo.name}</h1>
-            <p className="text-xl text-blue-600 font-semibold mb-4">{personalInfo.title}</p>
+            <p className="text-xl text-blue-600 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
             <div className="flex flex-wrap justify-center gap-6 text-gray-600">
               <div className="flex items-center">
                 <Mail size={16} className="mr-2" />
@@ -664,13 +877,22 @@ const Portfolio = () => {
                 <span>{personalInfo.location}</span>
               </div>
             </div>
-            <button
-              onClick={handleDownloadCV}
-              className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
-            >
-              <Download size={18} />
-              Download PDF Version
-            </button>
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={handleViewCV}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+              >
+                <SearchIcon size={18} />
+                View PDF Version
+              </button>
+              <button
+                onClick={handleDownloadCV}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+              >
+                <Download size={18} />
+                Download PDF Version
+              </button>
+            </div>
           </div>
 
           {/* Professional Summary */}
@@ -687,29 +909,24 @@ const Portfolio = () => {
           {/* Experience */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-              <Briefcase className="mr-2" size={24} />
-              Professional Experience
+              <GraduationCapIcon className="mr-2" size={24} />
+              Education
             </h2>
             <div className="space-y-8">
-              {experience.map((exp, index) => (
+              {education.map((edu, index) => (
                 <div key={index} className="relative pl-6 border-l-2 border-blue-200">
                   <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900">{exp.title}</h3>
-                    <p className="text-lg text-blue-600 font-semibold">{exp.company}</p>
+                    <h3 className="text-xl font-bold text-gray-900">{edu.degree}</h3>
+                    <p className="text-lg text-blue-600 font-semibold">{edu.institution}</p>
                     <div className="flex items-center text-gray-600 mt-1">
                       <Calendar size={16} className="mr-2" />
-                      <span className="mr-4">{exp.period}</span>
+                      <span className="mr-4">{edu.period}</span>
                       <MapPin size={16} className="mr-2" />
-                      <span>{exp.location}</span>
+                      <span>{edu.gpa}</span>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4">{exp.description}</p>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i}>{achievement}</li>
-                    ))}
-                  </ul>
+                  <p className="text-gray-700 mb-4">{edu.specialization}</p>
                 </div>
               ))}
             </div>
@@ -719,18 +936,18 @@ const Portfolio = () => {
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
               <FileText className="mr-2" size={24} />
-              Education
+              Voluntering
             </h2>
             <div className="space-y-6">
-              {education.map((edu, index) => (
+              {Voluntering.map((vol, index) => (
                 <div key={index} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-900">{edu.degree}</h3>
-                  <p className="text-lg text-blue-600 font-semibold">{edu.institution}</p>
+                  <h3 className="text-xl font-bold text-gray-900">{vol.title}</h3>
+                  <p className="text-lg text-blue-600 font-semibold">{vol.company}</p>
                   <div className="flex items-center justify-between text-gray-600 mt-2">
-                    <span>{edu.period}</span>
-                    <span>GPA: {edu.gpa}</span>
+                    <span>{vol.period}</span>
+                    <span>{vol.location}</span>
                   </div>
-                  <p className="text-gray-700 mt-2">Specialization: {edu.specialization}</p>
+                  <p className="text-gray-700 mt-2">Description: {vol.description}</p>
                 </div>
               ))}
             </div>
@@ -864,6 +1081,24 @@ const Portfolio = () => {
                 >
                   <Mail size={24} />
                 </a>
+                <a
+                  href={personalInfo.whatsApp}
+                  className="bg-green-500 hover:bg-green-700 p-4 rounded-full transition-colors"
+                >
+                  <MessageCircle size={24} />
+                </a>
+                <a
+                  href={personalInfo.facebook}
+                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-full transition-colors"
+                >
+                  <FacebookIcon size={24} />
+                </a>
+                <a
+                  href={personalInfo.instagram}
+                  className="bg-purple-500 hover:bg-purple-700 p-4 rounded-full transition-colors"
+                >
+                  <InstagramIcon size={24} />
+                </a>
               </div>
             </div>
           </div>
@@ -955,7 +1190,7 @@ const Portfolio = () => {
               { id: 'home', label: 'Home', icon: Home },
               { id: 'about', label: 'About', icon: User },
               { id: 'projects', label: 'Projects', icon: Briefcase },
-              { id: 'Designs', label: 'Designs', icon: PenTool },
+              { id: 'designs', label: 'Designs', icon: PenTool },
               { id: 'cv', label: 'CV', icon: FileText },
               { id: 'contact', label: 'Contact', icon: Phone }
             ].map(({ id, label, icon: Icon }) => (
@@ -992,6 +1227,7 @@ const Portfolio = () => {
               { id: 'home', label: 'Home', icon: User },
               { id: 'about', label: 'About', icon: User },
               { id: 'projects', label: 'Projects', icon: Briefcase },
+              { id: 'designs', label: 'Designs', icon: PenTool },
               { id: 'cv', label: 'CV', icon: FileText },
               { id: 'contact', label: 'Contact', icon: Phone }
             ].map(({ id, label, icon: Icon }) => (
@@ -1045,31 +1281,49 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">{personalInfo.name}</h3>
-              <p className="text-gray-400 mb-4">{personalInfo.title_1}</p>
-              <p className="text-gray-400">{personalInfo.location}</p>
+              <h3 className="text-2xl text-center font-bold mb-4">{personalInfo.name}</h3>
+              <UniversityIcon size={20} /><p className="text-gray-400 mb-4">{personalInfo.title_1 + " @ UoM"}</p>
+              <MapPin size={20} /><p className="text-gray-400">{personalInfo.location}</p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Connect</h4>
-              <div className="grid md:grid-cols-3 gap-8 text-center">
+              <h3 className="text-2xl font-semibold mb-4 text-center">Connect</h3>
+              <div className="grid md:grid-cols-6 gap-8 text-center">
+                <a
+                  href={personalInfo.whatsApp}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <MessageCircle size={24} />
+                </a>
                 <a
                   href={personalInfo.github}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <Github size={24} />Github
+                  <Github size={24} />
                 </a>
                 <a
                   href={personalInfo.linkedin}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <Linkedin size={24} /> Linkedin
+                  <Linkedin size={24} />
                 </a>
                 <a
                   href={`mailto:${personalInfo.email}`}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <Mail size={24} /> Gmail
+                  <Mail size={24} />
+                </a>
+                <a
+                  href={personalInfo.facebook}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <FacebookIcon size={24} />
+                </a>
+                <a
+                  href={personalInfo.instagram}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <InstagramIcon size={24} />
                 </a>
               </div>
             </div>
