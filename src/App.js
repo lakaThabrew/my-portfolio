@@ -5,10 +5,8 @@ import {
   MapPin, Award, Code, Database, Globe, Smartphone,
   Home, PenTool, FacebookIcon, UniversityIcon,
   InstagramIcon, MessageCircle, ExternalLink,
-  Languages, Gavel,
-  Settings,
-  GraduationCapIcon,
-  SearchIcon
+  Languages, Gavel, Settings, GraduationCapIcon,
+  SearchIcon, Sun, Moon
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -17,6 +15,7 @@ const Portfolio = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const openModal = (design) => {
     setIsModalOpen(true);
@@ -25,6 +24,11 @@ const Portfolio = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedDesign(null);
+  }
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.documentElement.classList.toggle('dark', !isDarkMode);
   }
 
   // Enhanced personal information
@@ -421,9 +425,21 @@ const Portfolio = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
@@ -443,82 +459,86 @@ const Portfolio = () => {
 
 
   const renderHomePage = () => (
-    <div className="pt-20">
+    <div className="pt-20 sm:pt-24">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white">
+      <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white px-4 sm:px-0">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-8 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center bg-blue-600/20 rounded-full px-4 py-2 mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm">Available for Everything Belongs to My Path</span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                {personalInfo.name}
-              </h1>
-              <p className="text-2xl md:text-3xl text-blue-200 mb-4">
-                {personalInfo.title_1} <br /> {personalInfo.title_2}
-              </p>
-              <p className="text-xl md:text-2xl text-blue-200 mb-4">
-                {personalInfo.title_3}
-              </p>
-              <p className="text-xl md:text-xl text-gray-200 mb-8">
-                {personalInfo.subtitle_1} <br /> {personalInfo.subtitle_2}
-              </p>
-              <p className="text-lg text-gray-400 mb-10 max-w-xl">
-                {personalInfo.bio}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => setCurrentPage('projects')}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center gap-2"
-                >
-                  View My Work <ChevronRight size={20} />
-                </button>
-                <button
-                  onClick={handleDownloadCV}
-                  className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-4 rounded-lg font-semibold transition-all flex items-center gap-2"
-                >
-                  <Download size={20} /> Download CV
-                </button>
-              </div>
-              <div className="flex gap-6 mt-10">
-                <a href={personalInfo.whatsApp} className="text-gray-300 hover:text-white transition-colors">
-                  <MessageCircle size={28} />
-                </a>
-                <a href={personalInfo.github} className="text-gray-300 hover:text-white transition-colors">
-                  <Github size={28} />
-                </a>
-                <a href={personalInfo.linkedin} className="text-gray-300 hover:text-white transition-colors">
-                  <Linkedin size={28} />
-                </a>
-                <a href={`mailto:${personalInfo.email}`} className="text-gray-300 hover:text-white transition-colors">
-                  <Mail size={28} />
-                </a>
-                <a href={personalInfo.facebook} className="text-gray-300 hover:text-white transition-colors">
-                  <FacebookIcon size={28} />
-                </a>
-                <a href={personalInfo.instagram} className="text-gray-300 hover:text-white transition-colors">
-                  <InstagramIcon size={28} />
-                </a>
-              </div>
-            </div>
-            <div className="lg:flex justify-left hidden">
-              <div className="relative">
-                <div className="w-100 h-100 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Profile Image - Show on mobile first */}
+            <div className="flex justify-center lg:justify-end lg:order-2 relative">
+              <div className="relative inline-block">
+                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
                   <img
                     src= {process.env.PUBLIC_URL+"/assets/dp_crop.jpg"}
                     alt="Lakmana Thabrew"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
-                  <Code className="text-yellow-800" size={32} />
+                <div className="absolute top-0 right-0 sm:top-2 sm:right-2 lg:top-4 lg:right-4 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <Code className="text-yellow-800" size={16} />
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center">
-                  <Database className="text-green-800" size={24} />
+                <div className="absolute bottom-0 left-0 sm:bottom-2 sm:left-2 lg:bottom-4 lg:left-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-green-400 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <Database className="text-green-800" size={14} />
                 </div>
+              </div>
+            </div>
+            
+            {/* Text Content */}
+            <div className="text-center lg:text-left lg:order-1 lg:pr-8">
+              <div></div>
+              <div className="inline-flex items-center bg-blue-600/20 rounded-full px-3 py-2 sm:px-4 sm:py-2 mb-4 sm:mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                <span className="text-xs sm:text-sm lg:text-base">Available for Everything Belongs to My Path</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+                {personalInfo.name}
+              </h1>
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-200 mb-3 sm:mb-4">
+                {personalInfo.title_1} <br /> {personalInfo.title_2}
+              </p>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 mb-3 sm:mb-4">
+                {personalInfo.title_3}
+              </p>
+              <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8">
+                {personalInfo.subtitle_1} <br /> {personalInfo.subtitle_2}
+              </p>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-400 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0">
+                {personalInfo.bio}
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center lg:justify-start">
+                <button
+                  onClick={() => setCurrentPage('projects')}
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base lg:text-lg"
+                >
+                  View My Work <ChevronRight size={20} />
+                </button>
+                <button
+                  onClick={handleDownloadCV}
+                  className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base lg:text-lg"
+                >
+                  <Download size={20} /> Download CV
+                </button>
+              </div>
+              <div className="flex gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-10 lg:mt-12 justify-center lg:justify-start">
+                <a href={personalInfo.whatsApp} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <MessageCircle size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
+                <a href={personalInfo.github} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <Github size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
+                <a href={personalInfo.linkedin} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <Linkedin size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
+                <a href={`mailto:${personalInfo.email}`} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <Mail size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
+                <a href={personalInfo.facebook} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <FacebookIcon size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
+                <a href={personalInfo.instagram} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
+                  <InstagramIcon size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                </a>
               </div>
             </div>
           </div>
@@ -526,20 +546,20 @@ const Portfolio = () => {
       </section>
 
       {/* Quick Stats */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-blue-600 mb-2">10+</div>
-              <div className="text-gray-600">Projects Completed</div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
+            <div className="p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
+              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Projects Completed</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-purple-600 mb-2">1+</div>
-              <div className="text-gray-600">Years Experience</div>
+            <div className="p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">1+</div>
+              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Years Experience</div>
             </div>
-            <div>
-              <div className="text-4xl font-bold text-orange-600 mb-2">10+</div>
-              <div className="text-gray-600">Technologies</div>
+            <div className="p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">10+</div>
+              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Technologies</div>
             </div>
           </div>
         </div>
@@ -548,57 +568,57 @@ const Portfolio = () => {
   );
 
   const renderProjectsPage = () => (
-    <div className="pt-32 pb-20 min-h-screen bg-gray-50">
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">My Projects</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">My Projects</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Here's a showcase of some of my recent work. Each project represents a unique challenge
             and demonstrates different aspects of my technical expertise.
           </p>
         </div>
 
-        <div className="grid gap-12">
+        <div className="grid gap-8 sm:gap-10 lg:gap-12">
           {projects.map((project, index) => (
-            <div key={project.id} className={`bg-white rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} lg:flex`}>
+            <div key={project.id} className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} lg:flex transition-colors duration-300`}>
               <div className="lg:w-1/2">
                 <img
                   src={process.env.PUBLIC_URL + project.image}
                   alt={project.title}
-                  className="w-full h-64 lg:h-full object-cover"
+                  className="w-full h-48 sm:h-64 lg:h-full object-cover"
                 />
               </div>
-              <div className="lg:w-1/2 p-8 lg:p-12">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+              <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 xl:p-12">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3 sm:mb-4">
+                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
                     {project.category}
                   </span>
-                  <span className="text-gray-500">• {project.year}</span>
+                  <span className="text-gray-500 text-sm">• {project.year}</span>
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">{project.title}</h2>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">{project.title}</h2>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg leading-relaxed">
                   {project.longDescription}
                 </p>
 
-                <div className="mb-6">
-                  <h3 className="font-semibold text-gray-900 mb-3">Key Features:</h3>
-                  <div className="grid grid-cols-2 gap-2">
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">Key Features:</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
                     {project.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-gray-600">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                      <div key={feature} className="flex items-center text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
+                        <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
                         {feature}
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="mb-8">
-                  <h3 className="font-semibold text-gray-900 mb-3">Technologies Used:</h3>
-                  <div className="flex flex-wrap gap-2">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">Technologies Used:</h3>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-gray-100 text-gray-800 px-3 py-1 rounded-md text-sm font-medium"
+                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm font-medium"
                       >
                         {tech}
                       </span>
@@ -606,19 +626,19 @@ const Portfolio = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <a
                     href={project.liveUrl}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
-                    <Globe size={18} />
+                    <Globe size={16} className="sm:w-4 sm:h-4" />
                     Live Demo
                   </a>
                   <a
                     href={project.githubUrl}
-                    className="border-2 border-gray-300 hover:border-gray-400 text-gray-700 hover:text-gray-900 px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
+                    className="border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
-                    <Github size={18} />
+                    <Github size={16} className="sm:w-4 sm:h-4" />
                     View Code
                   </a>
                 </div>
@@ -631,23 +651,23 @@ const Portfolio = () => {
   );
 
   const renderDesignsPage = () => (
-    <div className="pt-32 pb-20 min-h-screen bg-gray-50">
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">My Creative Design Work</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">My Creative Design Work</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             A collection of my graphic design projects showcasing creativity, attention to detail,
             and design problem-solving across various mediums and industries.
           </p>
         </div>
 
         {/* Design Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {graphicDesigns.map((design) => (
             <div
               key={design.id}
-              className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
             >
               {/* Image */}
               <div className="relative overflow-hidden">
@@ -693,24 +713,24 @@ const Portfolio = () => {
               {/* Content */}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors flex-1">
                     {design.title}
                   </h3>
-                  <span className="text-sm text-gray-500 ml-2 flex-shrink-0">{design.year}</span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0">{design.year}</span>
                 </div>
 
-                <p className="text-purple-600 font-semibold text-sm mb-3">
+                <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-3">
                   {design.client}
                 </p>
 
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {design.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {design.tools.map((tool) => (
                     <span
                       key={tool}
-                      className="bg-gray-100 text-gray-800 px-3 py-1 rounded-md text-sm font-medium"
+                      className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-md text-sm font-medium"
                     >
                       {tool}
                     </span>
@@ -722,30 +742,42 @@ const Portfolio = () => {
         </div>
 
         {/* Modal */}
-        {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-            <div className="relative max-w-6xl max-h-[90vh] w-full mx-4">
+        {isModalOpen && selectedDesign && (
+          <div 
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            onClick={closeModal}
+          >
+            <div 
+              className="relative max-w-6xl max-h-[90vh] w-full mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
               {/* Close Button */}
               <button
                 onClick={closeModal}
-                className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
+                className="absolute -top-12 right-0 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
               >
                 <X size={24} />
               </button>
 
-              <div className="flex items-center justify-center bg-white rounded-lg overflow-hidden max-h-[90vh]">
+              {/* Design Info */}
+              <div className="absolute -top-16 left-0 text-white mb-4">
+                <h3 className="text-xl font-bold">{selectedDesign.title}</h3>
+                <p className="text-gray-300">{selectedDesign.client} • {selectedDesign.year}</p>
+              </div>
+
+              <div className="flex items-center justify-center bg-white rounded-lg overflow-hidden shadow-2xl">
                 {selectedDesign.type === "video" ? (
                   <video
-                    src={selectedDesign.image}
+                    src={process.env.PUBLIC_URL + selectedDesign.image}
                     controls
                     autoPlay
-                    className="overflow-hidden + max-h-[90vh] w-full h-full object-contain"
+                    className="max-h-[90vh] w-full object-contain"
                   />
                 ) : (
                   <img
-                    src={selectedDesign.image}
+                    src={process.env.PUBLIC_URL + selectedDesign.image}
                     alt={selectedDesign.title}
-                    className="overflow-hidden + max-h-[90vh] w-full h-full object-contain"
+                    className="max-h-[90vh] w-full object-contain"
                   />
                 )}
               </div>
@@ -757,73 +789,73 @@ const Portfolio = () => {
   );
 
   const renderAboutPage = () => (
-    <div className="pt-32 pb-20 min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">About Me</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen dark:bg-gray-900 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">About Me</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Get to know the person behind the code. My journey, experiences, and what drives my passion for development.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 mb-20">
-          <div>
-            <div class="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 text-white mb-8">
-              <h2 class="text-3xl font-bold mb-6"><i>My Journey in Computer Science & Engineering</i></h2>
+        <div className="grid lg:grid-cols-3 xl:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 mb-12 sm:mb-16 lg:mb-20">
+          <div className="lg:col-span-2 xl:col-span-1">
+            <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-6 sm:p-8 lg:p-10 text-white mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6"><i>My Journey in Computer Science & Engineering</i></h2>
               <div>
-                <h3 class="text-xl font-bold mb-6">The Spark That Started It All</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
+                <h3 className="text-xl font-bold mb-6">The Spark That Started It All</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
                   My journey began at age 16 with a broken laptop everyone had given up on. After three days of YouTube tutorials and forums, I successfully recovered the corrupted hard drive. That moment of triumph ignited a passion that would define my path.
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">From Curiosity to Competence</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
+                <h3 className="text-xl font-bold mb-6">From Curiosity to Competence</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
                   As a Second-year Computer Science student at University of Moratuwa, Sri Lanka, I've built solid foundations through coursework and hands-on projects. 
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">Embracing Challenges</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
+                <h3 className="text-xl font-bold mb-6">Embracing Challenges</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
                   My growth accelerated during my past two years, navigating legacy code with minimal documentation. This taught me "code archaeology" and I optimized their data pipeline by 40%, learning that elegant solutions come from deep problem understanding.
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">Beyond the Code</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
+                <h3 className="text-xl font-bold mb-6">Beyond the Code</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
                   I'm driven by technology's impact on people's lives—from campus systems saving organizers hours to mobile apps helping local businesses. As a teaching assistant for Introduction to Programming, I've learned that clear communication is as crucial as coding skills.
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">Looking Forward</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
+                <h3 className="text-xl font-bold mb-6">Looking Forward</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
                   Preparing for my next two year, I'm excited about AI and user experience intersection. I'm exploring how machine learning can create intuitive interfaces and make AI tools accessible to non-technical users. I seek opportunities to grow as both a technical problem-solver and collaborative team member.
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">Core Values</h3>
-                <p class="text-lg text-justify leading-relaxed mb-6">
-                  <strong>Continuous Learning:</strong> Embracing rapid technological evolution while building strong fundamentals.<br></br>
-                  <strong>User-Centric Thinking:</strong> Creating solutions that genuinely improve people's experiences.<br></br>
+                <h3 className="text-xl font-bold mb-6">Core Values</h3>
+                <p className="text-lg text-justify leading-relaxed mb-6">
+                  <strong>Continuous Learning:</strong> Embracing rapid technological evolution while building strong fundamentals.<br />
+                  <strong>User-Centric Thinking:</strong> Creating solutions that genuinely improve people's experiences.<br />
                   <strong>Collaborative Growth:</strong> My best work happens through learning from others and team contribution.
                 </p>
 
-                <h3 class="text-xl font-bold mb-6">"The best way to predict the future is to create it. I'm excited to be part of building tomorrow's technological solutions."</h3>
+                <h3 className="text-xl font-bold mb-6">"The best way to predict the future is to create it. I'm excited to be part of building tomorrow's technological solutions."</h3>
               </div>
 
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-4 mt-8">
                 <div className="flex items-center">
-                  <MapPin size={20} className="mr-2" />
-                  <span>{personalInfo.location}</span>
+                  <MapPin size={20} className="mr-2 flex-shrink-0" />
+                  <span className="text-sm sm:text-base">{personalInfo.location}</span>
                 </div>
                 <div className="flex items-center">
-                  <Mail size={20} className="mr-2" />
-                  <span className="truncate">{personalInfo.email}</span>
+                  <Mail size={20} className="mr-2 flex-shrink-0" />
+                  <span className="truncate text-sm sm:text-base">{personalInfo.email}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Skills & Expertise</h2>
+          <div className="lg:col-span-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">Skills & Expertise</h2>
             {Object.entries(skills).map(([category, skillList]) => (
               <div key={category} className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 capitalize flex items-center">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 capitalize flex items-center">
                   {category === 'Programming' && <Languages className="mr-2" size={24} />}
                   {category === 'frontend' && <Smartphone className="mr-2" size={24} />}
                   {category === 'backend' && <Code className="mr-2" size={24} />}
@@ -836,9 +868,9 @@ const Portfolio = () => {
                   {skillList.slice(0, 10).map((skill) => (
                     <div key={skill.name}>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-gray-700 font-medium">{skill.name}</span>
+                        <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
                       </div>
-                      <div className="bg-gray-200 rounded-full h-2">
+                      <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                         <div
                           className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
                           style={{ width: `${skill.level}%` }}
@@ -856,14 +888,14 @@ const Portfolio = () => {
   );
 
   const renderCVPage = () => (
-    <div className="pt-32 pb-20 min-h-screen bg-gray-50">
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl shadow-lg p-8 lg:p-12">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
           {/* CV Header */}
-          <div className="text-center border-b pb-8 mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">{personalInfo.name}</h1>
-            <p className="text-xl text-blue-600 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-600">
+          <div className="text-center border-b dark:border-gray-700 pb-8 mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{personalInfo.name}</h1>
+            <p className="text-xl text-blue-600 dark:text-blue-400 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
+            <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-300">
               <div className="flex items-center">
                 <Mail size={16} className="mr-2" />
                 <span>{personalInfo.email}</span>
@@ -897,36 +929,36 @@ const Portfolio = () => {
 
           {/* Professional Summary */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
               <User className="mr-2" size={24} />
               Professional Summary
             </h2>
-            <p className="text-gray-700 leading-relaxed text-lg">
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
               {personalInfo.bio}
             </p>
           </section>
 
           {/* Experience */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <GraduationCapIcon className="mr-2" size={24} />
               Education
             </h2>
             <div className="space-y-8">
               {education.map((edu, index) => (
-                <div key={index} className="relative pl-6 border-l-2 border-blue-200">
+                <div key={index} className="relative pl-6 border-l-2 border-blue-200 dark:border-blue-600">
                   <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
                   <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900">{edu.degree}</h3>
-                    <p className="text-lg text-blue-600 font-semibold">{edu.institution}</p>
-                    <div className="flex items-center text-gray-600 mt-1">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{edu.degree}</h3>
+                    <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{edu.institution}</p>
+                    <div className="flex items-center text-gray-600 dark:text-gray-400 mt-1">
                       <Calendar size={16} className="mr-2" />
                       <span className="mr-4">{edu.period}</span>
                       <MapPin size={16} className="mr-2" />
                       <span>{edu.gpa}</span>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4">{edu.specialization}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mb-4">{edu.specialization}</p>
                 </div>
               ))}
             </div>
@@ -934,20 +966,20 @@ const Portfolio = () => {
 
           {/* Education */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <FileText className="mr-2" size={24} />
               Voluntering
             </h2>
             <div className="space-y-6">
               {Voluntering.map((vol, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-6">
-                  <h3 className="text-xl font-bold text-gray-900">{vol.title}</h3>
-                  <p className="text-lg text-blue-600 font-semibold">{vol.company}</p>
-                  <div className="flex items-center justify-between text-gray-600 mt-2">
+                <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{vol.title}</h3>
+                  <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{vol.company}</p>
+                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-400 mt-2">
                     <span>{vol.period}</span>
                     <span>{vol.location}</span>
                   </div>
-                  <p className="text-gray-700 mt-2">Description: {vol.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 mt-2">Description: {vol.description}</p>
                 </div>
               ))}
             </div>
@@ -955,17 +987,17 @@ const Portfolio = () => {
 
           {/* Certifications */}
           <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <Award className="mr-2" size={24} />
               Certifications
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
-                  <h3 className="font-bold text-gray-900">{cert.name}</h3>
-                  <p className="text-blue-600 font-semibold">{cert.issuer}</p>
-                  <p className="text-gray-600 text-sm mt-1">Issued: {cert.date}</p>
-                  <p className="text-gray-500 text-xs">ID: {cert.credentialId}</p>
+                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 transition-colors duration-300">
+                  <h3 className="font-bold text-gray-900 dark:text-white">{cert.name}</h3>
+                  <p className="text-blue-600 dark:text-blue-400 font-semibold">{cert.issuer}</p>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Issued: {cert.date}</p>
+                  <p className="text-gray-500 dark:text-gray-500 text-xs">ID: {cert.credentialId}</p>
                 </div>
               ))}
             </div>
@@ -973,19 +1005,19 @@ const Portfolio = () => {
 
           {/* Technical Skills Summary */}
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <Code className="mr-2" size={24} />
               Technical Skills
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               {Object.entries(skills).map(([category, skillList]) => (
                 <div key={category}>
-                  <h3 className="font-bold text-gray-900 mb-3 capitalize">{category}</h3>
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 capitalize">{category}</h3>
                   <div className="flex flex-wrap gap-2">
                     {skillList.map((skill) => (
                       <span
                         key={skill.name}
-                        className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium"
+                        className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium"
                       >
                         {skill.name}
                       </span>
@@ -1001,33 +1033,33 @@ const Portfolio = () => {
   );
 
   const renderContactPage = () => (
-    <div className="pt-32 pb-20 min-h-screen bg-gradient-to-br from-white to-black-900">
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-black mb-6">Let's Connect</h1>
-          <p className="text-xl text-blue-900 max-w-3xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Let's Connect</h1>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Ready to bring your ideas to life? Let's discuss your next project and how we can work together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="text-white">
-            <h2 className="text-3xl font-bold mb-8">Get In Touch</h2>
-            <p className="text-lg text-blue-800 mb-12 leading-relaxed">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="text-gray-900 dark:text-gray-100">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Get In Touch</h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 leading-relaxed">
               I'm always interested in hearing about new opportunities, interesting projects,
               or just having a conversation about technology and development. Feel free to reach out!
             </p>
 
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               <div className="flex items-center">
-                <div className="bg-blue-600 rounded-full p-4 mr-6">
-                  <Mail size={24} />
+                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
+                  <Mail size={20} className="sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-purple-500 text-lg mb-1">Email</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Email</h3>
                   <a
                     href={`mailto:${personalInfo.email}`}
-                    className="text-blue-800 hover:text-black transition-colors"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
                   >
                     {personalInfo.email}
                   </a>
@@ -1035,14 +1067,14 @@ const Portfolio = () => {
               </div>
 
               <div className="flex items-center">
-                <div className="bg-blue-600 rounded-full p-4 mr-6">
-                  <Phone size={24} />
+                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
+                  <Phone size={20} className="sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-purple-500 text-lg mb-1">Phone</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Phone</h3>
                   <a
                     href={`tel:${personalInfo.phone}`}
-                    className="text-blue-800 hover:text-white transition-colors"
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
                   >
                     {personalInfo.phone}
                   </a>
@@ -1050,111 +1082,117 @@ const Portfolio = () => {
               </div>
 
               <div className="flex items-center">
-                <div className="bg-blue-600 rounded-full p-4 mr-6">
-                  <MapPin size={24} />
+                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
+                  <MapPin size={20} className="sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-purple-500 text-lg mb-1">Location</h3>
-                  <p className="text-blue-800">{personalInfo.location}</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Location</h3>
+                  <p className="text-blue-600 dark:text-blue-400 text-sm sm:text-base">{personalInfo.location}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-12">
-              <h3 className="text-xl font-semibold mb-6">Follow Me</h3>
-              <div className="flex space-x-6">
+            <div className="mt-8 sm:mt-12">
+              <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Follow Me</h3>
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <a
                   href={personalInfo.github}
-                  className="bg-gray-800 hover:bg-gray-700 p-4 rounded-full transition-colors"
+                  className="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="GitHub"
                 >
-                  <Github size={24} />
+                  <Github size={24} className="text-white" />
                 </a>
                 <a
                   href={personalInfo.linkedin}
-                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-full transition-colors"
+                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="LinkedIn"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={24} className="text-white" />
                 </a>
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="bg-red-600 hover:bg-red-700 p-4 rounded-full transition-colors"
+                  className="bg-red-600 hover:bg-red-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="Email"
                 >
-                  <Mail size={24} />
+                  <Mail size={24} className="text-white" />
                 </a>
                 <a
                   href={personalInfo.whatsApp}
-                  className="bg-green-500 hover:bg-green-700 p-4 rounded-full transition-colors"
+                  className="bg-green-500 hover:bg-green-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="WhatsApp"
                 >
-                  <MessageCircle size={24} />
+                  <MessageCircle size={24} className="text-white" />
                 </a>
                 <a
                   href={personalInfo.facebook}
-                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-full transition-colors"
+                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="Facebook"
                 >
-                  <FacebookIcon size={24} />
+                  <FacebookIcon size={24} className="text-white" />
                 </a>
                 <a
                   href={personalInfo.instagram}
-                  className="bg-purple-500 hover:bg-purple-700 p-4 rounded-full transition-colors"
+                  className="bg-purple-500 hover:bg-purple-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
+                  title="Instagram"
                 >
-                  <InstagramIcon size={24} />
+                  <InstagramIcon size={24} className="text-white" />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-2xl">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send me a message</h3>
+          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl transition-colors duration-300">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send me a message</h3>
             <div className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     First Name
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     placeholder="John"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Last Name
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     placeholder="Doe"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   placeholder="john@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Subject
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   placeholder="Project Inquiry"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Message
                 </label>
                 <textarea
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -1172,20 +1210,20 @@ const Portfolio = () => {
   );
 
   const renderNavigation = () => (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-md shadow-lg' : 'bg-black/30 backdrop-blur-sm shadow-md'
       }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <button
             onClick={() => setCurrentPage('home')}
-            className={`text-2xl font-bold transition-colors ${isScrolled || currentPage !== 'home' ? 'text-Blue-200' : 'text-Purple-200 '
+            className={`text-xl sm:text-2xl font-bold transition-colors ${isScrolled || currentPage !== 'home' ? 'text-blue-600 dark:text-blue-400' : 'text-white drop-shadow-lg'
               }`}
           >
             {personalInfo.name}
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {[
               { id: 'home', label: 'Home', icon: Home },
               { id: 'about', label: 'About', icon: User },
@@ -1197,34 +1235,61 @@ const Portfolio = () => {
               <button
                 key={id}
                 onClick={() => setCurrentPage(id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${currentPage === id
+                className={`flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${currentPage === id
                   ? 'bg-blue-600 text-white shadow-md'
                   : isScrolled || currentPage !== 'home'
-                    ? 'text-gray-600 hover:text-Black-900 hover:bg-gray-800'
-                    : 'text-purple-800 hover:text-blue-800 hover:bg-white/10'
+                    ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                    : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
                   }`}
               >
                 <Icon size={18} />
                 {label}
               </button>
             ))}
+            
+            {/* Dark Mode Toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className={`p-2 rounded-lg transition-all ${isScrolled || currentPage !== 'home'
+                ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
+                }`}
+              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className={`md:hidden transition-colors ${isScrolled || currentPage !== 'home' ? 'text-gray-900' : 'text-white'
-              }`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button and Dark Mode */}
+          <div className="md:hidden flex items-center space-x-2">
+            {/* Dark Mode Toggle for Mobile */}
+            <button
+              onClick={toggleDarkMode}
+              className={`p-2 rounded-lg transition-all ${isScrolled || currentPage !== 'home'
+                ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
+                }`}
+              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            
+            {/* Menu Toggle Button */}
+            <button
+              className={`transition-colors ${isScrolled || currentPage !== 'home' ? 'text-gray-900 dark:text-gray-100' : 'text-white drop-shadow-lg'
+                }`}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t shadow-lg">
+          <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
             {[
-              { id: 'home', label: 'Home', icon: User },
+              { id: 'home', label: 'Home', icon: Home },
               { id: 'about', label: 'About', icon: User },
               { id: 'projects', label: 'Projects', icon: Briefcase },
               { id: 'designs', label: 'Designs', icon: PenTool },
@@ -1237,9 +1302,9 @@ const Portfolio = () => {
                   setCurrentPage(id);
                   setIsMenuOpen(false);
                 }}
-                className={`flex items-center gap-3 w-full px-6 py-4 text-left font-medium transition-colors ${currentPage === id
-                  ? 'bg-blue-50 text-blue-600 border-r-4 border-blue-600'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                className={`flex items-center gap-3 w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-medium transition-colors ${currentPage === id
+                  ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 dark:border-blue-400'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
               >
                 <Icon size={18} />
@@ -1272,67 +1337,185 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dark:bg-gray-900 transition-colors duration-300">
       {renderNavigation()}
       {renderCurrentPage()}
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-20">
+      {/* Main Footer */}
+      <footer className="bg-gray-800 dark:bg-gray-900 text-white border-t border-gray-700 dark:border-gray-600 py-12 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* About Section */}
             <div>
-              <h3 className="text-2xl text-center font-bold mb-4">{personalInfo.name}</h3>
-              <UniversityIcon size={20} /><p className="text-gray-400 mb-4">{personalInfo.title_1 + " @ UoM"}</p>
-              <MapPin size={20} /><p className="text-gray-400">{personalInfo.location}</p>
+              <h3 className="text-xl font-bold mb-4">{personalInfo.name}</h3>
+              <p className="text-gray-300 dark:text-gray-400 mb-4">{personalInfo.title_1}</p>
+              <p className="text-gray-400 dark:text-gray-500 text-sm">
+                Passionate about creating innovative solutions and bringing ideas to life through code and design.
+              </p>
             </div>
-
+            
+            {/* Quick Links */}
             <div>
-              <h3 className="text-2xl font-semibold mb-4 text-center">Connect</h3>
-              <div className="grid md:grid-cols-6 gap-8 text-center">
-                <a
-                  href={personalInfo.whatsApp}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <MessageCircle size={24} />
-                </a>
+              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {[
+                  { id: 'home', label: 'Home' },
+                  { id: 'about', label: 'About' },
+                  { id: 'projects', label: 'Projects' },
+                  { id: 'designs', label: 'Designs' },
+                  { id: 'cv', label: 'CV' },
+                  { id: 'contact', label: 'Contact' }
+                ].map(({ id, label }) => (
+                  <li key={id}>
+                    <button
+                      onClick={() => setCurrentPage(id)}
+                      className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors text-sm"
+                    >
+                      {label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Social Media & Contact */}
+            <div>
+              <h3 className="text-xl font-bold mb-4">Connect</h3>
+              <div className="grid grid-cols-3 gap-3 mb-4">
                 <a
                   href={personalInfo.github}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="GitHub"
                 >
-                  <Github size={24} />
+                  <Github size={20} />
                 </a>
                 <a
                   href={personalInfo.linkedin}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="LinkedIn"
                 >
-                  <Linkedin size={24} />
-                </a>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <Mail size={24} />
+                  <Linkedin size={20} />
                 </a>
                 <a
                   href={personalInfo.facebook}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="Facebook"
                 >
-                  <FacebookIcon size={24} />
+                  <FacebookIcon size={20} />
                 </a>
                 <a
                   href={personalInfo.instagram}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="Instagram"
                 >
-                  <InstagramIcon size={24} />
+                  <InstagramIcon size={20} />
+                </a>
+                <a
+                  href={personalInfo.whatsApp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="WhatsApp"
+                >
+                  <MessageCircle size={20} />
+                </a>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
+                  title="Email"
+                >
+                  <Mail size={20} />
                 </a>
               </div>
+              <p className="text-gray-400 text-sm">
+                <MapPin size={16} className="inline mr-1" />
+                {personalInfo.location}
+              </p>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2025 {personalInfo.name}. All rights reserved.</p>
+          
+          {/* Copyright */}
+          <div className="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center">
+            <p className="text-gray-400 dark:text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
+
+      {/* Contact Footer - Only shown on Contact Page */}
+      {currentPage === 'contact' && (
+        <footer className="bg-gray-900 text-white py-20">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-2xl text-center font-bold mb-4">{personalInfo.name}</h3>
+                <div className="flex items-center gap-2 mb-4">
+                  <UniversityIcon size={20} />
+                  <p className="text-gray-400">{personalInfo.title_1 + " @ UoM"}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin size={20} />
+                  <p className="text-gray-400">{personalInfo.location}</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-center">Connect</h3>
+                <div className="grid md:grid-cols-6 gap-8 text-center">
+                  <a
+                    href={personalInfo.whatsApp}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <MessageCircle size={24} />
+                  </a>
+                  <a
+                    href={personalInfo.github}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Github size={24} />
+                  </a>
+                  <a
+                    href={personalInfo.linkedin}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Linkedin size={24} />
+                  </a>
+                  <a
+                    href={`mailto:${personalInfo.email}`}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Mail size={24} />
+                  </a>
+                  <a
+                    href={personalInfo.facebook}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <FacebookIcon size={24} />
+                  </a>
+                  <a
+                    href={personalInfo.instagram}
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    <InstagramIcon size={24} />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+              <p>&copy; 2025 {personalInfo.name}. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      )}
     </div>
   );
 };
