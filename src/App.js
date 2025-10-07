@@ -151,6 +151,17 @@ const Portfolio = () => {
 
   const graphicDesigns = [
     {
+      id: 0,
+      title: "Awareness of Austim",
+      client: "Rotaract UOM",
+      description: "Attractive Animation",
+      image: "/assets/Designs/White Elegant What You Need Facebook Post.mp4",
+      tools: ["Canva"],
+      year: "2025",
+      type: "video"
+    },
+
+    {
       id: 1,
       title: "Catalyst 25",
       client: "Rotaract UOM",
