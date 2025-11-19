@@ -184,6 +184,28 @@ const Portfolio = () => {
     },
 
     {
+      id: 11,
+      title: "Bot Talk 3.0",
+      client: "IEEE RAS UOM",
+      description: "Attractive Flyer",
+      image: "/assets/Designs/Bot Talk 3.0 - Flyers.png",
+      tools: ["Canva"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 12,
+      title: "TECHNO 2025",
+      client: "IESL UOM",
+      description: "Attractive Small Video for Happening Now",
+      image: "/assets/Designs/Gold Modern Wedding Event Happening Now WhatsApp Status_2.mp4",
+      tools: ["Canva", "Capcut"],
+      year: "2025",
+      type: "video"
+    },
+
+    {
       id: 3,
       title: "Annual General Meeting",
       client: "IESL student Chapter UOM",
@@ -201,6 +223,39 @@ const Portfolio = () => {
       description: "An elegant thumbnail for tiktok video",
       image: "/assets/Designs/Heading.png",
       tools: ["canva", "photoshop"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 13,
+      title: "TECHNO 2025",
+      client: "IESL UOM",
+      description: "Attractive Small Video for Happening Now Day #2",
+      image: "/assets/Designs/happening now day 2.mp4",
+      tools: ["Canva", "Capcut"],
+      year: "2025",
+      type: "video"
+    },
+
+    {
+      id: 14,
+      title: "TECHNO 2025",
+      client: "IESL UOM",
+      description: "Attractive Flyer for Happening Today",
+      image: "/assets/Designs/6.jpg",
+      tools: ["Adobe Photoshop"],
+      year: "2025",
+      type: "image"
+    },
+
+    {
+      id: 15,
+      title: "The Elegant Frock Design",
+      client: "The Looms Arcade",
+      description: "Attractive Flyer for Marketing",
+      image: "/assets/Designs/Looms Arcade.png",
+      tools: ["Canva", "Adobe Photoshop"],
       year: "2025",
       type: "image"
     },
@@ -315,7 +370,7 @@ const Portfolio = () => {
   };
 
   // Experience data
-  const Voluntering = [
+  const experiences = [
     {
       title: "PR Team Member",
       company: "Rotaract Club of University of Moratuwa",
@@ -331,13 +386,7 @@ const Portfolio = () => {
       description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
 
     },
-    {
-      title: "OC Member of Flyer Design Committee",
-      company: "Binara Padura, organized by Rotaract Club of University of Moratuwa",
-      period: "2025 Jul- 2025 Sep",
-      location: "Remote",
-      description: "design flyer for Binara Padura 25, a very exiciting Musical Event ",
-    },
+
     {
       title: "Member",
       company: "Maths Society, University of Moratuwa",
@@ -353,6 +402,43 @@ const Portfolio = () => {
       description: "",
     }
 
+  ];
+
+  // Volunteering data
+  const volunteering = [
+    {
+      eventName: "Binara Padura 25",
+      position: "OC Member - Flyer Design Committee",
+      organizer: "Rotaract Club of University of Moratuwa",
+      date: "2025 Jul",
+      logo: "/assets/Logoes/1.jpg",
+      category: "Music & Entertainment"
+    },
+    {
+      eventName: "Bot Talk 3.0",
+      position: "Design & Marketing Committee Member",
+      organizer: "IEEE RAS of University of Moratuwa",
+      date: "2025 Oct",
+      logo: "/assets/Logoes/2.png",
+      category: "Science & Technology"
+    },
+    {
+      eventName: "Open Hearts",
+      position: "Flyer Designing & Video Editing Committee Member",
+      organizer: "Rotaract Club of University of Moratuwa",
+      date: "2025 Sep",
+      logo: "/assets/Logoes/1.jpg",
+      category: "Health"
+    },
+
+    {
+      eventName: "Beyond the Frame",
+      position: "Chair Person",
+      organizer: "Rotaract Club of University of Moratuwa",
+      date: "2025 Dec",
+      logo: "/assets/Logoes/1.jpg",
+      category: "Photography"
+    }
   ];
 
   // Education data
@@ -979,10 +1065,10 @@ const Portfolio = () => {
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <FileText className="mr-2" size={24} />
-              Voluntering
+              Experiences
             </h2>
             <div className="space-y-6">
-              {Voluntering.map((vol, index) => (
+              {experiences.map((vol, index) => (
                 <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white">{vol.title}</h3>
                   <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{vol.company}</p>
@@ -1009,6 +1095,37 @@ const Portfolio = () => {
                   <p className="text-blue-600 dark:text-blue-400 font-semibold">{cert.issuer}</p>
                   <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Issued: {cert.date}</p>
                   <p className="text-gray-500 dark:text-gray-500 text-xs">ID: {cert.credentialId}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Volunteering */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <User className="mr-2" size={24} />
+              Volunteering
+            </h2>
+            <div className="space-y-6">
+              {volunteering.map((v, idx) => (
+                <div key={idx} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 flex gap-4 items-start transition-colors duration-300">
+                  <img
+                    src={process.env.PUBLIC_URL + v.logo}
+                    alt={v.organizer}
+                    className="w-16 h-16 object-cover rounded-md flex-shrink-0"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{v.eventName}</h3>
+                        <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold">{v.position} • {v.organizer}</p>
+                      </div>
+                      <div className="text-gray-600 dark:text-gray-400 text-sm">
+                        <span>{v.date}</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 mt-2">Category: <span className="font-medium">{v.category}</span></p>
+                  </div>
                 </div>
               ))}
             </div>
