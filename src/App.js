@@ -588,7 +588,7 @@ const Portfolio = () => {
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                 <span className="text-xs sm:text-sm lg:text-base">Available for Everything Belongs to My Path</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
                 {personalInfo.name}
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-200 mb-3 sm:mb-4">
