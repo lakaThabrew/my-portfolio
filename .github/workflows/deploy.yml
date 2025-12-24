@@ -3,8 +3,8 @@ name: Deploy Website to GitHub Pages
 on:
   push:
     branches:
-      - master # Trigger on master branch
-  workflow_dispatch: # Allow manual trigger
+      - master      # triggers on master branch
+  workflow_dispatch:  # you can manually run this too
 
 permissions:
   contents: read
@@ -19,20 +19,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # If your project uses Node.js (React, Vue, Angular)
+      # If you're using Node.js (React/Vite/Angular/Vue)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build website
-        run: npm run build # Adjust if your build command is different
+      - name: Build the site
+        run: npm run build   # Adjust if your build script is different
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build # or ./dist if using Angular/Vue
+          publish_dir: ./build   # Change to ./dist if your build outputs there
