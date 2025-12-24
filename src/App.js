@@ -372,8 +372,17 @@ const Portfolio = () => {
   // Experience data
   const experiences = [
     {
+      title: "Public Relations Committee Member",
+      company: "CSE Student Socity of University of Moratuwa",
+      logo: "/assets/Logoes/csess.jpg",
+      period: "2025 Nov - Present",
+      location: "Moratuwa, Sri Lanka",
+      description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
+    },
+    {
       title: "PR Team Member",
       company: "Rotaract Club of University of Moratuwa",
+      logo: "/assets/Logoes/Rota.jpg",
       period: "2025 Aug - Present",
       location: "Moratuwa, Sri Lanka",
       description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
@@ -381,6 +390,7 @@ const Portfolio = () => {
     {
       title: "Member of Marketing Pillar",
       company: "IESL Student Chapter UOM",
+      logo: "/assets/Logoes/iesl.jpg",
       period: "2025 Sep - Present",
       location: "Moratuwa, Sri Lanka",
       description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
@@ -390,6 +400,7 @@ const Portfolio = () => {
     {
       title: "Member",
       company: "Maths Society, University of Moratuwa",
+      logo: "/assets/Logoes/maths.png",
       period: "2024- Present",
       location: "Moratuwa, Sri Lanka",
       description: "",
@@ -397,6 +408,7 @@ const Portfolio = () => {
     {
       title: "Member",
       company: " General Knowledge Society, Dharmasoka College, Ambalangoda, Sri Lanka",
+      logo: "/assets/Logoes/school.jpeg",
       period: "2018- 2021",
       location: "Ambalangoda, Sri Lanka",
       description: "",
@@ -407,11 +419,28 @@ const Portfolio = () => {
   // Volunteering data
   const volunteering = [
     {
+      eventName: "GAMMADDATA IEEE API 4.0",
+      position: "OC Member - Technical Committee",
+      organizer: "IEEE of University of Moratuwa",
+      date: "2025 Sep",
+      logo: "/assets/Logoes/IEEE.jpeg",
+      category: "Education and Technology"
+    },
+    {
+      eventName: "Trinity ShowDown",
+      position: "OC Member - Flyer Designing Committee",
+      organizer: "Rotaract Club of University of Moratuwa",
+      date: "2025 Dec",
+      logo: "/assets/Logoes/Rota.jpg",
+      category: "Gaming & Entertainment"
+    },
+
+    {
       eventName: "Binara Padura 25",
       position: "OC Member - Flyer Design Committee",
       organizer: "Rotaract Club of University of Moratuwa",
       date: "2025 Jul",
-      logo: "/assets/Logoes/1.jpg",
+      logo: "/assets/Logoes/Rota.jpg",
       category: "Music & Entertainment"
     },
     {
@@ -419,7 +448,7 @@ const Portfolio = () => {
       position: "Design & Marketing Committee Member",
       organizer: "IEEE RAS of University of Moratuwa",
       date: "2025 Oct",
-      logo: "/assets/Logoes/2.png",
+      logo: "/assets/Logoes/RAS.png",
       category: "Science & Technology"
     },
     {
@@ -427,7 +456,7 @@ const Portfolio = () => {
       position: "Flyer Designing & Video Editing Committee Member",
       organizer: "Rotaract Club of University of Moratuwa",
       date: "2025 Sep",
-      logo: "/assets/Logoes/1.jpg",
+      logo: "/assets/Logoes/Rota.jpg",
       category: "Health"
     },
 
@@ -436,7 +465,7 @@ const Portfolio = () => {
       position: "Chair Person",
       organizer: "Rotaract Club of University of Moratuwa",
       date: "2025 Dec",
-      logo: "/assets/Logoes/1.jpg",
+      logo: "/assets/Logoes/Rota.jpg",
       category: "Photography"
     }
   ];
@@ -470,13 +499,36 @@ const Portfolio = () => {
   const certifications = [
     {
       name: "AgentX Bootcamp",
-      issuer: "Leo Club of University of Moratuwa ( UoM Leos)",
+      issuer: "UoM Leos",
+      logo: "/assets/Logoes/leo.jpeg",
       date: "2025",
+      credentialId: ""
+    },
+    {
+      name: "AI/ML Engineer - stage I",
+      issuer: "SLIIT Faculty of Computing",
+      logo: "/assets/Logoes/SLIIT.png",
+      date: "2025",
+      credentialId: "d3teugocul"
+    },
+    {
+      name: "Fundermentals of Accerlerated Data Science",
+      issuer: "NVIDIA",
+      logo: "/assets/Logoes/nvidia.jpg",
+      date: "2025 Dec",
+      credentialId: "P7Hq1rEUS6OwvnVGGaNDow"
+    },
+    {
+      name:  "5 Day AI Agents Intensive course with Google",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      Date: "2025 Dec",
       credentialId: ""
     },
     {
       name: "Python for Beginners",
       issuer: "Department of Computer Science & Engineering, University of Moratuwa",
+      logo: "/assets/Logoes/cse_logo.png",
       date: "2023",
       credentialId: "iY4PHJGxqy"
     },
@@ -484,36 +536,77 @@ const Portfolio = () => {
       name: "Program Solving (Solve)",
       issuer: "HackerRank",
       date: "2025",
+      logo: "/assets/Logoes/hackerrank-logo.jpg",
       credentialId: "2cada0a0c6e9"
     },
     {
       name: "AI in Data Analysis",
       issuer: "Sololearn",
       date: "2025",
+      logo: "/assets/Logoes/sololearn.jpg",
       credentialId: "CC-LSNVYKQJ"
     },
     {
       name: "ML for beginners",
       issuer: "Sololearn",
       date: "2025",
+      logo: "/assets/Logoes/sololearn.jpg",
       credentialId: "CC-QAVQM7IU"
     },
     {
       name: "Java Intermediate",
       issuer: "Sololearn",
       date: "2025",
+      logo: "/assets/Logoes/sololearn.jpg",
       credentialId: "CC-6ZVSJRR8"
     },
     {
       name: "Introduction for C++",
       issuer: "Sololearn",
+      logo: "/assets/Logoes/sololearn.jpg",
       date: "2024",
       credentialId: "CC-LD2L040J"
     },
     {
       name: "Introduction for Java",
       issuer: "Sololearn",
+      logo: "/assets/Logoes/sololearn.jpg",
       date: "2024",
+      credentialId: "CC-XYUXO4XP"
+    },
+    {
+      name: "Data Visualization with Python",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      date: "2025 Dec",
+      credentialId: "CC-XYUXO4XP"
+    },
+    {
+      name: "Feature Engineering",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      date: "2025 Dec",
+      credentialId: "CC-XYUXO4XP"
+    },
+    {
+      name: "Intro to Machine Learning",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      date: "2025 Dec",
+      credentialId: "CC-XYUXO4XP"
+    },
+    {
+      name: "Pandas",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      date: "2025 Dec",
+      credentialId: "CC-XYUXO4XP"
+    },
+    {
+      name: "Intermediate ML",
+      issuer: "Kaggle",
+      logo: "/assets/Logoes/kaggle.png",
+      date: "2025 Dec",
       credentialId: "CC-XYUXO4XP"
     }
   ];
@@ -522,7 +615,7 @@ const Portfolio = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     const handleKeyDown = (event) => {
       if (event.key === 'Escape' && isModalOpen) {
         closeModal();
@@ -531,7 +624,7 @@ const Portfolio = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('keydown', handleKeyDown);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
@@ -541,18 +634,18 @@ const Portfolio = () => {
   const handleDownloadCV = () => {
     const link = document.createElement("a");
     link.href = "https://drive.google.com/uc?export=download&id=1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-";
-    link.setAttribute("download", "My_CV.pdf"); 
+    link.setAttribute("download", "My_CV.pdf");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   const handleViewCV = () => {
-  window.open(
-    "https://drive.google.com/file/d/1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-/view?usp=sharing",
-    "_blank"
-  );
-};
+    window.open(
+      "https://drive.google.com/file/d/1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-/view?usp=sharing",
+      "_blank"
+    );
+  };
 
 
   const renderHomePage = () => (
@@ -567,7 +660,7 @@ const Portfolio = () => {
               <div className="relative inline-block">
                 <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
                   <img
-                    src= {process.env.PUBLIC_URL+"/assets/dp_crop.jpg"}
+                    src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}
                     alt="Lakmana Thabrew"
                     className="w-full h-full object-cover"
                   />
@@ -580,7 +673,7 @@ const Portfolio = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Text Content */}
             <div className="text-center lg:text-left lg:order-1 lg:pr-8">
               <div></div>
@@ -840,11 +933,11 @@ const Portfolio = () => {
 
         {/* Modal */}
         {isModalOpen && selectedDesign && (
-          <div 
+          <div
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
             onClick={closeModal}
           >
-            <div 
+            <div
               className="relative max-w-6xl max-h-[90vh] w-full mx-4"
               onClick={(e) => e.stopPropagation()}
             >
@@ -907,7 +1000,7 @@ const Portfolio = () => {
 
                 <h3 className="text-xl font-bold mb-6">From Curiosity to Competence</h3>
                 <p className="text-lg text-justify leading-relaxed mb-6">
-                  As a Second-year Computer Science student at University of Moratuwa, Sri Lanka, I've built solid foundations through coursework and hands-on projects. 
+                  As a Second-year Computer Science student at University of Moratuwa, Sri Lanka, I've built solid foundations through coursework and hands-on projects.
                 </p>
 
                 <h3 className="text-xl font-bold mb-6">Embracing Challenges</h3>
@@ -984,7 +1077,7 @@ const Portfolio = () => {
     </div >
   );
 
-  const renderCVPage = () => (
+  const renderCVPage1 = () => (
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
@@ -1035,7 +1128,7 @@ const Portfolio = () => {
             </p>
           </section>
 
-          {/* Experience */}
+          {/* Education */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <GraduationCapIcon className="mr-2" size={24} />
@@ -1061,27 +1154,6 @@ const Portfolio = () => {
             </div>
           </section>
 
-          {/* Education */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <FileText className="mr-2" size={24} />
-              Experiences
-            </h2>
-            <div className="space-y-6">
-              {experiences.map((vol, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{vol.title}</h3>
-                  <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{vol.company}</p>
-                  <div className="flex items-center justify-between text-gray-600 dark:text-gray-400 mt-2">
-                    <span>{vol.period}</span>
-                    <span>{vol.location}</span>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 mt-2">Description: {vol.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
           {/* Certifications */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
@@ -1090,18 +1162,126 @@ const Portfolio = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 transition-colors duration-300">
-                  <h3 className="font-bold text-gray-900 dark:text-white">{cert.name}</h3>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold">{cert.issuer}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Issued: {cert.date}</p>
-                  <p className="text-gray-500 dark:text-gray-500 text-xs">ID: {cert.credentialId}</p>
+                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-center">
+                  {cert.logo && (
+                    <div className="w-16 h-16 flex items-center justify-center bg-white/60 dark:bg-gray-800/50 rounded-md p-1 flex-shrink-0">
+                      <img src={process.env.PUBLIC_URL + cert.logo} alt={cert.issuer} className="max-w-full max-h-full object-contain" />
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <h3 className="font-bold text-gray-900 dark:text-white">{cert.name}</h3>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold">{cert.issuer}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Issued: {cert.date}</p>
+                    <p className="text-gray-500 dark:text-gray-500 text-xs">ID: {cert.credentialId}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Technical Skills */}
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <Code className="mr-2" size={24} />
+              Technical Skills
+            </h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              {Object.entries(skills).map(([category, skillList]) => (
+                <div key={category}>
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 capitalize">{category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {skillList.map((skill) => (
+                      <span
+                        key={skill.name}
+                        className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium"
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderCVPage2 = () => (
+    <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
+          {/* CV Header */}
+          <div className="text-center border-b dark:border-gray-700 pb-8 mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{personalInfo.name}</h1>
+            <p className="text-xl text-blue-600 dark:text-blue-400 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
+            <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-300">
+              <div className="flex items-center">
+                <Mail size={16} className="mr-2" />
+                <span>{personalInfo.email}</span>
+              </div>
+              <div className="flex items-center">
+                <Phone size={16} className="mr-2" />
+                <span>{personalInfo.phone}</span>
+              </div>
+              <div className="flex items-center">
+                <MapPin size={16} className="mr-2" />
+                <span>{personalInfo.location}</span>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={handleViewCV}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+              >
+                <SearchIcon size={18} />
+                View PDF Version
+              </button>
+              <button
+                onClick={handleDownloadCV}
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+              >
+                <Download size={18} />
+                Download PDF Version
+              </button>
+            </div>
+          </div>
+
+          {/* Experiences */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <FileText className="mr-2" size={24} />
+              Experiences
+            </h2>
+            <div className="space-y-6">
+              {experiences.map((vol, index) => (
+                <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-start">
+                  {vol.logo && (
+                    <img
+                      src={process.env.PUBLIC_URL + vol.logo}
+                      alt={vol.company}
+                      className="w-16 h-16 object-cover rounded-md flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{vol.title}</h3>
+                    <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{vol.company}</p>
+                    <div className="flex items-center justify-between text-gray-600 dark:text-gray-400 mt-2">
+                      <span>{vol.period}</span>
+                      <span>{vol.location}</span>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 mt-2">Description: {vol.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Volunteering */}
-          <section className="mb-10">
+          <section>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
               <User className="mr-2" size={24} />
               Volunteering
@@ -1128,33 +1308,11 @@ const Portfolio = () => {
                   </div>
                 </div>
               ))}
+
             </div>
           </section>
 
-          {/* Technical Skills Summary */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <Code className="mr-2" size={24} />
-              Technical Skills
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {Object.entries(skills).map(([category, skillList]) => (
-                <div key={category}>
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 capitalize">{category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill) => (
-                      <span
-                        key={skill.name}
-                        className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+
         </div>
       </div>
     </div>
@@ -1357,7 +1515,8 @@ const Portfolio = () => {
               { id: 'about', label: 'About', icon: User },
               { id: 'projects', label: 'Projects', icon: Briefcase },
               { id: 'designs', label: 'Designs', icon: PenTool },
-              { id: 'cv', label: 'CV', icon: FileText },
+              { id: 'cv1', label: 'Education', icon: FileText },
+              { id: 'cv2', label: 'Exper&Volunt', icon: FileText },
               { id: 'contact', label: 'Contact', icon: Phone }
             ].map(({ id, label, icon: Icon }) => (
               <button
@@ -1374,7 +1533,7 @@ const Portfolio = () => {
                 {label}
               </button>
             ))}
-            
+
             {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
@@ -1401,7 +1560,7 @@ const Portfolio = () => {
             >
               {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            
+
             {/* Menu Toggle Button */}
             <button
               className={`transition-colors ${isScrolled || currentPage !== 'home' ? 'text-gray-900 dark:text-gray-100' : 'text-white drop-shadow-lg'
@@ -1421,7 +1580,8 @@ const Portfolio = () => {
               { id: 'about', label: 'About', icon: User },
               { id: 'projects', label: 'Projects', icon: Briefcase },
               { id: 'designs', label: 'Designs', icon: PenTool },
-              { id: 'cv', label: 'CV', icon: FileText },
+              { id: 'cv1', label: 'Education', icon: FileText },
+              { id: 'cv2', label: 'Exper&Volunt', icon: FileText },
               { id: 'contact', label: 'Contact', icon: Phone }
             ].map(({ id, label, icon: Icon }) => (
               <button
@@ -1455,8 +1615,10 @@ const Portfolio = () => {
         return renderProjectsPage();
       case 'designs':
         return renderDesignsPage();
-      case 'cv':
-        return renderCVPage();
+      case 'cv1':
+        return renderCVPage1();
+      case 'cv2':
+        return renderCVPage2();
       case 'contact':
         return renderContactPage();
       default:
@@ -1481,7 +1643,7 @@ const Portfolio = () => {
                 Passionate about creating innovative solutions and bringing ideas to life through code and design.
               </p>
             </div>
-            
+
             {/* Quick Links */}
             <div>
               <h3 className="text-xl font-bold mb-4">Quick Links</h3>
@@ -1491,7 +1653,8 @@ const Portfolio = () => {
                   { id: 'about', label: 'About' },
                   { id: 'projects', label: 'Projects' },
                   { id: 'designs', label: 'Designs' },
-                  { id: 'cv', label: 'CV' },
+                  { id: 'cv1', label: 'CV — Education' },
+                  { id: 'cv2', label: 'CV — Experience' },
                   { id: 'contact', label: 'Contact' }
                 ].map(({ id, label }) => (
                   <li key={id}>
@@ -1505,7 +1668,7 @@ const Portfolio = () => {
                 ))}
               </ul>
             </div>
-            
+
             {/* Social Media & Contact */}
             <div>
               <h3 className="text-xl font-bold mb-4">Connect</h3>
@@ -1569,7 +1732,7 @@ const Portfolio = () => {
               </p>
             </div>
           </div>
-          
+
           {/* Copyright */}
           <div className="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center">
             <p className="text-gray-400 dark:text-gray-500 text-sm">
