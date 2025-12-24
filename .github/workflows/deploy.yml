@@ -1,11 +1,13 @@
 name: Deploy Website to GitHub Pages
 
+# Trigger workflow on push to master or manual trigger
 on:
   push:
     branches:
-      - master      # triggers on master branch
-  workflow_dispatch:  # you can manually run this too
+      - master
+  workflow_dispatch:
 
+# Permissions for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
@@ -16,23 +18,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # If you're using Node.js (React/Vite/Angular/Vue)
+      # 2️⃣ Setup Node.js (if using React, Vue, Angular)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
 
-      - name: Build the site
+      # 4️⃣ Build the website
+      - name: Build website
         run: npm run build   # Adjust if your build script is different
 
+      # 5️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build   # Change to ./dist if your build outputs there
+          publish_dir: ./build   # Change to ./dist if your project uses that
+          force_orphan: true     # Creates gh-pages branch from scratch
