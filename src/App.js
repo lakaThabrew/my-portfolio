@@ -54,6 +54,67 @@ const Portfolio = () => {
   // Enhanced projects with more details
   const projects = [
     {
+      id: -1,
+      title: "EduMentor AI – Agent-Based Educational Assistant",
+      category: "AI & Education, Software Engineering",
+      description: "An AI-powered educational assistant built using a multi-agent architecture to deliver personalized learning, real-time tutoring, adaptive quizzes, and intelligent study recommendations for students.",
+      longDescription: "EduMentor AI is a sophisticated agent-based educational assistant designed to enhance personalized learning experiences. The system leverages multiple AI agents to handle tasks such as student query understanding, personalized tutoring, adaptive quiz generation, learning progress tracking, and memory-based recommendations. Using natural language processing, the assistant understands student questions in real time, while adaptive learning algorithms tailor content based on performance and learning behavior. The platform integrates educational resources, provides analytics-driven feedback, and supports continuous learning across multiple subjects.",
+      image: "/assets/projects/Edumentor-ai.png",
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "Python",
+        "Large Language Models (LLMs)",
+        "RESTful API",
+        "Tailwind CSS"
+      ],
+      features: [
+        "Multi-Agent AI Architecture",
+        "Personalized Learning Paths",
+        "Real-time AI Tutoring",
+        "Adaptive Quiz Generation",
+        "Student Progress Tracking",
+        "Memory-Based Recommendations",
+        "Natural Language Query Handling",
+        "Learning Analytics Dashboard"
+      ],
+      liveUrl: "#",
+      githubUrl: "https://github.com/lakaThabrew/edumentor-ai",
+      year: "2025"
+    }
+    ,
+    {
+      id: 0,
+      title: "HealthSense – AI-Powered Health Monitoring System",
+      category: "Healthcare Technology, AI & Software Engineering",
+      description: "A smart health monitoring and analysis platform designed to track user health data, provide insights, and support proactive healthcare through intelligent data visualization and analysis.",
+      longDescription: "HealthSense is a modern healthcare technology project focused on monitoring, analyzing, and visualizing personal health data to support better health awareness and decision-making. The system enables users to record and track vital health metrics, view trends over time, and gain meaningful insights through an intuitive dashboard. Designed with a scalable architecture and clean UI, HealthSense emphasizes usability, data clarity, and future extensibility toward AI-driven health predictions and personalized recommendations.",
+      image: "/assets/projects/health.png",
+      technologies: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "RESTful API",
+        "Tailwind CSS",
+        "Chart.js"
+      ],
+      features: [
+        "Health Data Tracking",
+        "Interactive Data Visualization",
+        "User-Friendly Dashboard",
+        "Secure Data Handling",
+        "Trend Analysis of Health Metrics",
+        "Scalable Backend Architecture",
+        "Future-Ready AI Integration"
+      ],
+      liveUrl: "https://ai.studio/apps/drive/1MEdLXshwAW8p5g3b6CQ_g8k8iyZAiK87?fullscreenApplet=true",
+      githubUrl: "https://github.com/lakaThabrew/HealthSense",
+      year: "2025"
+    }
+    ,
+    {
       id: 1,
       title: "BrightBuy Online Retail Management System",
       category: "E-Commerce & Inventory Management",
@@ -112,7 +173,7 @@ const Portfolio = () => {
       category: "Mobile AI Assistant",
       description: "A Flutter mobile chatbot powered by Groq LLM, delivering fast, smart, and context-aware conversational AI directly on mobile devices with advanced natural language processing.",
       longDescription: "Developed a cross-platform mobile chatbot application using Flutter and Dart, integrated with Groq's large language model for lightning-fast AI responses. Features context-aware conversations, offline capabilities, and optimized performance for mobile devices.",
-      image: "/assets/projects/chatbot.jpg",
+      image: "/assets/projects/chatbot.png",
       technologies: ["Flutter", "Dart", "Groq LLM", "C++", "Mobile APIs"],
       features: ["AI Conversations", "Context Awareness", "Fast Responses", "Cross-Platform", "Mobile Optimized"],
       liveUrl: "#",
@@ -140,7 +201,7 @@ const Portfolio = () => {
       category: "Game Development",
       description: "A command-line RPG game built in Java featuring elemental battles, character progression, shop system, and immersive fantasy gameplay with strategic combat mechanics.",
       longDescription: "Created my first complete RPG game using Java with object-oriented programming principles. Features include turn-based combat system, character leveling, elemental magic system, inventory management, and shop mechanics. Demonstrates game logic, data structures, and user interaction design.",
-      image: "/assets/projects/game.jpg",
+      image: "/assets/projects/clash.png",
       technologies: ["Java", "OOP", "Console Application", "Game Logic"],
       features: ["Turn-Based Combat", "Character Progression", "Elemental System", "Shop Management", "Story Mode"],
       liveUrl: "#",
@@ -184,7 +245,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 11,
+      id: 3,
       title: "Bot Talk 3.0",
       client: "IEEE RAS UOM",
       description: "Attractive Flyer",
@@ -195,7 +256,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 12,
+      id: 4,
       title: "TECHNO 2025",
       client: "IESL UOM",
       description: "Attractive Small Video for Happening Now",
@@ -206,7 +267,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 3,
+      id: 5,
       title: "Annual General Meeting",
       client: "IESL student Chapter UOM",
       description: "A professional sounier for Award",
@@ -217,7 +278,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 4,
+      id: 6,
       title: "Top Movies @ Aug 25",
       client: "Movies with DCLT",
       description: "An elegant thumbnail for tiktok video",
@@ -228,7 +289,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 13,
+      id: 7,
       title: "TECHNO 2025",
       client: "IESL UOM",
       description: "Attractive Small Video for Happening Now Day #2",
@@ -239,7 +300,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 14,
+      id: 8,
       title: "TECHNO 2025",
       client: "IESL UOM",
       description: "Attractive Flyer for Happening Today",
@@ -250,7 +311,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 15,
+      id: 9,
       title: "The Elegant Frock Design",
       client: "The Looms Arcade",
       description: "Attractive Flyer for Marketing",
@@ -261,18 +322,18 @@ const Portfolio = () => {
     },
 
     {
-      id: 5,
-      title: "Top Movies by Leonardo Dicaprio",
-      client: "Movies with Dclt",
-      description: "A black Grey Collage tiktok video thumbnail",
-      image: "/assets/Designs/Black Grey Bold Collage Fashion Collection Poster.png",
+      id: 10,
+      title: "Christmas Wish Flyer",
+      client: "CSE Student Society UOM",
+      description: "A colourful merry chirtsmas flyer",
+      image: "/assets/Designs/CSESS Flyers (2).png",
       tools: ["canva"],
       year: "2025",
       type: "image"
     },
 
     {
-      id: 6,
+      id: 11,
       title: "Top Movies @ July 25",
       client: "Movies with DCLT",
       description: "A black and red Minimalist tiktok thumbnail",
@@ -283,7 +344,7 @@ const Portfolio = () => {
     },
 
     {
-      id: 7,
+      id: 12,
       title: "Top Movies @ Mar 25",
       client: "Movies with DCLT",
       description: "A elegant red and black minimalist tiktok thumbnail",
@@ -294,37 +355,79 @@ const Portfolio = () => {
     },
 
     {
-      id: 8,
-      title: "Best Movies by Chris Hemsworth",
-      client: "Movies with DCLT",
-      description: "A Greyscale Minimalist tiktok thumbnail",
-      image: "/assets/Designs/Greyscale Modern Woman Photo Collage.png",
+      id: 13,
+      title: "Coming Soon - Trinity Showdown",
+      client: "Trinity Showdown - Rotaract UOM",
+      description: "A green and black themed coming soon flyer",
+      image: "/assets/Designs/Trinity ShowDown Coming Soon-0602.png",
       tools: ["canva"],
       year: "2025",
       type: "image"
     },
 
     {
-      id: 9,
-      title: "Boxoffice of Marvel Studio",
-      client: "Movies with DCLT",
-      description: "A black and simple Minimalist tiktok thumbnail",
-      image: "/assets/Designs/boxoffice.jpg",
-      tools: ["canva"],
+      id: 14,
+      title: "Registration Open Now",
+      client: "Trinity Showdown - Rotaract UOM",
+      description: "A registration open now flyer",
+      image: "/assets/Designs/Trinity ShowDown.png",
+      tools: ["canva",'Adobe Photoshop'],
       year: "2025",
       type: "image"
     },
 
     {
-      id: 10,
-      title: "Top Movies @ MAY 25",
-      client: "Movies with DCLT",
-      description: "A brown and white modern tiktok thumbnail",
-      image: "/assets/Designs/Brown and White Modern New Fashion Poster.png",
+      id: 15,
+      title: "Christmas Flyer 2025",
+      client: "Rotaract UOM",
+      description: "Christmas Flyer Design",
+      image: "/assets/Designs/Christmas - rotaract.png",
       tools: ["canva"],
       year: "2025",
       type: "image"
     },
+    {
+      id: 16,
+      title: "PUBG - Rule Booklet",
+      client: "Trinity Showdown - Rotaract UOM",
+      description: "A cover page of booklet containing rules of PUBG game",
+      image: "/assets/Designs/4.png",
+      tools : ["canva",'Adobe Photoshop'],
+      year: "2025",
+      type: "image"
+    },
+    {
+      id: 17,
+      title: "Mobile Legendes - Rule Booklet",
+      client: "Trinity Showdown - Rotaract UOM",
+      description: "A cover page of booklet containing rules of Mobile Legendes game",
+      image: "/assets/Designs/6.png",
+      tools : ["canva",'Adobe Photoshop'],
+      year: "2025",
+      type: "image"
+    }
+    ,
+    {
+      id: 18,
+      title: "Call of Duty Mobile - Rule Booklet",
+      client: "Trinity Showdown - Rotaract UOM",
+      description: "A cover page of booklet containing rules of Call of Duty Mobile game",
+      image: "/assets/Designs/6.png",
+      tools : ["canva",'Adobe Photoshop'],
+      year: "2025",
+      type: "image"
+    }
+    ,
+    {
+      id: 19,
+      title: "Organizing Committee Submission Flyer",
+      client: "Beyond the Frame - Rotaract UOM",
+      description: "An attractive flyer to invite people to join the organizing committee",
+      image: "/assets/Designs/OC Flyers.png",
+      tools : ["canva",'Adobe Photoshop'],
+      year: "2025",
+      type: "image"
+    }
   ];
 
   // Enhanced skills with proficiency levels
@@ -519,7 +622,7 @@ const Portfolio = () => {
       credentialId: "P7Hq1rEUS6OwvnVGGaNDow"
     },
     {
-      name:  "5 Day AI Agents Intensive course with Google",
+      name: "5 Day AI Agents Intensive course with Google",
       issuer: "Kaggle",
       logo: "/assets/Logoes/kaggle.png",
       Date: "2025 Dec",
