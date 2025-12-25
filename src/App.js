@@ -371,7 +371,7 @@ const Portfolio = () => {
       client: "Trinity Showdown - Rotaract UOM",
       description: "A registration open now flyer",
       image: "/assets/Designs/Trinity ShowDown.png",
-      tools: ["canva",'Adobe Photoshop'],
+      tools: ["canva", 'Adobe Photoshop'],
       year: "2025",
       type: "image"
     },
@@ -392,7 +392,7 @@ const Portfolio = () => {
       client: "Trinity Showdown - Rotaract UOM",
       description: "A cover page of booklet containing rules of PUBG game",
       image: "/assets/Designs/4.png",
-      tools : ["canva",'Adobe Photoshop'],
+      tools: ["canva", 'Adobe Photoshop'],
       year: "2025",
       type: "image"
     },
@@ -402,7 +402,7 @@ const Portfolio = () => {
       client: "Trinity Showdown - Rotaract UOM",
       description: "A cover page of booklet containing rules of Mobile Legendes game",
       image: "/assets/Designs/6.png",
-      tools : ["canva",'Adobe Photoshop'],
+      tools: ["canva", 'Adobe Photoshop'],
       year: "2025",
       type: "image"
     }
@@ -413,7 +413,7 @@ const Portfolio = () => {
       client: "Trinity Showdown - Rotaract UOM",
       description: "A cover page of booklet containing rules of Call of Duty Mobile game",
       image: "/assets/Designs/6.png",
-      tools : ["canva",'Adobe Photoshop'],
+      tools: ["canva", 'Adobe Photoshop'],
       year: "2025",
       type: "image"
     }
@@ -424,7 +424,7 @@ const Portfolio = () => {
       client: "Beyond the Frame - Rotaract UOM",
       description: "An attractive flyer to invite people to join the organizing committee",
       image: "/assets/Designs/OC Flyers.png",
-      tools : ["canva",'Adobe Photoshop'],
+      tools: ["canva", 'Adobe Photoshop'],
       year: "2025",
       type: "image"
     }
@@ -763,6 +763,8 @@ const Portfolio = () => {
               <div className="relative inline-block">
                 <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}
                     alt="Lakmana Thabrew"
                     className="w-full h-full object-cover"
@@ -876,6 +878,8 @@ const Portfolio = () => {
             <div key={project.id} className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} lg:flex transition-colors duration-300`}>
               <div className="lg:w-1/2">
                 <img
+                  loading="lazy"
+                  decoding="async"
                   src={process.env.PUBLIC_URL + project.image}
                   alt={project.title}
                   className="w-full h-48 sm:h-64 lg:h-full object-cover"
@@ -968,6 +972,8 @@ const Portfolio = () => {
                   <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
                     {design.type === "image" ? (
                       <img
+                        loading="lazy"
+                        decoding="async"
                         src={process.env.PUBLIC_URL + design.image}
                         alt={design.title}
                         className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
@@ -1068,6 +1074,8 @@ const Portfolio = () => {
                   />
                 ) : (
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={process.env.PUBLIC_URL + selectedDesign.image}
                     alt={selectedDesign.title}
                     className="max-h-[90vh] w-full object-contain"
@@ -1268,7 +1276,7 @@ const Portfolio = () => {
                 <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-center">
                   {cert.logo && (
                     <div className="w-16 h-16 flex items-center justify-center bg-white/60 dark:bg-gray-800/50 rounded-md p-1 flex-shrink-0">
-                      <img src={process.env.PUBLIC_URL + cert.logo} alt={cert.issuer} className="max-w-full max-h-full object-contain" />
+                      <img loading="lazy" decoding="async" src={process.env.PUBLIC_URL + cert.logo} alt={cert.issuer} className="max-w-full max-h-full object-contain" />
                     </div>
                   )}
                   <div className="flex-1">
@@ -1364,6 +1372,8 @@ const Portfolio = () => {
                 <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-start">
                   {vol.logo && (
                     <img
+                      loading="lazy"
+                      decoding="async"
                       src={process.env.PUBLIC_URL + vol.logo}
                       alt={vol.company}
                       className="w-16 h-16 object-cover rounded-md flex-shrink-0"
@@ -1393,6 +1403,8 @@ const Portfolio = () => {
               {volunteering.map((v, idx) => (
                 <div key={idx} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 flex gap-4 items-start transition-colors duration-300">
                   <img
+                    loading="lazy"
+                    decoding="async"
                     src={process.env.PUBLIC_URL + v.logo}
                     alt={v.organizer}
                     className="w-16 h-16 object-cover rounded-md flex-shrink-0"
