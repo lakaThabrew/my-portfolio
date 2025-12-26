@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Menu, X, Github, Linkedin, Mail, Download, WhatsApp, Eye,
+  X, Github, Linkedin, Mail, Download, Eye,
   User, Home, Briefcase, PenTool, FileText, Phone, ChevronRight, Calendar,
   MapPin, Award, Code, Database, Globe, Smartphone,
-  FacebookIcon, UniversityIcon, InstagramIcon, MessageCircle, ExternalLink,
-  Languages, Gavel, Settings, GraduationCapIcon, SearchIcon, Sun, Moon
+  FacebookIcon, InstagramIcon, MessageCircle, ExternalLink,
+  Languages, Gavel, Settings, GraduationCapIcon, Sun, Moon
 } from 'lucide-react';
 
 import { FaWhatsapp } from "react-icons/fa";
@@ -12,7 +12,6 @@ import { FaWhatsapp } from "react-icons/fa";
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -781,21 +780,15 @@ const Portfolio = () => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
     const handleKeyDown = (event) => {
       if (event.key === 'Escape' && isModalOpen) {
         closeModal();
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
