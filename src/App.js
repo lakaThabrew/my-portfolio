@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Menu, X, Github, Linkedin, Mail, Download,
+  Menu, X, Github, Linkedin, Mail, Download, WhatsApp, Eye,
   User, Home, Briefcase, PenTool, FileText, Phone, ChevronRight, Calendar,
   MapPin, Award, Code, Database, Globe, Smartphone,
   FacebookIcon, UniversityIcon, InstagramIcon, MessageCircle, ExternalLink,
   Languages, Gavel, Settings, GraduationCapIcon, SearchIcon, Sun, Moon
 } from 'lucide-react';
+
+import { FaWhatsapp } from "react-icons/fa";
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -50,12 +52,11 @@ const Portfolio = () => {
       subject: contactSubject,
       message: contactMessage,
     };
-    
+
     const endpoint = 'https://formspree.io/f/xvzogzyd';
 
     try {
       const isFormspree = endpoint.includes('formspree.io');
-      // Formspree prefers JSON with Accept header for AJAX submissions
       const bodyToSend = isFormspree
         ? JSON.stringify({
           email: contactEmail,
@@ -107,8 +108,8 @@ const Portfolio = () => {
     title_1: "Undergraduate Student",
     title_2: "Computer Science and Engineering",
     title_3: "University of Moratuwa, Sri Lanka",
-    subtitle_1: "Programmer | Grapic Designer | Web Developer",
-    subtitle_2: "Mobile App Developer | Entrepreneur",
+    subtitle_1: "Programmer | Grapic Designer | Web Developer | Kaggle Competitor",
+    subtitle_2: "Mobile App Dev | Entrepreneur | AI Enthusiast | Content Creator",
     email: "lakmanathabrew123@gmail.com",
     phone: "0713278691",
     whatsApp: "https://wa.me/94713278691",
@@ -567,9 +568,7 @@ const Portfolio = () => {
       period: "2025 Sep - Present",
       location: "Moratuwa, Sri Lanka",
       description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
-
     },
-
     {
       title: "Member",
       company: "Maths Society, University of Moratuwa",
@@ -580,13 +579,12 @@ const Portfolio = () => {
     },
     {
       title: "Member",
-      company: " General Knowledge Society, Dharmasoka College, Ambalangoda, Sri Lanka",
+      company: "General Knowledge Society, Dharmasoka College, Ambalangoda, Sri Lanka",
       logo: "/assets/Logoes/school.jpeg",
       period: "2018- 2021",
       location: "Ambalangoda, Sri Lanka",
       description: "",
     }
-
   ];
 
   // Volunteering data
@@ -607,7 +605,6 @@ const Portfolio = () => {
       logo: "/assets/Logoes/Rota.jpg",
       category: "Gaming & Entertainment"
     },
-
     {
       eventName: "Binara Padura 25",
       position: "OC Member - Flyer Design Committee",
@@ -632,7 +629,6 @@ const Portfolio = () => {
       logo: "/assets/Logoes/Rota.jpg",
       category: "Health"
     },
-
     {
       eventName: "Beyond the Frame",
       position: "Chair Person",
@@ -822,12 +818,10 @@ const Portfolio = () => {
 
 
   const renderHomePage = () => (
-    <div className="pt-20 sm:pt-24">
+    <div className="pt-8 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
       {/* Hero Section - Two Column: Image Left, Text Right */}
       <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white px-4 sm:px-6">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
-
           {/* Left: Stylized Image */}
           <div className="relative flex items-center justify-center px-4 lg:px-0">
             <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
@@ -852,14 +846,18 @@ const Portfolio = () => {
               <span className="text-xs sm:text-sm text-white/90">Available for new opportunities</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
               {personalInfo.name}
             </h1>
 
-            <p className="text-lg sm:text-xl text-blue-200 mb-2 font-semibold">{personalInfo.title_1} • {personalInfo.title_2}</p>
+            <p className="text-lg sm:text-xl text-blue-200 mb-2 font-semibold">{personalInfo.title_1} @ {personalInfo.title_2}</p>
             <p className="text-base sm:text-lg text-blue-200 mb-6 max-w-2xl">{personalInfo.title_3}</p>
 
-            <p className="text-sm sm:text-base text-gray-200 mb-6 max-w-2xl">{personalInfo.bio}</p>
+            <p className="text-lg sm:text-base text-gray-200 mb-6 max-w-2xl text-justify">
+              {personalInfo.bio}
+            </p>
+
+            <p className="text-lg sm:text-xl text-blue-400 mb-6 max-w-3xl">{personalInfo.subtitle_1}<br></br>{personalInfo.subtitle_2}</p>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
               <button onClick={() => setCurrentPage('projects')} className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 transform transition px-6 py-3 rounded-lg font-semibold shadow-lg">
@@ -868,32 +866,17 @@ const Portfolio = () => {
               <button onClick={handleDownloadCV} className="inline-flex items-center gap-2 border-2 border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition">
                 <Download size={18} /> Download CV
               </button>
+              <button
+                onClick={handleViewCV} className="inline-flex items-center gap-2 border-2 border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition">
+                <Eye size={18} /> View CV
+              </button>
             </div>
 
             <div className="flex items-center gap-4">
-              <a href={personalInfo.github} className="text-gray-200 hover:text-white transition-colors"><Github size={20} /></a>
-              <a href={personalInfo.linkedin} className="text-gray-200 hover:text-white transition-colors"><Linkedin size={20} /></a>
-              <a href={`mailto:${personalInfo.email}`} className="text-gray-200 hover:text-white transition-colors"><Mail size={20} /></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Stats */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
-            <div className="p-4 sm:p-6">
-              <div className="text-3xl sm:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">10+</div>
-              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Projects Completed</div>
-            </div>
-            <div className="p-4 sm:p-6">
-              <div className="text-3xl sm:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">1+</div>
-              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Years Experience</div>
-            </div>
-            <div className="p-4 sm:p-6">
-              <div className="text-3xl sm:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">10+</div>
-              <div className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Technologies</div>
+              <a href={personalInfo.github} className="text-gray-200 hover:text-white transition-colors"><Github size={40} /></a>
+              <a href={personalInfo.linkedin} className="text-gray-200 hover:text-white transition-colors"><Linkedin size={40} /></a>
+              <a href={`mailto:${personalInfo.email}`} className="text-gray-200 hover:text-white transition-colors"><Mail size={40} /></a>
+              <a href={personalInfo.whatsApp} className="text-gray-200 hover:text-white transition-colors"><FaWhatsapp size={40} /></a>
             </div>
           </div>
         </div>
@@ -1181,52 +1164,12 @@ const Portfolio = () => {
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
-          {/* CV Header */}
-          <div className="text-center border-b dark:border-gray-700 pb-8 mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{personalInfo.name}</h1>
-            <p className="text-xl text-blue-600 dark:text-blue-400 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-300">
-              <div className="flex items-center">
-                <Mail size={16} className="mr-2" />
-                <span>{personalInfo.email}</span>
-              </div>
-              <div className="flex items-center">
-                <Phone size={16} className="mr-2" />
-                <span>{personalInfo.phone}</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin size={16} className="mr-2" />
-                <span>{personalInfo.location}</span>
-              </div>
-            </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={handleViewCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
-              >
-                <SearchIcon size={18} />
-                View PDF Version
-              </button>
-              <button
-                onClick={handleDownloadCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
-              >
-                <Download size={18} />
-                Download PDF Version
-              </button>
-            </div>
-          </div>
-
-          {/* Professional Summary */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
-              <User className="mr-2" size={24} />
-              Professional Summary
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+          <div className="text-center mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Professional Summary</h1>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               {personalInfo.bio}
             </p>
-          </section>
+          </div>
 
           {/* Education */}
           <section className="mb-10">
@@ -1314,40 +1257,11 @@ const Portfolio = () => {
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
-          {/* CV Header */}
-          <div className="text-center border-b dark:border-gray-700 pb-8 mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">{personalInfo.name}</h1>
-            <p className="text-xl text-blue-600 dark:text-blue-400 font-semibold mb-4">{personalInfo.title_1}<br></br>{personalInfo.title_2}<br></br>{personalInfo.title_3}</p>
-            <div className="flex flex-wrap justify-center gap-6 text-gray-600 dark:text-gray-300">
-              <div className="flex items-center">
-                <Mail size={16} className="mr-2" />
-                <span>{personalInfo.email}</span>
-              </div>
-              <div className="flex items-center">
-                <Phone size={16} className="mr-2" />
-                <span>{personalInfo.phone}</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin size={16} className="mr-2" />
-                <span>{personalInfo.location}</span>
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={handleViewCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
-              >
-                <SearchIcon size={18} />
-                View PDF Version
-              </button>
-              <button
-                onClick={handleDownloadCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
-              >
-                <Download size={18} />
-                Download PDF Version
-              </button>
-            </div>
+          <div className="text-center mb-12 sm:mb-16">
+            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Experiences & Volunteering</h1>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              A detailed overview of my professional experiences and volunteering activities that have shaped my career and personal growth.
+            </p>
           </div>
 
           {/* Experiences */}
@@ -1473,6 +1387,21 @@ const Portfolio = () => {
 
               <div className="flex items-center">
                 <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
+                  <FaWhatsapp size={20} className="sm:w-6 sm:h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">WhatsApp</h3>
+                  <a
+                    href={`tel:${personalInfo.whatsApp}`}
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
+                  >
+                    {personalInfo.whatsApp}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
                   <MapPin size={20} className="sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
@@ -1499,20 +1428,7 @@ const Portfolio = () => {
                 >
                   <Linkedin size={24} className="text-white" />
                 </a>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="bg-red-600 hover:bg-red-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="Email"
-                >
-                  <Mail size={24} className="text-white" />
-                </a>
-                <a
-                  href={personalInfo.whatsApp}
-                  className="bg-green-500 hover:bg-green-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="WhatsApp"
-                >
-                  <MessageCircle size={24} className="text-white" />
-                </a>
+
                 <a
                   href={personalInfo.facebook}
                   className="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
@@ -1624,12 +1540,12 @@ const Portfolio = () => {
     ];
 
     return (
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md' : 'bg-transparent'} `}>
+      <nav className={`fixed w-full z-50 transition-all duration-300 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md `}>
         <div className="mx-auto px-4 sm:px-6 lg:px-8 w-fit">
           <div className="flex items-center justify-between h-16">
-            {/* Brand (left) */}
+
             <div className="flex items-center">
-              <button onClick={() => setCurrentPage('home')} className={`text-lg sm:text-xl font-bold transition-colors text-black dark:text-white`}>
+              <button onClick={() => setCurrentPage('home')} className={`text-lg sm:text-xl font-bold transition-colors text-black dark:text-white px-10`}>
                 {personalInfo.name}
               </button>
             </div>
@@ -1640,7 +1556,7 @@ const Portfolio = () => {
                 <button
                   key={id}
                   onClick={() => setCurrentPage(id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition ${currentPage === id ? 'bg-blue-600 text-white' : 'text-black dark:text-white'}`}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition ${currentPage === id ? 'bg-purple-600 text-white' : 'text-black dark:text-white'}`}
                 >
                   <Icon size={16} />
                   <span className="hidden sm:inline">{label}</span>
@@ -1649,13 +1565,9 @@ const Portfolio = () => {
             </div>
 
             {/* Actions (right) */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 px-10">
               <button onClick={toggleDarkMode} className={`p-2 rounded-lg transition-colors text-black dark:text-white`} title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
                 {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-
-              <button className={`p-2 rounded-lg transition-colors text-black dark:text-white`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
             </div>
           </div>
@@ -1704,109 +1616,72 @@ const Portfolio = () => {
       {renderCurrentPage()}
 
       {/* Main Footer */}
-      <footer className="bg-gray-800 dark:bg-gray-900 text-white border-t border-gray-700 dark:border-gray-600 py-12 transition-colors duration-300">
+      <footer className="bg-gray-800 dark:bg-gray-900 text-white border-t border-gray-700 dark:border-gray-600 py-10 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* About Section */}
-            <div>
-              <h3 className="text-xl font-bold mb-4">{personalInfo.name}</h3>
-              <p className="text-gray-300 dark:text-gray-400 mb-4">{personalInfo.title_1}</p>
-              <p className="text-gray-400 dark:text-gray-500 text-sm">
-                Passionate about creating innovative solutions and bringing ideas to life through code and design.
-              </p>
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+            {/* Left: Brand / About */}
+            <div className="md:w-1/3">
+              <h3 className="text-2xl font-bold mb-2">{personalInfo.name}</h3>
+              <p className="text-gray-300 dark:text-gray-400 mb-3">{personalInfo.title_1}</p>
+              <p className="text-gray-400 text-sm">Creating thoughtful products through design and code.</p>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
+            {/* Center: Quick Links */}
+            <div className="md:w-1/3">
+              <h4 className="text-lg font-semibold mb-3 text-center">Quick Links</h4>
+              <div className="flex flex-wrap gap-3 justify-center">
                 {[
                   { id: 'home', label: 'Home' },
                   { id: 'about', label: 'About' },
                   { id: 'projects', label: 'Projects' },
                   { id: 'designs', label: 'Designs' },
-                  { id: 'cv1', label: 'CV — Education' },
-                  { id: 'cv2', label: 'CV — Experience' },
+                  { id: 'cv1', label: 'Education' },
+                  { id: 'cv2', label: 'Experience' },
                   { id: 'contact', label: 'Contact' }
                 ].map(({ id, label }) => (
-                  <li key={id}>
-                    <button
-                      onClick={() => setCurrentPage(id)}
-                      className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors text-sm"
-                    >
-                      {label}
-                    </button>
-                  </li>
+                  <button
+                    key={id}
+                    onClick={() => setCurrentPage(id)}
+                    className="text-gray-300 dark:text-gray-400 hover:text-white transition-colors text-sm px-2 py-1"
+                  >
+                    {label}
+                  </button>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            {/* Social Media & Contact */}
-            <div>
-              <h3 className="text-xl font-bold mb-4">Connect</h3>
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="GitHub"
-                >
+            {/* Right: Socials & Contact */}
+            <div className="md:w-1/3">
+              <h4 className="text-lg font-semibold mb-3 text-center">Connect</h4>
+              <div className="flex items-center gap-3 mb-4 justify-center">
+                <a href={personalInfo.github} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">
                   <Github size={20} />
                 </a>
-                <a
-                  href={personalInfo.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="LinkedIn"
-                >
+                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">
                   <Linkedin size={20} />
                 </a>
-                <a
-                  href={personalInfo.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="Facebook"
-                >
+                <a href={personalInfo.facebook} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">
                   <FacebookIcon size={20} />
                 </a>
-                <a
-                  href={personalInfo.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="Instagram"
-                >
+                <a href={personalInfo.instagram} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">
                   <InstagramIcon size={20} />
                 </a>
-                <a
-                  href={personalInfo.whatsApp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="WhatsApp"
-                >
-                  <MessageCircle size={20} />
+                <a href={personalInfo.whatsApp} target="_blank" rel="noreferrer" className="text-gray-300 hover:text-white">
+                  <FaWhatsapp size={20} />
                 </a>
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="bg-purple-600 p-3 rounded-lg text-white hover:bg-purple-700 transition-colors flex items-center justify-center"
-                  title="Email"
-                >
+                <a href={`mailto:${personalInfo.email}`} className="text-gray-300 hover:text-white">
                   <Mail size={20} />
                 </a>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm flex justify-center">
                 <MapPin size={16} className="inline mr-1" />
                 {personalInfo.location}
               </p>
             </div>
           </div>
 
-          {/* Copyright */}
-          <div className="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center">
+          {/* Copyright / Bottom */}
+          <div className="border-t border-gray-700 dark:border-gray-600 mt-8 pt-6 text-center">
             <p className="text-gray-400 dark:text-gray-500 text-sm">
               &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
             </p>
@@ -1816,65 +1691,34 @@ const Portfolio = () => {
 
       {/* Contact Footer - Only shown on Contact Page */}
       {currentPage === 'contact' && (
-        <footer className="bg-gray-900 text-white py-20">
+        <footer className="bg-gray-900 text-white py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl text-center font-bold mb-4">{personalInfo.name}</h3>
-                <div className="flex items-center gap-2 mb-4">
-                  <UniversityIcon size={20} />
-                  <p className="text-gray-400">{personalInfo.title_1 + " @ UoM"}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin size={20} />
-                  <p className="text-gray-400">{personalInfo.location}</p>
-                </div>
+            <div className="flex flex-col md:flex-row md:justify-between gap-6">
+              <div className="md:w-1/2">
+                <h3 className="text-2xl font-bold mb-2">{personalInfo.name}</h3>
+                <p className="text-gray-400 mb-2">{personalInfo.title_1 + ' @ UoM'}</p>
+                <p className="text-gray-400 flex items-center"><MapPin size={16} className="mr-2" />{personalInfo.location}</p>
               </div>
 
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 text-center">Connect</h3>
-                <div className="grid md:grid-cols-6 gap-8 text-center">
-                  <a
-                    href={personalInfo.whatsApp}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <MessageCircle size={24} />
+              <div className="md:w-1/2 flex items-center md:justify-end">
+                <div className="flex gap-4">
+                  <a href={personalInfo.whatsApp} className="text-gray-400 hover:text-white">
+                    <MessageCircle size={22} />
                   </a>
-                  <a
-                    href={personalInfo.github}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Github size={24} />
+                  <a href={personalInfo.github} className="text-gray-400 hover:text-white">
+                    <Github size={22} />
                   </a>
-                  <a
-                    href={personalInfo.linkedin}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Linkedin size={24} />
+                  <a href={personalInfo.linkedin} className="text-gray-400 hover:text-white">
+                    <Linkedin size={22} />
                   </a>
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <Mail size={24} />
-                  </a>
-                  <a
-                    href={personalInfo.facebook}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <FacebookIcon size={24} />
-                  </a>
-                  <a
-                    href={personalInfo.instagram}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <InstagramIcon size={24} />
+                  <a href={`mailto:${personalInfo.email}`} className="text-gray-400 hover:text-white">
+                    <Mail size={22} />
                   </a>
                 </div>
               </div>
             </div>
-            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-              <p>&copy; 2025 {personalInfo.name}. All rights reserved.</p>
+            <div className="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+              <p>&copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.</p>
             </div>
           </div>
         </footer>
