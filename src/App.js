@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
   Menu, X, Github, Linkedin, Mail, Download,
-  User, Briefcase, FileText, Phone, ChevronRight, Calendar,
+  User, Home, Briefcase, PenTool, FileText, Phone, ChevronRight, Calendar,
   MapPin, Award, Code, Database, Globe, Smartphone,
-  Home, PenTool, FacebookIcon, UniversityIcon,
-  InstagramIcon, MessageCircle, ExternalLink,
-  Languages, Gavel, Settings, GraduationCapIcon,
-  SearchIcon, Sun, Moon
+  FacebookIcon, UniversityIcon, InstagramIcon, MessageCircle, ExternalLink,
+  Languages, Gavel, Settings, GraduationCapIcon, SearchIcon, Sun, Moon
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -16,6 +14,14 @@ const Portfolio = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  // Contact form state
+  const [contactFirstName, setContactFirstName] = useState('');
+  const [contactLastName, setContactLastName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactSubject, setContactSubject] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
+  const [contactStatus, setContactStatus] = useState(null); // 'success' | 'error'
 
   const openModal = (design) => {
     setIsModalOpen(true);
@@ -29,6 +35,70 @@ const Portfolio = () => {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle('dark', !isDarkMode);
+  }
+
+  // Contact form submit handler
+  const handleContactSubmit = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    setIsSending(true);
+    setContactStatus(null);
+
+    const payload = {
+      firstName: contactFirstName,
+      lastName: contactLastName,
+      email: contactEmail,
+      subject: contactSubject,
+      message: contactMessage,
+    };
+    
+    const endpoint = 'https://formspree.io/f/xvzogzyd';
+
+    try {
+      const isFormspree = endpoint.includes('formspree.io');
+      // Formspree prefers JSON with Accept header for AJAX submissions
+      const bodyToSend = isFormspree
+        ? JSON.stringify({
+          email: contactEmail,
+          name: `${contactFirstName} ${contactLastName}`.trim(),
+          subject: contactSubject,
+          message: contactMessage,
+        })
+        : JSON.stringify(payload);
+
+      const headers = isFormspree
+        ? { 'Content-Type': 'application/json', Accept: 'application/json' }
+        : { 'Content-Type': 'application/json' };
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body: bodyToSend,
+      });
+
+      // Formspree returns 200/201/202 on success; treat any ok status as success
+      if (res.ok) {
+        setContactStatus('success');
+        setContactFirstName('');
+        setContactLastName('');
+        setContactEmail('');
+        setContactSubject('');
+        setContactMessage('');
+      } else {
+        // read error from response body if available
+        let errorText = 'Failed to send message';
+        try {
+          const data = await res.json();
+          if (data && data.error) errorText = data.error;
+        } catch (e) { }
+        console.error('Contact submit error:', res.status, errorText);
+        setContactStatus('error');
+      }
+    } catch (err) {
+      console.error('Contact submit exception:', err);
+      setContactStatus('error');
+    } finally {
+      setIsSending(false);
+    }
   }
 
   // Enhanced personal information
@@ -753,88 +823,57 @@ const Portfolio = () => {
 
   const renderHomePage = () => (
     <div className="pt-20 sm:pt-24">
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white px-4 sm:px-0">
+      {/* Hero Section - Two Column: Image Left, Text Right */}
+      <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white px-4 sm:px-6">
         <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Profile Image - Show on mobile first */}
-            <div className="flex justify-center lg:justify-end lg:order-2 relative">
-              <div className="relative inline-block">
-                <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}
-                    alt="Lakmana Thabrew"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute top-0 right-0 sm:top-2 sm:right-2 lg:top-4 lg:right-4 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg z-10">
-                  <Code className="text-yellow-800" size={16} />
-                </div>
-                <div className="absolute bottom-0 left-0 sm:bottom-2 sm:left-2 lg:bottom-4 lg:left-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-green-400 rounded-full flex items-center justify-center shadow-lg z-10">
-                  <Database className="text-green-800" size={14} />
-                </div>
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
+
+          {/* Left: Stylized Image */}
+          <div className="relative flex items-center justify-center px-4 lg:px-0">
+            <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
+              <div className="absolute -left-6 -top-6 w-full h-full bg-gradient-to-tr from-pink-500 via-purple-500 to-blue-500 rounded-3xl transform -rotate-6 shadow-2xl opacity-90"></div>
+              <div className="absolute right-0 bottom-0 w-full h-full bg-gradient-to-br from-white/10 to-black/10 rounded-3xl overflow-hidden transform rotate-3 shadow-2xl">
+                <img
+                  loading="lazy"
+                  decoding="async"
+                  src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover object-center rounded-3xl filter contrast-105"
+                />
               </div>
+              <div className="absolute -right-8 -bottom-8 w-28 h-28 bg-white/6 rounded-full blur-3xl"></div>
+            </div>
+          </div>
+
+          {/* Right: Text Content */}
+          <div className="px-4 lg:px-0 text-left">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-2 mb-4">
+              <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-xs sm:text-sm text-white/90">Available for new opportunities</span>
             </div>
 
-            {/* Text Content */}
-            <div className="text-center lg:text-left lg:order-1 lg:pr-8">
-              <div></div>
-              <div className="inline-flex items-center bg-blue-600/20 rounded-full px-3 py-2 sm:px-4 sm:py-2 mb-4 sm:mb-6">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-xs sm:text-sm lg:text-base">Available for Everything Belongs to My Path</span>
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
-                {personalInfo.name}
-              </h1>
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-200 mb-3 sm:mb-4">
-                {personalInfo.title_1} <br /> {personalInfo.title_2}
-              </p>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-200 mb-3 sm:mb-4">
-                {personalInfo.title_3}
-              </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8">
-                {personalInfo.subtitle_1} <br /> {personalInfo.subtitle_2}
-              </p>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-400 mb-8 sm:mb-10 max-w-xl mx-auto lg:mx-0">
-                {personalInfo.bio}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center lg:justify-start">
-                <button
-                  onClick={() => setCurrentPage('projects')}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2 text-sm sm:text-base lg:text-lg"
-                >
-                  View My Work <ChevronRight size={20} />
-                </button>
-                <button
-                  onClick={handleDownloadCV}
-                  className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base lg:text-lg"
-                >
-                  <Download size={20} /> Download CV
-                </button>
-              </div>
-              <div className="flex gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-10 lg:mt-12 justify-center lg:justify-start">
-                <a href={personalInfo.whatsApp} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <MessageCircle size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-                <a href={personalInfo.github} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <Github size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-                <a href={personalInfo.linkedin} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <Linkedin size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-                <a href={`mailto:${personalInfo.email}`} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <Mail size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-                <a href={personalInfo.facebook} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <FacebookIcon size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-                <a href={personalInfo.instagram} className="text-gray-300 hover:text-white transition-colors transform hover:scale-110">
-                  <InstagramIcon size={24} className="sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
-                </a>
-              </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
+              {personalInfo.name}
+            </h1>
+
+            <p className="text-lg sm:text-xl text-blue-200 mb-2 font-semibold">{personalInfo.title_1} • {personalInfo.title_2}</p>
+            <p className="text-base sm:text-lg text-blue-200 mb-6 max-w-2xl">{personalInfo.title_3}</p>
+
+            <p className="text-sm sm:text-base text-gray-200 mb-6 max-w-2xl">{personalInfo.bio}</p>
+
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
+              <button onClick={() => setCurrentPage('projects')} className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 transform transition px-6 py-3 rounded-lg font-semibold shadow-lg">
+                View My Work <ChevronRight size={18} />
+              </button>
+              <button onClick={handleDownloadCV} className="inline-flex items-center gap-2 border-2 border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition">
+                <Download size={18} /> Download CV
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a href={personalInfo.github} className="text-gray-200 hover:text-white transition-colors"><Github size={20} /></a>
+              <a href={personalInfo.linkedin} className="text-gray-200 hover:text-white transition-colors"><Linkedin size={20} /></a>
+              <a href={`mailto:${personalInfo.email}`} className="text-gray-200 hover:text-white transition-colors"><Mail size={20} /></a>
             </div>
           </div>
         </div>
@@ -962,78 +1001,49 @@ const Portfolio = () => {
         {/* Design Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {graphicDesigns.map((design) => (
-            <div
-              key={design.id}
-              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden">
-                <div className="relative overflow-hidden">
-                  <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
-                    {design.type === "image" ? (
-                      <img
-                        loading="lazy"
-                        decoding="async"
-                        src={process.env.PUBLIC_URL + design.image}
-                        alt={design.title}
-                        className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                    ) : (
-                      <video
-                        src={process.env.PUBLIC_URL + design.image}
-                        className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        alt={design.title}
-                      />
-                    )}
-                  </div>
-                </div>
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                      </div>
-                      <button
-                        onClick={() => openModal(design)}
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
-                        <ExternalLink size={16} />
-                        View Design
-                      </button>
-                    </div>
-                  </div>
-                </div>
+            <div key={design.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
+              <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
+                {design.type === "image" ? (
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={process.env.PUBLIC_URL + design.image}
+                    alt={design.title}
+                    className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <video
+                    src={process.env.PUBLIC_URL + design.image}
+                    className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                )}
               </div>
 
-              {/* Content */}
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors flex-1">
-                    {design.title}
-                  </h3>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors flex-1">{design.title}</h3>
                   <span className="text-sm text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0">{design.year}</span>
                 </div>
 
-                <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-3">
-                  {design.client}
-                </p>
+                <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-3">{design.client}</p>
 
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {design.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{design.description}</p>
+
+                <div className="flex flex-wrap gap-2 mt-4">
                   {design.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-md text-sm font-medium"
-                    >
-                      {tool}
-                    </span>
+                    <span key={tool} className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-md text-sm font-medium">{tool}</span>
                   ))}
+                </div>
+
+                <div className="mt-4 flex items-center justify-end">
+                  <button onClick={() => openModal(design)} className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
+                    <ExternalLink size={16} />
+                    View Design
+                  </button>
                 </div>
               </div>
             </div>
@@ -1042,23 +1052,12 @@ const Portfolio = () => {
 
         {/* Modal */}
         {isModalOpen && selectedDesign && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
-            onClick={closeModal}
-          >
-            <div
-              className="relative max-w-6xl max-h-[90vh] w-full mx-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={closeModal}
-                className="absolute -top-12 right-0 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors"
-              >
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={closeModal}>
+            <div className="relative max-w-6xl max-h-[90vh] w-full mx-4" onClick={(e) => e.stopPropagation()}>
+              <button onClick={closeModal} className="absolute -top-12 right-0 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors">
                 <X size={24} />
               </button>
 
-              {/* Design Info */}
               <div className="absolute -top-16 left-0 text-white mb-4">
                 <h3 className="text-xl font-bold">{selectedDesign.title}</h3>
                 <p className="text-gray-300">{selectedDesign.client} • {selectedDesign.year}</p>
@@ -1066,25 +1065,15 @@ const Portfolio = () => {
 
               <div className="flex items-center justify-center bg-white rounded-lg overflow-hidden shadow-2xl">
                 {selectedDesign.type === "video" ? (
-                  <video
-                    src={process.env.PUBLIC_URL + selectedDesign.image}
-                    controls
-                    autoPlay
-                    className="max-h-[90vh] w-full object-contain"
-                  />
+                  <video src={process.env.PUBLIC_URL + selectedDesign.image} controls autoPlay className="max-h-[90vh] w-full object-contain" />
                 ) : (
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={process.env.PUBLIC_URL + selectedDesign.image}
-                    alt={selectedDesign.title}
-                    className="max-h-[90vh] w-full object-contain"
-                  />
+                  <img loading="lazy" decoding="async" src={process.env.PUBLIC_URL + selectedDesign.image} alt={selectedDesign.title} className="max-h-[90vh] w-full object-contain" />
                 )}
               </div>
             </div>
           </div>
         )}
+
       </div>
     </div>
   );
@@ -1184,8 +1173,8 @@ const Portfolio = () => {
             ))}
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 
   const renderCVPage1 = () => (
@@ -1210,17 +1199,17 @@ const Portfolio = () => {
                 <span>{personalInfo.location}</span>
               </div>
             </div>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               <button
                 onClick={handleViewCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
               >
                 <SearchIcon size={18} />
                 View PDF Version
               </button>
               <button
                 onClick={handleDownloadCV}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2 mx-auto"
+                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center gap-2"
               >
                 <Download size={18} />
                 Download PDF Version
@@ -1544,181 +1533,147 @@ const Portfolio = () => {
 
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl transition-colors duration-300">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send me a message</h3>
-            <div className="space-y-6">
+            <form onSubmit={handleContactSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    First Name
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
                   <input
                     type="text"
+                    value={contactFirstName}
+                    onChange={(e) => setContactFirstName(e.target.value)}
+                    required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     placeholder="John"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Last Name
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
                   <input
                     type="text"
+                    value={contactLastName}
+                    onChange={(e) => setContactLastName(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     placeholder="Doe"
                   />
                 </div>
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Email Address
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
                 <input
                   type="email"
+                  value={contactEmail}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  required
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   placeholder="john@example.com"
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
                 <input
                   type="text"
+                  value={contactSubject}
+                  onChange={(e) => setContactSubject(e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   placeholder="Project Inquiry"
                 />
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
                 <textarea
                   rows={5}
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
+                  required
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>
-              <button
-                onClick={() => window.open(`mailto:${personalInfo.email}`, '_blank')}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold transition-colors transform hover:scale-105"
-              >
-                Send Message
-              </button>
-            </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold transition-colors transform hover:scale-105 disabled:opacity-60"
+                >
+                  {isSending ? 'Sending...' : 'Send Message'}
+                </button>
+              </div>
+
+              {contactStatus === 'success' && <div className="text-green-600 font-medium">Message sent — thank you! I will reply soon.</div>}
+              {contactStatus === 'error' && <div className="text-red-600 font-medium">Failed to send message. Please try again or email directly.</div>}
+            </form>
           </div>
         </div>
       </div>
     </div>
   );
 
-  const renderNavigation = () => (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/98 dark:bg-gray-900/98 backdrop-blur-md shadow-lg' : 'bg-black/30 backdrop-blur-sm shadow-md'
-      }`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <button
-            onClick={() => setCurrentPage('home')}
-            className={`text-xl sm:text-2xl font-bold transition-colors ${isScrolled || currentPage !== 'home' ? 'text-blue-600 dark:text-blue-400' : 'text-white drop-shadow-lg'
-              }`}
-          >
-            {personalInfo.name}
-          </button>
+  const renderNavigation = () => {
+    const navItems = [
+      { id: 'home', label: 'Home', icon: Home },
+      { id: 'about', label: 'About', icon: User },
+      { id: 'projects', label: 'Projects', icon: Briefcase },
+      { id: 'designs', label: 'Designs', icon: PenTool },
+      { id: 'experience', label: 'Experience', icon: Award },
+      { id: 'cv1', label: 'Education', icon: FileText },
+      { id: 'contact', label: 'Contact', icon: Phone }
+    ];
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {[
-              { id: 'home', label: 'Home', icon: Home },
-              { id: 'about', label: 'About', icon: User },
-              { id: 'projects', label: 'Projects', icon: Briefcase },
-              { id: 'designs', label: 'Designs', icon: PenTool },
-              { id: 'cv1', label: 'Education', icon: FileText },
-              { id: 'cv2', label: 'Exper&Volunt', icon: FileText },
-              { id: 'contact', label: 'Contact', icon: Phone }
-            ].map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setCurrentPage(id)}
-                className={`flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-2 rounded-lg font-medium transition-all text-sm sm:text-base ${currentPage === id
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : isScrolled || currentPage !== 'home'
-                    ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-                    : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
-                  }`}
-              >
-                <Icon size={18} />
-                {label}
+    return (
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md' : 'bg-transparent'} `}>
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 w-fit">
+          <div className="flex items-center justify-between h-16">
+            {/* Brand (left) */}
+            <div className="flex items-center">
+              <button onClick={() => setCurrentPage('home')} className={`text-lg sm:text-xl font-bold transition-colors text-black dark:text-white`}>
+                {personalInfo.name}
               </button>
-            ))}
+            </div>
 
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className={`p-2 rounded-lg transition-all ${isScrolled || currentPage !== 'home'
-                ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-                : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
-                }`}
-              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            {/* Centered nav links (desktop) */}
+            <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-6">
+              {navItems.map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  onClick={() => setCurrentPage(id)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition ${currentPage === id ? 'bg-blue-600 text-white' : 'text-black dark:text-white'}`}
+                >
+                  <Icon size={16} />
+                  <span className="hidden sm:inline">{label}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Actions (right) */}
+            <div className="flex items-center space-x-2">
+              <button onClick={toggleDarkMode} className={`p-2 rounded-lg transition-colors text-black dark:text-white`} title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+
+              <button className={`p-2 rounded-lg transition-colors text-black dark:text-white`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
 
-          {/* Mobile Menu Button and Dark Mode */}
-          <div className="md:hidden flex items-center space-x-2">
-            {/* Dark Mode Toggle for Mobile */}
-            <button
-              onClick={toggleDarkMode}
-              className={`p-2 rounded-lg transition-all ${isScrolled || currentPage !== 'home'
-                ? 'text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
-                : 'text-white drop-shadow-lg hover:text-blue-200 hover:bg-white/20'
-                }`}
-              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
-            {/* Menu Toggle Button */}
-            <button
-              className={`transition-colors ${isScrolled || currentPage !== 'home' ? 'text-gray-900 dark:text-gray-100' : 'text-white drop-shadow-lg'
-                }`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
+              {navItems.map(({ id, label }) => (
+                <button key={id} onClick={() => { setCurrentPage(id); setIsMenuOpen(false); }} className={`w-full text-left px-4 py-3 border-b dark:border-gray-700 ${currentPage === id ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600' : 'text-gray-700 dark:text-gray-200'}`}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
-            {[
-              { id: 'home', label: 'Home', icon: Home },
-              { id: 'about', label: 'About', icon: User },
-              { id: 'projects', label: 'Projects', icon: Briefcase },
-              { id: 'designs', label: 'Designs', icon: PenTool },
-              { id: 'cv1', label: 'Education', icon: FileText },
-              { id: 'cv2', label: 'Exper&Volunt', icon: FileText },
-              { id: 'contact', label: 'Contact', icon: Phone }
-            ].map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => {
-                  setCurrentPage(id);
-                  setIsMenuOpen(false);
-                }}
-                className={`flex items-center gap-3 w-full px-4 sm:px-6 py-3 sm:py-4 text-left font-medium transition-colors ${currentPage === id
-                  ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 dark:border-blue-400'
-                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700'
-                  }`}
-              >
-                <Icon size={18} />
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    </nav>
-  );
+      </nav>
+    );
+  };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
@@ -1730,6 +1685,8 @@ const Portfolio = () => {
         return renderProjectsPage();
       case 'designs':
         return renderDesignsPage();
+      case 'experience':
+        return renderCVPage2();
       case 'cv1':
         return renderCVPage1();
       case 'cv2':
