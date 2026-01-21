@@ -9,6 +9,12 @@ import {
 
 import { FaWhatsapp } from "react-icons/fa";
 
+import HomePage from './components/HomePage.jsx';
+import ProjectPage from './components/ProjectPage.jsx';
+import DesignPage from './components/DesignPage.jsx';
+import AboutPage from './components/AboutPage.jsx';
+import EducationPage from './components/EducationPage.jsx';
+
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -667,6 +673,27 @@ const Portfolio = () => {
   // Certifications
   const certifications = [
     {
+      name: "Introduction of Cyber Security",
+      issuer: "Cisco Networking Academy",
+      logo: "/assets/Logoes/cisco.png",
+      date: "2026 Jan",
+      credentialId: ""
+    },
+    {
+      name: "Introduction of Google Cloud Platform",
+      issuer: "Simplilearn",
+      logo: "/assets/Logoes/simplilearn.jpg",
+      date: "2026 Jan",
+      credentialId: "9736809"
+    },
+    {
+      name: "AI/ML Engineer - stage 2",
+      issuer: "SLIIT Faculty of Computing",
+      logo: "/assets/Logoes/SLIIT.png",
+      date: "2025",
+      credentialId: "crzphhqzgk"
+    },
+    {
       name: "AgentX Bootcamp",
       issuer: "UoM Leos",
       logo: "/assets/Logoes/leo.jpeg",
@@ -818,439 +845,38 @@ const Portfolio = () => {
 
 
   const renderHomePage = () => (
-    <div className="pt-8 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
-      {/* Hero Section - Two Column: Image Left, Text Right */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 text-white px-4 sm:px-6">
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-16">
-          {/* Left: Stylized Image */}
-          <div className="relative flex items-center justify-center px-4 lg:px-0">
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
-              <div className="absolute -left-6 -top-6 w-full h-full bg-gradient-to-tr from-pink-500 via-purple-500 to-blue-500 rounded-3xl transform -rotate-6 shadow-2xl opacity-90"></div>
-              <div className="absolute right-0 bottom-0 w-full h-full bg-gradient-to-br from-white/10 to-black/10 rounded-3xl overflow-hidden transform rotate-3 shadow-2xl">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover object-center rounded-3xl filter contrast-105"
-                />
-              </div>
-              <div className="absolute -right-8 -bottom-8 w-28 h-28 bg-white/6 rounded-full blur-3xl"></div>
-            </div>
-          </div>
-
-          {/* Right: Text Content */}
-          <div className="px-4 lg:px-0 text-left">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur rounded-full px-3 py-2 mb-4">
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-xs sm:text-sm text-white/90">Available for new opportunities</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
-              {personalInfo.name}
-            </h1>
-
-            <p className="text-lg sm:text-xl text-blue-200 mb-2 font-semibold">{personalInfo.title_1} @ {personalInfo.title_2}</p>
-            <p className="text-base sm:text-lg text-blue-200 mb-6 max-w-2xl">{personalInfo.title_3}</p>
-
-            <p className="text-lg sm:text-base text-gray-200 mb-6 max-w-2xl text-justify">
-              {personalInfo.bio}
-            </p>
-
-            <p className="text-lg sm:text-xl text-blue-400 mb-6 max-w-3xl">{personalInfo.subtitle_1}<br></br>{personalInfo.subtitle_2}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
-              <button onClick={() => setCurrentPage('projects')} className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 transform transition px-6 py-3 rounded-lg font-semibold shadow-lg">
-                View My Work <ChevronRight size={18} />
-              </button>
-              <button onClick={handleDownloadCV} className="inline-flex items-center gap-2 border-2 border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition">
-                <Download size={18} /> Download CV
-              </button>
-              <button
-                onClick={handleViewCV} className="inline-flex items-center gap-2 border-2 border-white/30 hover:bg-white/10 px-6 py-3 rounded-lg font-semibold transition">
-                <Eye size={18} /> View CV
-              </button>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <a href={personalInfo.github} className="text-gray-200 hover:text-white transition-colors"><Github size={40} /></a>
-              <a href={personalInfo.linkedin} className="text-gray-200 hover:text-white transition-colors"><Linkedin size={40} /></a>
-              <a href={`mailto:${personalInfo.email}`} className="text-gray-200 hover:text-white transition-colors"><Mail size={40} /></a>
-              <a href={personalInfo.whatsApp} className="text-gray-200 hover:text-white transition-colors"><FaWhatsapp size={40} /></a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+    <HomePage personalInfo={personalInfo}
+      setCurrentPage={setCurrentPage}
+      handleDownloadCV={handleDownloadCV}
+      handleViewCV={handleViewCV} />
   );
 
   const renderProjectsPage = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">My Projects</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Here's a showcase of some of my recent work. Each project represents a unique challenge
-            and demonstrates different aspects of my technical expertise.
-          </p>
-        </div>
-
-        <div className="grid gap-8 sm:gap-10 lg:gap-12">
-          {projects.map((project, index) => (
-            <div key={project.id} className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''} lg:flex transition-colors duration-300`}>
-              <div className="lg:w-1/2">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={process.env.PUBLIC_URL + project.image}
-                  alt={project.title}
-                  className="w-full h-48 sm:h-64 lg:h-full object-cover"
-                />
-              </div>
-              <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 xl:p-12">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3 sm:mb-4">
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
-                    {project.category}
-                  </span>
-                  <span className="text-gray-500 text-sm">• {project.year}</span>
-                </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">{project.title}</h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg leading-relaxed">
-                  {project.longDescription}
-                </p>
-
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">Key Features:</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
-                    {project.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-gray-600 dark:text-gray-300 text-xs sm:text-sm">
-                        <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">Technologies Used:</h3>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <a
-                    href={project.liveUrl}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                  >
-                    <Globe size={16} className="sm:w-4 sm:h-4" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    className="border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
-                  >
-                    <Github size={16} className="sm:w-4 sm:h-4" />
-                    View Code
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    <ProjectPage projects={projects} />
   );
 
   const renderDesignsPage = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">My Creative Design Work</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A collection of my graphic design projects showcasing creativity, attention to detail,
-            and design problem-solving across various mediums and industries.
-          </p>
-        </div>
-
-        {/* Design Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {graphicDesigns.map((design) => (
-            <div key={design.id} className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300">
-              <div className="relative overflow-hidden flex items-center justify-center bg-gray-100">
-                {design.type === "image" ? (
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={process.env.PUBLIC_URL + design.image}
-                    alt={design.title}
-                    className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <video
-                    src={process.env.PUBLIC_URL + design.image}
-                    className="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                )}
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors flex-1">{design.title}</h3>
-                  <span className="text-sm text-gray-500 dark:text-gray-400 ml-2 flex-shrink-0">{design.year}</span>
-                </div>
-
-                <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-3">{design.client}</p>
-
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{design.description}</p>
-
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {design.tools.map((tool) => (
-                    <span key={tool} className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-md text-sm font-medium">{tool}</span>
-                  ))}
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                  <button onClick={() => openModal(design)} className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors flex items-center gap-2">
-                    <ExternalLink size={16} />
-                    View Design
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Modal */}
-        {isModalOpen && selectedDesign && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={closeModal}>
-            <div className="relative max-w-6xl max-h-[90vh] w-full mx-4" onClick={(e) => e.stopPropagation()}>
-              <button onClick={closeModal} className="absolute -top-12 right-0 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors">
-                <X size={24} />
-              </button>
-
-              <div className="absolute -top-16 left-0 text-white mb-4">
-                <h3 className="text-xl font-bold">{selectedDesign.title}</h3>
-                <p className="text-gray-300">{selectedDesign.client} • {selectedDesign.year}</p>
-              </div>
-
-              <div className="flex items-center justify-center bg-white rounded-lg overflow-hidden shadow-2xl">
-                {selectedDesign.type === "video" ? (
-                  <video src={process.env.PUBLIC_URL + selectedDesign.image} controls autoPlay className="max-h-[90vh] w-full object-contain" />
-                ) : (
-                  <img loading="lazy" decoding="async" src={process.env.PUBLIC_URL + selectedDesign.image} alt={selectedDesign.title} className="max-h-[90vh] w-full object-contain" />
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-      </div>
-    </div>
+    <DesignPage
+      graphicDesigns={graphicDesigns}
+      isModalOpen={isModalOpen}
+      setSelectedDesign={setSelectedDesign}
+      selectedDesign={selectedDesign}
+      setIsModalOpen={setIsModalOpen}
+      openModal={openModal}
+      closeModal={closeModal}
+      X={X} />
   );
 
   const renderAboutPage = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">About Me</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Get to know the person behind the code. My journey, experiences, and what drives my passion for development.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-3 xl:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 mb-12 sm:mb-16 lg:mb-20">
-          <div className="lg:col-span-2 xl:col-span-1">
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-6 sm:p-8 lg:p-10 text-white mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6"><i>My Journey in Computer Science & Engineering</i></h2>
-              <div>
-                <h3 className="text-xl font-bold mb-6">The Spark That Started It All</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  My journey began at age 16 with a broken laptop everyone had given up on. After three days of YouTube tutorials and forums, I successfully recovered the corrupted hard drive. That moment of triumph ignited a passion that would define my path.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">From Curiosity to Competence</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  As a Second-year Computer Science student at University of Moratuwa, Sri Lanka, I've built solid foundations through coursework and hands-on projects.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">Embracing Challenges</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  My growth accelerated during my past two years, navigating legacy code with minimal documentation. This taught me "code archaeology" and I optimized their data pipeline by 40%, learning that elegant solutions come from deep problem understanding.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">Beyond the Code</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  I'm driven by technology's impact on people's lives—from campus systems saving organizers hours to mobile apps helping local businesses. As a teaching assistant for Introduction to Programming, I've learned that clear communication is as crucial as coding skills.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">Looking Forward</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  Preparing for my next two year, I'm excited about AI and user experience intersection. I'm exploring how machine learning can create intuitive interfaces and make AI tools accessible to non-technical users. I seek opportunities to grow as both a technical problem-solver and collaborative team member.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">Core Values</h3>
-                <p className="text-lg text-justify leading-relaxed mb-6">
-                  <strong>Continuous Learning:</strong> Embracing rapid technological evolution while building strong fundamentals.<br />
-                  <strong>User-Centric Thinking:</strong> Creating solutions that genuinely improve people's experiences.<br />
-                  <strong>Collaborative Growth:</strong> My best work happens through learning from others and team contribution.
-                </p>
-
-                <h3 className="text-xl font-bold mb-6">"The best way to predict the future is to create it. I'm excited to be part of building tomorrow's technological solutions."</h3>
-              </div>
-
-              <div className="grid grid-cols-1 gap-4 mt-8">
-                <div className="flex items-center">
-                  <MapPin size={20} className="mr-2 flex-shrink-0" />
-                  <span className="text-sm sm:text-base">{personalInfo.location}</span>
-                </div>
-                <div className="flex items-center">
-                  <Mail size={20} className="mr-2 flex-shrink-0" />
-                  <span className="truncate text-sm sm:text-base">{personalInfo.email}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-1">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">Skills & Expertise</h2>
-            {Object.entries(skills).map(([category, skillList]) => (
-              <div key={category} className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 capitalize flex items-center">
-                  {category === 'Programming' && <Languages className="mr-2" size={24} />}
-                  {category === 'frontend' && <Smartphone className="mr-2" size={24} />}
-                  {category === 'backend' && <Code className="mr-2" size={24} />}
-                  {category === 'database' && <Database className="mr-2" size={24} />}
-                  {category === 'tools' && <Gavel className="mr-2" size={24} />}
-                  {category === 'Softwares' && <Settings className="mr-2" size={24} />}
-                  {category}
-                </h3>
-                <div className="space-y-3">
-                  {skillList.slice(0, 10).map((skill) => (
-                    <div key={skill.name}>
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
-                      </div>
-                      <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div
-                          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <AboutPage personalInfo={personalInfo} skills={skills} />
   );
 
   const renderCVPage1 = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
-          <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Professional Summary</h1>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              {personalInfo.bio}
-            </p>
-          </div>
-
-          {/* Education */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <GraduationCapIcon className="mr-2" size={24} />
-              Education
-            </h2>
-            <div className="space-y-8">
-              {education.map((edu, index) => (
-                <div key={index} className="relative pl-6 border-l-2 border-blue-200 dark:border-blue-600">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-600 rounded-full"></div>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{edu.degree}</h3>
-                    <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{edu.institution}</p>
-                    <div className="flex items-center text-gray-600 dark:text-gray-400 mt-1">
-                      <Calendar size={16} className="mr-2" />
-                      <span className="mr-4">{edu.period}</span>
-                      <MapPin size={16} className="mr-2" />
-                      <span>{edu.gpa}</span>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">{edu.specialization}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Certifications */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <Award className="mr-2" size={24} />
-              Certifications
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {certifications.map((cert, index) => (
-                <div key={index} className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-center">
-                  {cert.logo && (
-                    <div className="w-16 h-16 flex items-center justify-center bg-white/60 dark:bg-gray-800/50 rounded-md p-1 flex-shrink-0">
-                      <img loading="lazy" decoding="async" src={process.env.PUBLIC_URL + cert.logo} alt={cert.issuer} className="max-w-full max-h-full object-contain" />
-                    </div>
-                  )}
-                  <div className="flex-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white">{cert.name}</h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-semibold">{cert.issuer}</p>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Issued: {cert.date}</p>
-                    <p className="text-gray-500 dark:text-gray-500 text-xs">ID: {cert.credentialId}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Technical Skills */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <Code className="mr-2" size={24} />
-              Technical Skills
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {Object.entries(skills).map(([category, skillList]) => (
-                <div key={category}>
-                  <h3 className="font-bold text-gray-900 dark:text-white mb-3 capitalize">{category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill) => (
-                      <span
-                        key={skill.name}
-                        className="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium"
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-
-        </div>
-      </div>
-    </div>
+    <EducationPage
+      skills={skills}
+      education={education}
+      certifications={certifications}
+      personalInfo={personalInfo} />
   );
 
   const renderCVPage2 = () => (
