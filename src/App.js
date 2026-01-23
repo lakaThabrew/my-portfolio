@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  X,
   User, Home, Briefcase, PenTool, FileText, Phone,
   Award
 } from 'lucide-react';
@@ -11,6 +10,7 @@ import DesignPage from './components/DesignPage.jsx';
 import AboutPage from './components/AboutPage.jsx';
 import EducationPage from './components/EducationPage.jsx';
 import ExperiencePage from './components/ExperiencePage.jsx';
+import ContactPage from './components/ContactPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -174,8 +174,7 @@ const Portfolio = () => {
       selectedDesign={selectedDesign}
       setIsModalOpen={setIsModalOpen}
       openModal={openModal}
-      closeModal={closeModal}
-      X={X} />
+      closeModal={closeModal} />
   );
 
   const renderAboutPage = () => (
@@ -198,7 +197,7 @@ const Portfolio = () => {
   );
 
   const renderContactPage = () => (
-    <contactPage
+    <ContactPage
       personalInfo={personalInfo}
       contactFirstName={contactFirstName}
       setContactFirstName={setContactFirstName}

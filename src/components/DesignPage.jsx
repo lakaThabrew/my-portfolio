@@ -1,11 +1,12 @@
+import React from "react";
+import { ExternalLink, X } from "lucide-react";
+
 const DesignPage = ({
   graphicDesigns,
   isModalOpen,
   selectedDesign,
   openModal,
   closeModal,
-  ExternalLink,
-  X,
 }) => {
   return (
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
