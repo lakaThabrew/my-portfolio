@@ -29,7 +29,6 @@ import {
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -120,21 +119,15 @@ const Portfolio = () => {
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
     const handleKeyDown = (event) => {
       if (event.key === 'Escape' && isModalOpen) {
         closeModal();
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
