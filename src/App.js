@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Menu, X, Github, Linkedin, Mail, Download, WhatsApp, Eye,
-  User, Home, Briefcase, PenTool, FileText, Phone, ChevronRight, Calendar,
-  MapPin, Award, Code, Database, Globe, Smartphone,
-  FacebookIcon, UniversityIcon, InstagramIcon, MessageCircle, ExternalLink,
-  Languages, Gavel, Settings, GraduationCapIcon, SearchIcon, Sun, Moon
+  X, Github, Linkedin, Mail,
+  User, Home, Briefcase, PenTool, FileText, Phone,
+  MapPin, Award,
+  FacebookIcon, InstagramIcon, MessageCircle
 } from 'lucide-react';
 
 import { FaWhatsapp } from "react-icons/fa";
@@ -14,6 +13,8 @@ import ProjectPage from './components/ProjectPage.jsx';
 import DesignPage from './components/DesignPage.jsx';
 import AboutPage from './components/AboutPage.jsx';
 import EducationPage from './components/EducationPage.jsx';
+import ExperiencePage from './components/ExperiencePage.jsx';
+import NavBar from './components/NavBar.jsx';
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -880,278 +881,29 @@ const Portfolio = () => {
   );
 
   const renderCVPage2 = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 lg:p-12 transition-colors duration-300">
-          <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Experiences & Volunteering</h1>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              A detailed overview of my professional experiences and volunteering activities that have shaped my career and personal growth.
-            </p>
-          </div>
-
-          {/* Experiences */}
-          <section className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <FileText className="mr-2" size={24} />
-              Experiences
-            </h2>
-            <div className="space-y-6">
-              {experiences.map((vol, index) => (
-                <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 transition-colors duration-300 flex gap-4 items-start">
-                  {vol.logo && (
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src={process.env.PUBLIC_URL + vol.logo}
-                      alt={vol.company}
-                      className="w-16 h-16 object-cover rounded-md flex-shrink-0"
-                    />
-                  )}
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{vol.title}</h3>
-                    <p className="text-lg text-blue-600 dark:text-blue-400 font-semibold">{vol.company}</p>
-                    <div className="flex items-center justify-between text-gray-600 dark:text-gray-400 mt-2">
-                      <span>{vol.period}</span>
-                      <span>{vol.location}</span>
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300 mt-2">Description: {vol.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Volunteering */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
-              <User className="mr-2" size={24} />
-              Volunteering
-            </h2>
-            <div className="space-y-6">
-              {volunteering.map((v, idx) => (
-                <div key={idx} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 flex gap-4 items-start transition-colors duration-300">
-                  <img
-                    loading="lazy"
-                    decoding="async"
-                    src={process.env.PUBLIC_URL + v.logo}
-                    alt={v.organizer}
-                    className="w-16 h-16 object-cover rounded-md flex-shrink-0"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{v.eventName}</h3>
-                        <p className="text-sm text-blue-600 dark:text-blue-400 font-semibold">{v.position} • {v.organizer}</p>
-                      </div>
-                      <div className="text-gray-600 dark:text-gray-400 text-sm">
-                        <span>{v.date}</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300 mt-2">Category: <span className="font-medium">{v.category}</span></p>
-                  </div>
-                </div>
-              ))}
-
-            </div>
-          </section>
-
-
-        </div>
-      </div>
-    </div>
+    <ExperiencePage
+      experiences={experiences}
+      volunteering={volunteering}
+    />
   );
 
   const renderContactPage = () => (
-    <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Let's Connect</h1>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project and how we can work together.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-          <div className="text-gray-900 dark:text-gray-100">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Get In Touch</h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 sm:mb-12 leading-relaxed">
-              I'm always interested in hearing about new opportunities, interesting projects,
-              or just having a conversation about technology and development. Feel free to reach out!
-            </p>
-
-            <div className="space-y-6 sm:space-y-8">
-              <div className="flex items-center">
-                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
-                  <Mail size={20} className="sm:w-6 sm:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Email</h3>
-                  <a
-                    href={`mailto:${personalInfo.email}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
-                  >
-                    {personalInfo.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
-                  <Phone size={20} className="sm:w-6 sm:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Phone</h3>
-                  <a
-                    href={`tel:${personalInfo.phone}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
-                  >
-                    {personalInfo.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
-                  <FaWhatsapp size={20} className="sm:w-6 sm:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">WhatsApp</h3>
-                  <a
-                    href={`tel:${personalInfo.whatsApp}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-sm sm:text-base"
-                  >
-                    {personalInfo.whatsApp}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-3 sm:p-4 mr-4 sm:mr-6 flex-shrink-0">
-                  <MapPin size={20} className="sm:w-6 sm:h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white text-base sm:text-lg mb-1">Location</h3>
-                  <p className="text-blue-600 dark:text-blue-400 text-sm sm:text-base">{personalInfo.location}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 sm:mt-12">
-              <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Follow Me</h3>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <a
-                  href={personalInfo.github}
-                  className="bg-gray-800 hover:bg-gray-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="GitHub"
-                >
-                  <Github size={24} className="text-white" />
-                </a>
-                <a
-                  href={personalInfo.linkedin}
-                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="LinkedIn"
-                >
-                  <Linkedin size={24} className="text-white" />
-                </a>
-
-                <a
-                  href={personalInfo.facebook}
-                  className="bg-blue-600 hover:bg-blue-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="Facebook"
-                >
-                  <FacebookIcon size={24} className="text-white" />
-                </a>
-                <a
-                  href={personalInfo.instagram}
-                  className="bg-purple-500 hover:bg-purple-700 p-4 rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:scale-105"
-                  title="Instagram"
-                >
-                  <InstagramIcon size={24} className="text-white" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl transition-colors duration-300">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Send me a message</h3>
-            <form onSubmit={handleContactSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
-                  <input
-                    type="text"
-                    value={contactFirstName}
-                    onChange={(e) => setContactFirstName(e.target.value)}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="John"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
-                  <input
-                    type="text"
-                    value={contactLastName}
-                    onChange={(e) => setContactLastName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                    placeholder="Doe"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                <input
-                  type="email"
-                  value={contactEmail}
-                  onChange={(e) => setContactEmail(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
-                <input
-                  type="text"
-                  value={contactSubject}
-                  onChange={(e) => setContactSubject(e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-                  placeholder="Project Inquiry"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
-                <textarea
-                  rows={5}
-                  value={contactMessage}
-                  onChange={(e) => setContactMessage(e.target.value)}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  disabled={isSending}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold transition-colors transform hover:scale-105 disabled:opacity-60"
-                >
-                  {isSending ? 'Sending...' : 'Send Message'}
-                </button>
-              </div>
-
-              {contactStatus === 'success' && <div className="text-green-600 font-medium">Message sent — thank you! I will reply soon.</div>}
-              {contactStatus === 'error' && <div className="text-red-600 font-medium">Failed to send message. Please try again or email directly.</div>}
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <contactPage
+      personalInfo={personalInfo}
+      contactFirstName={contactFirstName}
+      setContactFirstName={setContactFirstName}
+      contactLastName={contactLastName}
+      setContactLastName={setContactLastName}
+      contactEmail={contactEmail}
+      setContactEmail={setContactEmail}
+      contactSubject={contactSubject}
+      setContactSubject={setContactSubject}
+      contactMessage={contactMessage}
+      setContactMessage={setContactMessage}
+      handleContactSubmit={handleContactSubmit}
+      isSending={isSending}
+      contactStatus={contactStatus}
+    />
   );
 
   const renderNavigation = () => {
@@ -1166,49 +918,15 @@ const Portfolio = () => {
     ];
 
     return (
-      <nav className={`fixed w-full z-50 transition-all duration-300 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md `}>
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 w-fit">
-          <div className="flex items-center justify-between h-16">
-
-            <div className="flex items-center">
-              <button onClick={() => setCurrentPage('home')} className={`text-lg sm:text-xl font-bold transition-colors text-black dark:text-white px-10`}>
-                {personalInfo.name}
-              </button>
-            </div>
-
-            {/* Centered nav links (desktop) */}
-            <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-6">
-              {navItems.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => setCurrentPage(id)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition ${currentPage === id ? 'bg-purple-600 text-white' : 'text-black dark:text-white'}`}
-                >
-                  <Icon size={16} />
-                  <span className="hidden sm:inline">{label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Actions (right) */}
-            <div className="flex items-center space-x-2 px-10">
-              <button onClick={toggleDarkMode} className={`p-2 rounded-lg transition-colors text-black dark:text-white`} title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
-                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
-              {navItems.map(({ id, label }) => (
-                <button key={id} onClick={() => { setCurrentPage(id); setIsMenuOpen(false); }} className={`w-full text-left px-4 py-3 border-b dark:border-gray-700 ${currentPage === id ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-600' : 'text-gray-700 dark:text-gray-200'}`}>
-                  {label}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md' : 'bg-white/90 dark:bg-gray-900/90'}`}>
+        <NavBar personalInfo={personalInfo}
+          navItems={navItems}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          isDarkMode={isDarkMode}
+          toggleDarkMode={toggleDarkMode}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen} />
       </nav>
     );
   };
