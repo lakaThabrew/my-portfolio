@@ -1,0 +1,93 @@
+export const experiences = [
+    {
+        title: "Public Relations Committee Member",
+        company: "CSE Student Socity of University of Moratuwa",
+        logo: "/assets/Logoes/csess.jpg",
+        period: "2025 Nov - Present",
+        location: "Moratuwa, Sri Lanka",
+        description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
+    },
+    {
+        title: "PR Team Member",
+        company: "Rotaract Club of University of Moratuwa",
+        logo: "/assets/Logoes/Rota.jpg",
+        period: "2025 Aug - Present",
+        location: "Moratuwa, Sri Lanka",
+        description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
+    },
+    {
+        title: "Member of Marketing Pillar",
+        company: "IESL Student Chapter UOM",
+        logo: "/assets/Logoes/iesl.jpg",
+        period: "2025 Sep - Present",
+        location: "Moratuwa, Sri Lanka",
+        description: "a member of an excellent team in creatng elegant, scalable grpahic Designs.",
+    },
+    {
+        title: "Member",
+        company: "Maths Society, University of Moratuwa",
+        logo: "/assets/Logoes/maths.png",
+        period: "2024- Present",
+        location: "Moratuwa, Sri Lanka",
+        description: "",
+    },
+    {
+        title: "Member",
+        company: "General Knowledge Society, Dharmasoka College, Ambalangoda, Sri Lanka",
+        logo: "/assets/Logoes/school.jpeg",
+        period: "2018- 2021",
+        location: "Ambalangoda, Sri Lanka",
+        description: "",
+    }
+];
+
+export const volunteering = [
+    {
+        eventName: "GAMMADDATA IEEE API 4.0",
+        position: "OC Member - Technical Committee",
+        organizer: "IEEE of University of Moratuwa",
+        date: "2025 Sep",
+        logo: "/assets/Logoes/IEEE.jpeg",
+        category: "Education and Technology"
+    },
+    {
+        eventName: "Trinity ShowDown",
+        position: "OC Member - Flyer Designing Committee",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Gaming & Entertainment"
+    },
+    {
+        eventName: "Binara Padura 25",
+        position: "OC Member - Flyer Design Committee",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Jul",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Music & Entertainment"
+    },
+    {
+        eventName: "Bot Talk 3.0",
+        position: "Design & Marketing Committee Member",
+        organizer: "IEEE RAS of University of Moratuwa",
+        date: "2025 Oct",
+        logo: "/assets/Logoes/RAS.png",
+        category: "Science & Technology"
+    },
+    {
+        eventName: "Open Hearts",
+        position: "Flyer Designing & Video Editing Committee Member",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Sep",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Health"
+    },
+    {
+        eventName: "Beyond the Frame",
+        position: "Chair Person",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Photography"
+    }
+];
