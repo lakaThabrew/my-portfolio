@@ -12,6 +12,17 @@ export const graphicDesigns = [
 
     {
         id: 1,
+        title: "Registration closing today",
+        client: "Robogames 2026 - IESL UOM",
+        description: "A registration closing today flyer",
+        image: "/assets/Designs/Post 18.jpg",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 2,
         title: "Catalyst 25",
         client: "Rotaract UOM",
         description: "Attractive Instagram Tile Poster",
@@ -22,7 +33,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 2,
+        id: 3,
         title: "Binara Padura 25",
         client: "Rotaract UOM",
         description: "A singing Audition Happenning Now Video",
@@ -33,7 +44,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 3,
+        id: 4,
         title: "Bot Talk 3.0",
         client: "IEEE RAS UOM",
         description: "Attractive Flyer",
@@ -44,7 +55,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 4,
+        id: 5,
         title: "TECHNO 2025",
         client: "IESL UOM",
         description: "Attractive Small Video for Happening Now",
@@ -55,29 +66,62 @@ export const graphicDesigns = [
     },
 
     {
-        id: 5,
-        title: "Annual General Meeting",
-        client: "IESL student Chapter UOM",
-        description: "A professional sounier for Award",
-        image: "/assets/Designs/sounier-AGM_IESL.png",
-        tools: ["canva"],
-        year: "2025",
-        type: "image"
-    },
-
-    {
         id: 6,
-        title: "Top Movies @ Aug 25",
-        client: "Movies with DCLT",
-        description: "An elegant thumbnail for tiktok video",
-        image: "/assets/Designs/Heading.png",
-        tools: ["canva", "photoshop"],
-        year: "2025",
+        title: "Registration closing tomorrow",
+        client: "Robogames 2026 - IESL UOM",
+        description: "A registration closing tomorrow flyer",
+        image: "/assets/Designs/Post 17.jpg",
+        tools: ["Figma"],
+        year: "2026",
         type: "image"
     },
 
     {
         id: 7,
+        title: "Registration closing 3 days more",
+        client: "Robogames 2026 - IESL UOM",
+        description: "A registration closing today flyer",
+        image: "/assets/Designs/Post 23.jpg",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 8,
+        title: "Registration closing 2 days more",
+        client: "Robogames 2026 - IESL UOM",
+        description: "A registration closing today flyer",
+        image: "/assets/Designs/Post 24.jpg",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 9,
+        title: "Registration closed",
+        client: "Robogames 2026 - IESL UOM",
+        description: "A registration closing today flyer",
+        image: "/assets/Designs/Post 29.jpg",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 10,
+        title: "Speaker Reveal of Unlock Linkedin 2026",
+        client: "IESL student Chapter UOM",
+        description: "A speaker reveal poster for Unlock Linkedin 2026",
+        image: "/assets/Designs/linkedin.jpeg",
+        tools: ["canva", "photoshop"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 11,
         title: "TECHNO 2025",
         client: "IESL UOM",
         description: "Attractive Small Video for Happening Now Day #2",
@@ -88,7 +132,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 8,
+        id: 12,
         title: "TECHNO 2025",
         client: "IESL UOM",
         description: "Attractive Flyer for Happening Today",
@@ -99,7 +143,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 9,
+        id: 13,
         title: "The Elegant Frock Design",
         client: "The Looms Arcade",
         description: "Attractive Flyer for Marketing",
@@ -110,7 +154,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 10,
+        id: 14,
         title: "Christmas Wish Flyer",
         client: "CSE Student Society UOM",
         description: "A colourful merry chirtsmas flyer",
@@ -121,7 +165,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 11,
+        id: 15,
         title: "Top Movies @ July 25",
         client: "Movies with DCLT",
         description: "A black and red Minimalist tiktok thumbnail",
@@ -132,18 +176,40 @@ export const graphicDesigns = [
     },
 
     {
-        id: 12,
-        title: "Top Movies @ Mar 25",
+        id: 16,
+        title: "Top Movies by Leonardo DiCaprio",
         client: "Movies with DCLT",
-        description: "A elegant red and black minimalist tiktok thumbnail",
-        image: "/assets/Designs/Red And Black Minimalist Mystery Movie Poster.png",
+        description: "A gray and white Minimalist tiktok thumbnail",
+        image: "/assets/Designs/Black Grey Bold Collage Fashion Collection Poster.png",
         tools: ["canva"],
         year: "2025",
         type: "image"
     },
 
     {
-        id: 13,
+        id: 17,
+        title: "Top Movies @ August 25",
+        client: "Movies with DCLT",
+        description: "A gray and white Minimalist tiktok thumbnail",
+        image: "/assets/Designs/Heading.png",
+        tools: ["canva"],
+        year: "2025",
+        type: "image"
+    },
+
+    {
+        id: 18,
+        title: "Registration deadline extended",
+        client: "SLIoT 2026",
+        description: "A registration deadline extended flyer",
+        image: "/assets/Designs/Frame 153.png",
+        tools: ["Figma", "canva"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 19,
         title: "Coming Soon - Trinity Showdown",
         client: "Trinity Showdown - Rotaract UOM",
         description: "A green and black themed coming soon flyer",
@@ -154,7 +220,7 @@ export const graphicDesigns = [
     },
 
     {
-        id: 14,
+        id: 20,
         title: "Registration Open Now",
         client: "Trinity Showdown - Rotaract UOM",
         description: "A registration open now flyer",
@@ -165,27 +231,37 @@ export const graphicDesigns = [
     },
 
     {
-        id: 15,
-        title: "Christmas Flyer 2025",
-        client: "Rotaract UOM",
-        description: "Christmas Flyer Design",
-        image: "/assets/Designs/Christmas - rotaract.png",
+        id: 21,
+        title: "Thai Pongal Flyer 2026",
+        client: "CSESS UOM",
+        description: "Thai Pongal Flyer Design",
+        image: "/assets/Designs/CSESS Flyers (1).png",
         tools: ["canva"],
-        year: "2025",
+        year: "2026",
         type: "image"
     },
     {
-        id: 16,
-        title: "PUBG - Rule Booklet",
-        client: "Trinity Showdown - Rotaract UOM",
-        description: "A cover page of booklet containing rules of PUBG game",
-        image: "/assets/Designs/4.png",
-        tools: ["canva", 'Adobe Photoshop'],
-        year: "2025",
+        id: 22,
+        title: "Registration closing Tomorrow - SLIoT 2026",
+        client: "SLIoT 2026",
+        description: "A registration closing flyer",
+        image: "/assets/Designs/Frame 181.png",
+        tools: ["Figma"],
+        year: "2026",
         type: "image"
     },
     {
-        id: 17,
+        id: 23,
+        title: "Registration closing Today - SLIoT 2026",
+        client: "SLIoT 2026",
+        description: "A registration closing today flyer",
+        image: "/assets/Designs/Frame 182.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 24,
         title: "Mobile Legendes - Rule Booklet",
         client: "Trinity Showdown - Rotaract UOM",
         description: "A cover page of booklet containing rules of Mobile Legendes game",
@@ -196,18 +272,39 @@ export const graphicDesigns = [
     }
     ,
     {
-        id: 18,
+        id: 25,
+        title: "PUBG Mobile - Rule Booklet",
+        client: "Trinity Showdown - Rotaract UOM",
+        description: "A cover page of booklet containing rules of PUBG Mobile game",
+        image: "/assets/Designs/4.png",
+        tools: ["canva", 'Adobe Photoshop'],
+        year: "2025",
+        type: "image"
+    },
+    {
+        id: 26,
+        title: "Registation closing & event happening - Trinity Showdown",
+        client: "Trinity Showdown - Rotaract UOM",
+        description: "A green and black themed coming soon flyer",
+        image: "/assets/Designs/Trinity ShowDown (2).png",
+        tools: ["canva"],
+        year: "2026",
+        type: "image"
+    },
+
+    {
+        id: 27,
         title: "Call of Duty Mobile - Rule Booklet",
         client: "Trinity Showdown - Rotaract UOM",
         description: "A cover page of booklet containing rules of Call of Duty Mobile game",
-        image: "/assets/Designs/6.png",
+        image: "/assets/Designs/5.png",
         tools: ["canva", 'Adobe Photoshop'],
         year: "2025",
         type: "image"
     }
     ,
     {
-        id: 19,
+        id: 28,
         title: "Organizing Committee Submission Flyer",
         client: "Beyond the Frame - Rotaract UOM",
         description: "An attractive flyer to invite people to join the organizing committee",
