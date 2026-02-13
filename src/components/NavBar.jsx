@@ -1,4 +1,6 @@
-import { Sun, Moon } from "lucide-react";
+import React from "react";
+import { Sun, Moon, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NavBar = ({
   personalInfo,
@@ -9,63 +11,100 @@ const NavBar = ({
   toggleDarkMode,
   isMenuOpen,
   setIsMenuOpen,
-  setIsScrolled,
 }) => {
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8 w-fit">
-      <div className="flex items-center justify-between h-16">
-        <div className="flex items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between h-20">
+        {/* Logo */}
+        <div className="flex-shrink-0">
           <button
             onClick={() => setCurrentPage("home")}
-            className={`text-lg sm:text-xl font-bold transition-colors text-black dark:text-white px-10`}
+            className="text-2xl font-black tracking-tighter text-gray-900 dark:text-white"
           >
-            {personalInfo.name}
+            {personalInfo.name.split(' ')[0]}<span className="text-brand-primary">.</span>
           </button>
         </div>
 
-        {/* Centered nav links (desktop) */}
-        <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-6">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-1">
           {navItems.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               onClick={() => setCurrentPage(id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-md font-medium transition ${currentPage === id ? "bg-purple-600 text-white" : "text-black dark:text-white"}`}
+              className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 group flex items-center gap-2
+                ${currentPage === id
+                  ? "text-white"
+                  : "text-gray-600 dark:text-gray-300 hover:text-brand-primary dark:hover:text-white"
+                }`}
             >
-              <Icon size={16} />
-              <span className="hidden sm:inline">{label}</span>
+              {currentPage === id && (
+                <motion.div
+                  layoutId="nav-pill"
+                  className="absolute inset-0 bg-brand-primary rounded-full shadow-lg shadow-brand-primary/25"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-2">
+                <Icon size={16} />
+                {label}
+              </span>
             </button>
           ))}
         </div>
 
-        {/* Actions (right) */}
-        <div className="flex items-center space-x-2 px-10">
+        {/* Right Actions */}
+        <div className="flex items-center gap-4">
           <button
             onClick={toggleDarkMode}
-            className={`p-2 rounded-lg transition-colors text-black dark:text-white`}
-            title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            className="p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primary dark:hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
+            aria-label="Toggle Dark Mode"
           >
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-brand-primary hover:text-white transition-colors focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700 shadow-lg">
-          {navItems.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => {
-                setCurrentPage(id);
-                setIsMenuOpen(false);
-              }}
-              className={`w-full text-left px-4 py-3 border-b dark:border-gray-700 ${currentPage === id ? "bg-blue-50 dark:bg-blue-900/50 text-blue-600" : "text-gray-700 dark:text-gray-200"}`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden overflow-hidden bg-white/90 dark:bg-gray-900/95 backdrop-blur-xl border-t border-gray-200 dark:border-gray-800 rounded-b-2xl shadow-xl absolute left-0 right-0 px-4 pb-4 top-20 z-50 mx-4"
+          >
+            <div className="flex flex-col space-y-2 pt-4">
+              {navItems.map(({ id, label, icon: Icon }) => (
+                <button
+                  key={id}
+                  onClick={() => {
+                    setCurrentPage(id);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
+                    ${currentPage === id
+                      ? "bg-brand-primary text-white shadow-brand-primary/25 shadow-lg"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    }`}
+                >
+                  <Icon size={18} />
+                  <span className="font-medium">{label}</span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
