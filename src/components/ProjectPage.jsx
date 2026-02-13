@@ -1,107 +1,132 @@
 import React from 'react';
-import { Globe, Github } from "lucide-react";
+import { Globe, Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ProjectPage = ({
-    projects
+  projects
 }) => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
-            My Projects
+        <motion.div
+          className="text-center mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+            <span className="text-gradient">Featured Projects</span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Here's a showcase of some of my recent work. Each project represents
-            a unique challenge and demonstrates different aspects of my
-            technical expertise.
+            A selection of projects that showcase my passion for building digital experiences.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid gap-8 sm:gap-10 lg:gap-12">
+        <motion.div
+          className="grid gap-12 sm:gap-16 lg:gap-20"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              className={`bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden ${index % 2 === 1 ? "lg:flex-row-reverse" : ""} lg:flex transition-colors duration-300`}
+              variants={itemVariants}
+              className={`group flex flex-col ${index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-8 lg:gap-12 items-center`}
             >
-              <div className="lg:w-1/2">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src={process.env.PUBLIC_URL + project.image}
-                  alt={project.title}
-                  className="w-full h-48 sm:h-64 lg:h-full object-cover"
-                />
+              <div className="lg:w-1/2 w-full">
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl glass-dark group-hover:shadow-brand-primary/20 transition-all duration-500">
+                  <div className="absolute inset-0 bg-brand-dark/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                  <img
+                    src={process.env.PUBLIC_URL + project.image}
+                    alt={project.title}
+                    className="w-full h-64 sm:h-80 lg:h-96 object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
               </div>
-              <div className="lg:w-1/2 p-4 sm:p-6 lg:p-8 xl:p-12">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3 sm:mb-4">
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+
+              <div className="lg:w-1/2 w-full space-y-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="px-3 py-1 bg-brand-primary/10 dark:bg-brand-primary/20 text-brand-primary dark:text-brand-accent rounded-full text-sm font-semibold">
                     {project.category}
                   </span>
-                  <span className="text-gray-500 text-sm">
-                    • {project.year}
+                  <span className="text-gray-500 dark:text-gray-400 text-sm">
+                    {project.year}
                   </span>
                 </div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
                   {project.title}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg leading-relaxed">
+
+                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                   {project.longDescription}
                 </p>
 
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">
-                    Key Features:
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                    <ExternalLink size={18} className="text-brand-secondary" /> Key Features
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
-                    {project.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center text-gray-600 dark:text-gray-300 text-xs sm:text-sm"
-                      >
-                        <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {project.features.map((feature, i) => (
+                      <li key={i} className="flex items-start text-gray-600 dark:text-gray-400 text-sm">
+                        <span className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                         {feature}
-                      </div>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
 
-                <div className="mb-6 sm:mb-8">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 text-sm sm:text-base">
-                    Technologies Used:
-                  </h3>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-brand-accent text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-700 hover:border-brand-secondary/50 transition-colors"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="flex flex-wrap gap-4 pt-4">
                   <a
                     href={project.liveUrl}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
+                    className="px-6 py-3 bg-brand-dark dark:bg-white text-white dark:text-brand-dark rounded-lg font-semibold hover:bg-brand-primary dark:hover:bg-brand-accent transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300"
                   >
-                    <Globe size={16} className="sm:w-4 sm:h-4" />
+                    <Globe size={18} />
                     Live Demo
                   </a>
                   <a
                     href={project.githubUrl}
-                    className="border-2 border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base"
+                    className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-white rounded-lg font-semibold hover:bg-brand-primary/5 dark:hover:bg-brand-secondary/10 transition-colors flex items-center gap-2"
                   >
-                    <Github size={16} className="sm:w-4 sm:h-4" />
-                    View Code
+                    <Github size={18} />
+                    Source Code
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

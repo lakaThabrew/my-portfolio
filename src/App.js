@@ -32,7 +32,7 @@ const Portfolio = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   // Contact form state
   const [contactFirstName, setContactFirstName] = useState('');
   const [contactLastName, setContactLastName] = useState('');
@@ -51,9 +51,16 @@ const Portfolio = () => {
     setSelectedDesign(null);
   }
 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark', !isDarkMode);
   }
 
   // Contact form submit handler
@@ -138,6 +145,10 @@ const Portfolio = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
@@ -227,7 +238,7 @@ const Portfolio = () => {
     ];
 
     return (
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md' : 'bg-white/90 dark:bg-gray-900/90'}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass dark:glass-dark shadow-lg' : 'bg-transparent'}`}>
         <NavBar personalInfo={personalInfo}
           navItems={navItems}
           currentPage={currentPage}
