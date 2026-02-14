@@ -1,10 +1,10 @@
 export const projects = [
     {
-        id: -1,
-        title: "EduMentor AI – Agent-Based Educational Assistant",
+        id: 0,
+        title: "EduMentor AI – Agent Based Educational Assistant",
         category: "AI & Education, Software Engineering",
         description: "An AI-powered educational assistant built using a multi-agent architecture to deliver personalized learning, real-time tutoring, adaptive quizzes, and intelligent study recommendations for students.",
-        longDescription: "EduMentor AI is a sophisticated agent-based educational assistant designed to enhance personalized learning experiences. The system leverages multiple AI agents to handle tasks such as student query understanding, personalized tutoring, adaptive quiz generation, learning progress tracking, and memory-based recommendations. Using natural language processing, the assistant understands student questions in real time, while adaptive learning algorithms tailor content based on performance and learning behavior. The platform integrates educational resources, provides analytics-driven feedback, and supports continuous learning across multiple subjects.",
+        longDescription: "EduMentor AI is a sophisticated agent-based educational assistant designed to enhance personalized learning experiences. The system leverages multiple AI agents to handle tasks such as student query understanding, personalized tutoring, adaptive quiz generation, learning progress tracking, and memory-based recommendations.",
         image: "/assets/projects/Edumentor-ai.png",
         technologies: [
             "React",
@@ -31,8 +31,8 @@ export const projects = [
     }
     ,
     {
-        id: 0,
-        title: "HealthSense – AI-Powered Health Monitoring System",
+        id: 1,
+        title: "HealthSense – AI Powered Health Monitoring System",
         category: "Healthcare Technology, AI & Software Engineering",
         description: "A smart health monitoring and analysis platform designed to track user health data, provide insights, and support proactive healthcare through intelligent data visualization and analysis.",
         longDescription: "HealthSense is a modern healthcare technology project focused on monitoring, analyzing, and visualizing personal health data to support better health awareness and decision-making. The system enables users to record and track vital health metrics, view trends over time, and gain meaningful insights through an intuitive dashboard. Designed with a scalable architecture and clean UI, HealthSense emphasizes usability, data clarity, and future extensibility toward AI-driven health predictions and personalized recommendations.",
@@ -61,7 +61,7 @@ export const projects = [
     }
     ,
     {
-        id: 1,
+        id: 2,
         title: "BrightBuy Online Retail Management System",
         category: "E-Commerce & Inventory Management",
         description: "A comprehensive web-based retail inventory and online order management system for consumer electronics retail chain. Features multi-role user access, variant-based inventory control, and real-time order processing.",
@@ -73,9 +73,22 @@ export const projects = [
         githubUrl: "#",
         year: "2025"
     },
+    {
+        id: 3,
+        title: "TypeIQ",
+        category: "AI & Web Development",
+        description: "An AI-powered typing speed and accuracy testing web application that provides real-time feedback, personalized practice sessions, and detailed performance analytics to help users improve their typing skills effectively.",
+        longDescription: "TypeIQ is a modern web application designed to help users enhance their typing skills through AI-driven feedback and personalized practice. The platform features real-time typing tests that analyze speed and accuracy, providing users with detailed performance analytics and tailored practice sessions based on their strengths and weaknesses. With an intuitive interface and engaging user experience, TypeIQ motivates users to improve their typing proficiency while tracking their progress over time.",
+        image: "/assets/projects/TypeIQ.png",
+        technologies: ["React", "Node.js", "MongoDB", "Mongoose", "Express.js", "Tailwind CSS", "Google gemini API", "mongoDB API"],
+        features: ["Dynamic AI-generated typing content for every level", "Progressive skill system with multiple stages and levels", "Personalized AI recommendations based on user performance", "Detailed performance tracking (WPM, accuracy, error analysis)", "Full-stack implementation: React, Node.js, Express, MongoDB", "Open-source and fully customizable"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/ai_typing_Tester",
+        year: "2025"
+    },
 
     {
-        id: 2,
+        id: 4,
         title: "CineAI",
         category: "AI & Machine Learning",
         description: "AI-powered movie recommendation web application that provides personalized film suggestions based on user preferences and viewing history using advanced machine learning algorithms.",
@@ -85,32 +98,6 @@ export const projects = [
         features: ["AI Recommendations", "User Preferences", "Movie Database", "Responsive Design", "Real-time Filtering"],
         liveUrl: "#",
         githubUrl: "https://github.com/lakaThabrew/CineAI",
-        year: "2025"
-    },
-    {
-        id: 3,
-        title: "GPS Alarm WebApp",
-        category: "Location-Based Services",
-        description: "A web-based GPS alarm system that triggers location-based alerts, helping users get notified when reaching or approaching their chosen destinations with precise geolocation tracking.",
-        longDescription: "Built a location-aware web application using GPS technology to provide proximity-based notifications. The system tracks user location in real-time and triggers customizable alarms when approaching predefined destinations, perfect for commuters and travelers who need location-based reminders.",
-        image: "/assets/projects/gps.jpg",
-        technologies: ["JavaScript", "HTML5", "CSS3", "Geolocation API", "Web APIs"],
-        features: ["GPS Tracking", "Location Alerts", "Custom Destinations", "Real-time Monitoring", "Responsive Interface"],
-        liveUrl: "https://lakathabrew.github.io/GPS_Alarm_WebApp",
-        githubUrl: "https://github.com/lakaThabrew/GPS_Alarm_WebApp",
-        year: "2025"
-    },
-    {
-        id: 4,
-        title: "Steamnoodles Feedback AI Agent System",
-        category: "AI & Natural Language Processing",
-        description: "Intelligent customer feedback analysis system using LangChain and LLMs to automate sentiment analysis, generate contextual responses, and create dynamic sentiment visualization reports for restaurant chains.",
-        longDescription: "Built a comprehensive AI-powered feedback management system for SteamNoodles restaurant chain featuring dual AI agents. The system automatically analyzes customer review sentiments, generates polite contextual responses, and creates dynamic sentiment distribution plots based on date ranges using advanced NLP techniques.",
-        image: "/assets/projects/steam.jpg",
-        technologies: ["Python", "LangChain", "HuggingFace Transformers", "Pandas", "Matplotlib", "Plotly", "OpenAI API"],
-        features: ["Sentiment Analysis", "Automated Responses", "Dynamic Plotting", "Date Range Filtering", "Context-Aware Replies", "Restaurant Analytics"],
-        liveUrl: "#",
-        githubUrl: "https://github.com/lakaThabrew/Steamnoodles-Feedback-Agent-LakmanaThabrew",
         year: "2025"
     },
     {
@@ -126,9 +113,49 @@ export const projects = [
         githubUrl: "https://github.com/lakaThabrew/CHaT-BoT_groq",
         year: "2025"
     },
+    {
+        id: 4,
+        title: "CineSleuth",
+        category: "AI & Web Development",
+        description: "AI-powered interactive guessing game I built during my leisure time. The idea came after I watched a video where a human tried to guess someone’s favorite movie using a sequence of smart questions — and I wondered: “Why can’t AI do this too?”",
+        longDescription: "This project explores that idea using Python and Google Gemini’s AI reasoning. The agent asks the user a series of yes/no/maybe questions about genres, tones, themes, major plot patterns, and character styles. Based on the answers, it dynamically eliminates options and predicts the user’s favorite movie from a structured movie-attribute database.",
+        image: "/assets/projects/cinesleuth.png",
+        technologies: ["Python", "Google gemini APIs"],
+        features: ["Intelligent question-selection system using attribute filtering","Dynamic reasoning and decision-making using Gemini","Smooth natural interaction loop","Lightweight and scalable movie dataset","Inspired by traditional 20-questions games and AI agent design"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/Cine-Sleuth",
+        year: "2025"
+    },
 
     {
         id: 6,
+        title: "GPS Alarm WebApp",
+        category: "Location-Based Services",
+        description: "A web-based GPS alarm system that triggers location-based alerts, helping users get notified when reaching or approaching their chosen destinations with precise geolocation tracking.",
+        longDescription: "Built a location-aware web application using GPS technology to provide proximity-based notifications. The system tracks user location in real-time and triggers customizable alarms when approaching predefined destinations, perfect for commuters and travelers who need location-based reminders.",
+        image: "/assets/projects/gps.jpg",
+        technologies: ["JavaScript", "HTML5", "CSS3", "Geolocation API", "Web APIs"],
+        features: ["GPS Tracking", "Location Alerts", "Custom Destinations", "Real-time Monitoring", "Responsive Interface"],
+        liveUrl: "https://lakathabrew.github.io/GPS_Alarm_WebApp",
+        githubUrl: "https://github.com/lakaThabrew/GPS_Alarm_WebApp",
+        year: "2025"
+    },
+    {
+        id: 7,
+        title: "Steamnoodles Feedback AI Agent System",
+        category: "AI & Natural Language Processing",
+        description: "Intelligent customer feedback analysis system using LangChain and LLMs to automate sentiment analysis, generate contextual responses, and create dynamic sentiment visualization reports for restaurant chains.",
+        longDescription: "Built a comprehensive AI-powered feedback management system for SteamNoodles restaurant chain featuring dual AI agents. The system automatically analyzes customer review sentiments, generates polite contextual responses, and creates dynamic sentiment distribution plots based on date ranges using advanced NLP techniques.",
+        image: "/assets/projects/steam.jpg",
+        technologies: ["Python", "LangChain", "HuggingFace Transformers", "Pandas", "Matplotlib", "Plotly", "OpenAI API"],
+        features: ["Sentiment Analysis", "Automated Responses", "Dynamic Plotting", "Date Range Filtering", "Context-Aware Replies", "Restaurant Analytics"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/Steamnoodles-Feedback-Agent-LakmanaThabrew",
+        year: "2025"
+    },
+
+    {
+        id: 8,
         title: "Nano Processor Version I,II & III",
         category: "Computer Architecture",
         description: "An optimized 4-bit nanoprocessor implementation in VHDL for BASYS 3 FPGA, featuring enhanced instruction decoder, ROM modules, and improved performance for embedded systems.",
@@ -142,7 +169,7 @@ export const projects = [
     },
 
     {
-        id: 7,
+        id: 9,
         title: "Etherion: Clash of Realms",
         category: "Game Development",
         description: "A command-line RPG game built in Java featuring elemental battles, character progression, shop system, and immersive fantasy gameplay with strategic combat mechanics.",

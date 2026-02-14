@@ -1,18 +1,16 @@
-import React from 'react';
+import React from "react";
 import { Globe, Github, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
-const ProjectPage = ({
-  projects
-}) => {
+const ProjectPage = ({ projects }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15
-      }
-    }
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const itemVariants = {
@@ -20,8 +18,8 @@ const ProjectPage = ({
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
@@ -33,11 +31,15 @@ const ProjectPage = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-            <span className="text-gradient">Featured Projects</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            Featured{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
+              Projects
+            </span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A selection of projects that showcase my passion for building digital experiences.
+            A selection of projects that showcase my passion for building
+            digital experiences.
           </p>
         </motion.div>
 
@@ -84,11 +86,15 @@ const ProjectPage = ({
 
                 <div className="space-y-4">
                   <h3 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                    <ExternalLink size={18} className="text-brand-secondary" /> Key Features
+                    <ExternalLink size={18} className="text-brand-secondary" />{" "}
+                    Key Features
                   </h3>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {project.features.map((feature, i) => (
-                      <li key={i} className="flex items-start text-gray-600 dark:text-gray-400 text-sm">
+                      <li
+                        key={i}
+                        className="flex items-start text-gray-600 dark:text-gray-400 text-sm"
+                      >
                         <span className="w-1.5 h-1.5 bg-brand-secondary rounded-full mt-2 mr-2 flex-shrink-0"></span>
                         {feature}
                       </li>
