@@ -1,14 +1,13 @@
 
 # Lakmana Thabrew - Portfolio
 
-![Portfolio Preview](public/logo.svg) 
-> *Note: Add a screenshot of your portfolio here for a better preview!*
+> *Undergraduate CSE @ UOM in Sri Lanka.*
 
-A sleek, modern, and responsive personal portfolio website built with **React** and **Tailwind CSS**. This project showcases my journey as a Computer Science Undergraduate, Graphic Designer, and Web Developer, featuring a unique "Anti-Gravity" theme with smooth animations and glassmorphism effects.
+A sleek, modern, and responsive personal portfolio website built with **React** and **Tailwind CSS**. This project showcases my journey as a Computer Science Undergraduate, Graphic Designer, and Web Developer, featuring a unique theme with smooth animations and glassmorphism effects.
 
 ## 🚀 Features
 
-*   **Modern "Anti-Gravity" Design**: A unique aesthetic with floating elements, glassmorphism, and smooth transitions.
+*   **Modern Design**: A unique aesthetic with floating elements, glassmorphism, and smooth transitions.
 *   **Fully Responsive**: Optimized for all devices, from mobile phones to large desktop screens.
 *   **Interactive Animations**: Powered by **Framer Motion** for engaging page transitions and scroll effects.
 *   **Dynamic Gallery**: A masonry-layout photo gallery with a built-in lightbox for viewing high-resolution images.
@@ -110,7 +109,7 @@ This project depends on GitHub Pages for deployment.
 *   📧 **Email**: [lakmanathabrew123@gmail.com](mailto:lakmanathabrew123@gmail.com)
 *   🐙 **GitHub**: [lakaThabrew](https://github.com/lakaThabrew)
 *   💼 **LinkedIn**: [lakmana-thabrew](https://linkedin.com/in/lakmana-thabrew)
-*   🌐 **Website**: [lakaThabrew.dev](https://lakaThabrew.dev)
+*   🌐 **Website**: [lakaThabrew.dev](https://lakathabrew.github.io/my-portfolio/)
 
 ---
 *Designed & Built with ❤️ by Lakmana Thabrew.*
