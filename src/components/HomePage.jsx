@@ -151,8 +151,8 @@ const HomePage = ({
                   <Code size={20} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold">Clean Code</p>
-                  <p className="text-sm font-bold text-gray-900 dark:text-white">Start to Finish</p>
+                  <p className="text-xs text-gray-500 dark:text-white font-semibold">Clean Code</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-black">Start to Finish</p>
                 </div>
               </div>
             </motion.div>
@@ -167,7 +167,7 @@ const HomePage = ({
                   <MousePointer2 size={20} />
                 </div>
                 <div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold">Interactive</p>
+                  <p className="text-xs text-white dark:text-black font-semibold">Interactive</p>
                   <p className="text-sm font-bold text-gray-900 dark:text-white">User Experience</p>
                 </div>
               </div>
