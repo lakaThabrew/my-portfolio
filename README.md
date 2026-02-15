@@ -1,70 +1,116 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Lakmana Thabrew - Portfolio
 
-## Available Scripts
+![Portfolio Preview](public/logo.svg) 
+> *Note: Add a screenshot of your portfolio here for a better preview!*
 
-In the project directory, you can run:
+A sleek, modern, and responsive personal portfolio website built with **React** and **Tailwind CSS**. This project showcases my journey as a Computer Science Undergraduate, Graphic Designer, and Web Developer, featuring a unique "Anti-Gravity" theme with smooth animations and glassmorphism effects.
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*   **Modern "Anti-Gravity" Design**: A unique aesthetic with floating elements, glassmorphism, and smooth transitions.
+*   **Fully Responsive**: Optimized for all devices, from mobile phones to large desktop screens.
+*   **Interactive Animations**: Powered by **Framer Motion** for engaging page transitions and scroll effects.
+*   **Dynamic Gallery**: A masonry-layout photo gallery with a built-in lightbox for viewing high-resolution images.
+*   **Project Showcase**: Dedicated sections for coding projects and graphic design work.
+*   **Comprehensive Resume**: Interactive "Experience" and "Education" pages detailing my professional background.
+*   **Contact Form**: Functional contact form powered by **Formspree**.
+*   **Dark/Light Mode Ready**: Built with Tailwind's dark mode capabilities in mind (configured in `tailwind.config.js`).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+*   **Frontend**: [React.js](https://reactjs.org/)
+*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+*   **Animations**: [Framer Motion](https://www.framer.com/motion/)
+*   **Routing**: [React Router](https://reactrouter.com/)
+*   **Icons**: [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
+*   **Deployment**: GitHub Pages (configured)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📂 Project Structure
 
-### `npm run build`
+```bash
+my-portfolio/
+├── public/
+│   ├── assets/          # Static assets (Gallery images, etc.)
+│   └── index.html
+├── src/
+│   ├── components/      # Reusable React components (Pages, NavBar, Footer)
+│   ├── data/            # Data files for easy content management (personalInfo, projects, gallery)
+│   ├── App.js           # Main application component with Routing
+│   ├── index.css        # Global styles & Tailwind directives
+│   └── index.js         # Entry point
+└── package.json
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ⚡ Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make sure you have **Node.js** installed on your machine.
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/lakaThabrew/my-portfolio.git
+    cd my-portfolio
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3.  **Run the development server**:
+    ```bash
+    npm start
+    ```
+    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📝 Configuration
 
-## Learn More
+### Updating Content
+All content is managed via the `src/data/` folder. You can easily update your information without touching the component code:
+*   **`personalInfo.js`**: Update your name, titles, bio, and contact links.
+*   **`projects.js`**: Add or edit your coding projects.
+*   **`gallery.js`**: Add new images to the gallery page.
+*   **`skills.js`**, **`experience.js`**, **`education.js`**: Manage your resume content.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Adding Gallery Images
+1.  Place your images in `public/assets/Gallery/Landscape` or `public/assets/Gallery/portrait`.
+2.  Add a new entry to `src/data/gallery.js`:
+    ```javascript
+    {
+      id: 101, // Unique ID
+      src: "/assets/Gallery/Landscape/your-image.jpg",
+      type: "landscape",
+      alt: "Description"
+    }
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🚀 Deployment
 
-### Code Splitting
+This project depends on GitHub Pages for deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1.  **Build the project**:
+    ```bash
+    npm run build
+    ```
 
-### Analyzing the Bundle Size
+2.  **Deploy**:
+    ```bash
+    npm run deploy
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📬 Contact
 
-### Making a Progressive Web App
+**Lakmana Thabrew**  
+*Computer Science & Engineering Undergraduate*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+*   📧 **Email**: [lakmanathabrew123@gmail.com](mailto:lakmanathabrew123@gmail.com)
+*   🐙 **GitHub**: [lakaThabrew](https://github.com/lakaThabrew)
+*   💼 **LinkedIn**: [lakmana-thabrew](https://linkedin.com/in/lakmana-thabrew)
+*   🌐 **Website**: [lakaThabrew.dev](https://lakaThabrew.dev)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+*Designed & Built with ❤️ by Lakmana Thabrew.*
