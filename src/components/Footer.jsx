@@ -15,7 +15,11 @@ const Footer = ({
     { icon: Linkedin, href: personalInfo.linkedin, label: "LinkedIn" },
     { icon: FaFacebookF, href: personalInfo.facebook, label: "Facebook" },
     { icon: FaInstagram, href: personalInfo.instagram, label: "Instagram" },
-    { icon: FaWhatsapp, href: `https://wa.me/${personalInfo.whatsApp.replace(/[^0-9]/g, '')}`, label: "WhatsApp" },
+    {
+      icon: FaWhatsapp,
+      href: `https://wa.me/${personalInfo.whatsApp.replace(/[^0-9]/g, "")}`,
+      label: "WhatsApp",
+    },
     { icon: Mail, href: `mailto:${personalInfo.email}`, label: "Email" },
   ];
 
@@ -51,10 +55,12 @@ const Footer = ({
             {/* Brand / About */}
             <div className="col-span-1 lg:col-span-1">
               <h3 className="text-2xl font-black mb-4 tracking-tight">
-                {personalInfo.name.split(' ')[0]}<span className="text-brand-primary">.</span>
+                {personalInfo.name.split(" ")[0]}
+                <span className="text-brand-primary">.</span>
               </h3>
               <p className="text-gray-400 leading-relaxed mb-6">
-                Crafting pixel-perfect, engaging, and accessible digital experiences.
+                Crafting pixel-perfect, engaging, and accessible digital
+                experiences.
               </p>
               <div className="flex items-center gap-2 text-sm text-gray-500">
                 <MapPin size={16} className="text-brand-primary" />
@@ -69,8 +75,8 @@ const Footer = ({
                 {[
                   { id: "home", label: "Home" },
                   { id: "about", label: "About" },
-                  { id: "projects", label: "Projects" },
                   { id: "designs", label: "Visual Design" },
+                  { id: "gallery", label: "Gallery" },
                 ].map((item) => (
                   <li key={item.id}>
                     <button
@@ -91,6 +97,7 @@ const Footer = ({
               <ul className="space-y-3">
                 {[
                   { id: "cv2", label: "Experience" },
+                  { id: "projects", label: "Projects" },
                   { id: "cv1", label: "Education" },
                   { id: "contact", label: "Contact Me" },
                 ].map((item) => (
@@ -130,7 +137,8 @@ const Footer = ({
           {/* Copyright */}
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm text-center md:text-left">
-              &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+              &copy; {new Date().getFullYear()} {personalInfo.name}. All rights
+              reserved.
             </p>
             <p className="text-gray-600 text-xs flex items-center gap-1">
               Designed & Built with <span className="text-red-500">♥</span>

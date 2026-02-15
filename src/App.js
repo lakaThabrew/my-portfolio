@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   User, Home, Briefcase, PenTool, FileText, Phone,
-  Award
+  Award, Image
 } from 'lucide-react';
 
 import HomePage from './components/HomePage.jsx';
@@ -11,6 +11,7 @@ import AboutPage from './components/AboutPage.jsx';
 import EducationPage from './components/EducationPage.jsx';
 import ExperiencePage from './components/ExperiencePage.jsx';
 import ContactPage from './components/ContactPage.jsx';
+import GalleryPage from './components/GalleryPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -232,6 +233,7 @@ const Portfolio = () => {
       { id: 'about', label: 'About', icon: User },
       { id: 'projects', label: 'Projects', icon: Briefcase },
       { id: 'designs', label: 'Designs', icon: PenTool },
+      { id: 'gallery', label: 'Gallery', icon: Image },
       { id: 'experience', label: 'Experience', icon: Award },
       { id: 'cv1', label: 'Education', icon: FileText },
       { id: 'contact', label: 'Contact', icon: Phone }
@@ -261,6 +263,8 @@ const Portfolio = () => {
         return renderProjectsPage();
       case 'designs':
         return renderDesignsPage();
+      case 'gallery':
+        return <GalleryPage />;
       case 'experience':
         return renderCVPage2();
       case 'cv1':
