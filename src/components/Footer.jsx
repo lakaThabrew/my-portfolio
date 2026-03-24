@@ -18,6 +18,7 @@ const Footer = ({
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "designs", label: "Visual Design" },
+    { id: "blogs", label: "Blogs" },
     { id: "gallery", label: "Gallery" },
   ];
 

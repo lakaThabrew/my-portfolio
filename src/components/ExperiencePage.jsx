@@ -1,5 +1,5 @@
 import React from "react";
-import { User, Briefcase, Calendar, MapPin } from "lucide-react";
+import { User, Briefcase, Calendar, MapPin, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ExperiencePage = ({ experiences, volunteering }) => {
@@ -24,7 +24,7 @@ const ExperiencePage = ({ experiences, volunteering }) => {
 
   return (
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
           className="text-center mb-16"
@@ -113,33 +113,54 @@ const ExperiencePage = ({ experiences, volunteering }) => {
               Volunteering & Community
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {volunteering.map((v, idx) => (
                 <motion.div
                   key={idx}
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  className="glass dark:glass-dark rounded-xl p-6 shadow-md border border-gray-100 dark:border-white/5 hover:border-brand-primary/30 transition-all"
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="group relative bg-white dark:bg-gray-800/40 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/5 hover:border-brand-primary/40 transition-all duration-300"
                 >
-                  <div className="flex items-start gap-4">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src={process.env.PUBLIC_URL + v.logo}
-                      alt={v.organizer}
-                      className="w-14 h-14 object-cover rounded-lg bg-white p-1 shadow-sm"
-                    />
-                    <div className="flex-1">
-                      <h3 className="font-bold text-gray-900 dark:text-white text-lg leading-tight mb-1">
-                        {v.eventName}
-                      </h3>
-                      <p className="text-brand-primary text-sm font-semibold">
-                        {v.position} <span className="text-gray-400 mx-1">•</span> {v.organizer}
-                      </p>
+                  <div className="flex flex-col h-full gap-5">
+                    <div className="flex items-center gap-4">
+                      <div className="relative flex-shrink-0">
+                        <div className="absolute -inset-1 bg-gradient-to-tr from-brand-primary to-brand-accent rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          src={process.env.PUBLIC_URL + v.logo}
+                          alt={v.organizer}
+                          className="relative w-16 h-16 object-cover rounded-2xl bg-white p-1.5 shadow-sm border border-gray-100 dark:border-gray-700"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 dark:text-white text-lg leading-tight mb-1 group-hover:text-brand-primary transition-colors line-clamp-2">
+                          {v.eventName}
+                        </h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-xs font-semibold truncate">
+                           {v.organizer}
+                        </p>
+                      </div>
+                    </div>
 
-                      <div className="flex items-center justify-between mt-3 text-xs text-gray-500 dark:text-gray-400 border-t border-gray-100 dark:border-white/5 pt-3">
-                        <span className="font-medium">{v.date}</span>
-                        <span className="bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded capitalize">{v.category}</span>
+                    <div className="flex flex-col flex-1 space-y-3">
+                      <div className="flex items-start gap-2.5">
+                        <div className="p-1.5 bg-brand-secondary/10 rounded-lg text-brand-secondary flex-shrink-0">
+                           <Award size={14} />
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 font-medium leading-snug">
+                          {v.position}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                        <div className="flex items-center gap-1.5 text-xs text-brand-primary font-bold">
+                           <Calendar size={14} />
+                           {v.date}
+                        </div>
+                        <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-[10px] font-bold rounded-md uppercase tracking-wider">
+                           {v.category}
+                        </span>
                       </div>
                     </div>
                   </div>
