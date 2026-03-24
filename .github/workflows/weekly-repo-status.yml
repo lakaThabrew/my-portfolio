@@ -1,0 +1,110 @@
+name: Weekly Repo Status
+
+on:
+  schedule:
+    # Every Monday at 09:00 UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+concurrency:
+  group: weekly-repo-status
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Generate and publish weekly report
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const now = new Date();
+            const since = new Date(now);
+            since.setUTCDate(since.getUTCDate() - 7);
+
+            const ymd = now.toISOString().slice(0, 10);
+            const sinceISO = since.toISOString();
+            const sinceDate = sinceISO.slice(0, 10);
+
+            const query = async (q) => {
+              const result = await github.rest.search.issuesAndPullRequests({ q });
+              return result.data.total_count || 0;
+            };
+
+            const createdIssues = await query(`repo:${owner}/${repo} is:issue created:>=${sinceDate}`);
+            const closedIssues = await query(`repo:${owner}/${repo} is:issue is:closed closed:>=${sinceDate}`);
+            const openedPRs = await query(`repo:${owner}/${repo} is:pr created:>=${sinceDate}`);
+            const mergedPRs = await query(`repo:${owner}/${repo} is:pr merged:>=${sinceDate}`);
+            const openIssues = await query(`repo:${owner}/${repo} is:issue is:open`);
+            const openPRs = await query(`repo:${owner}/${repo} is:pr is:open`);
+
+            let latestRelease = "No release published yet.";
+            try {
+              const release = await github.rest.repos.getLatestRelease({ owner, repo });
+              latestRelease = `[${release.data.tag_name}](${release.data.html_url}) - ${release.data.name || "Latest release"}`;
+            } catch (error) {
+              if (error.status !== 404) {
+                core.info(`Could not fetch latest release: ${error.message}`);
+              }
+            }
+
+            const title = `Weekly Repo Status - ${ymd}`;
+            const body = [
+              `## Weekly Repo Status (${ymd})`,
+              "",
+              `Reporting window: ${sinceISO} to ${now.toISOString()}`,
+              "",
+              "### Activity (Last 7 Days)",
+              `- New issues: **${createdIssues}**`,
+              `- Closed issues: **${closedIssues}**`,
+              `- Opened pull requests: **${openedPRs}**`,
+              `- Merged pull requests: **${mergedPRs}**`,
+              "",
+              "### Current Backlog",
+              `- Open issues: **${openIssues}**`,
+              `- Open pull requests: **${openPRs}**`,
+              "",
+              "### Release",
+              `- ${latestRelease}`,
+              "",
+              "### Suggested Next Steps",
+              "- Triage newly opened issues and set priorities.",
+              "- Review open pull requests and unblock stale items.",
+              "- Plan next milestone based on merged work this week.",
+            ].join("\n");
+
+            const labelName = "weekly-status";
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: labelName });
+            } catch (error) {
+              if (error.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner,
+                  repo,
+                  name: labelName,
+                  color: "1D76DB",
+                  description: "Automated weekly repository status report",
+                });
+              } else {
+                throw error;
+              }
+            }
+
+            await github.rest.issues.create({
+              owner,
+              repo,
+              title,
+              body,
+              labels: [labelName],
+            });
+
+            core.info(`Created issue: ${title}`);
