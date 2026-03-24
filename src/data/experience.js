@@ -1,5 +1,13 @@
 export const experiences = [
     {
+        title: "Webmaster",
+        company: "IEEE CIS Student Chapter Socity of University of Moratuwa",
+        logo: "/assets/Logoes/CIS.png",
+        period: "2026 Mar - Present",
+        location: "Moratuwa, Sri Lanka",
+        description: "The webmaster is responsible for maintaining and updating the chapter's website, ensuring that it is user-friendly, visually appealing, and up-to-date with the latest information about the chapter's activities and events. This role involves designing and implementing web pages, managing content, and ensuring that the website is accessible to all users.",
+    },
+    {
         title: "Public Relations Committee Member",
         company: "CSE Student Socity of University of Moratuwa",
         logo: "/assets/Logoes/csess.jpg",
@@ -43,6 +51,30 @@ export const experiences = [
 
 export const volunteering = [
     {
+        eventName: "Beyond the Frame",
+        position: "Chair Person",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Photography"
+    },
+    {
+        eventName: "Debrator 6.0",
+        position: "Lead of Delegates Handling Committee",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2025 Sep",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Debuting & Public Speaking"
+    },
+    {
+        eventName: "CSE Hit the Grounds 2025",
+        position: "OC member of PR Committee & Program Committee",
+        organizer: "CSE of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/HTG.jpg",
+        category: "Sports & Entertainment"
+    },
+    {
         eventName: "GAMMADDATA IEEE API 4.0",
         position: "OC Member - Technical Committee",
         organizer: "IEEE of University of Moratuwa",
@@ -67,7 +99,7 @@ export const volunteering = [
         category: "Music & Entertainment"
     },
     {
-        eventName: "Bot Talk 3.0",
+        eventName: "IEEE Bot Talk 3.0",
         position: "Design & Marketing Committee Member",
         organizer: "IEEE RAS of University of Moratuwa",
         date: "2025 Oct",
@@ -83,11 +115,35 @@ export const volunteering = [
         category: "Health"
     },
     {
-        eventName: "Beyond the Frame",
-        position: "Chair Person",
+        eventName: "Resume Center '26",
+        position: "OC member - Flyer Designing Committee",
         organizer: "Rotaract Club of University of Moratuwa",
-        date: "2025 Dec",
+        date: "2026 Feb",
         logo: "/assets/Logoes/Rota.jpg",
-        category: "Photography"
+        category: "Career Development"
+    },
+    {
+        eventName: "SLIoT 2026",
+        position: "Oc member - Design Committee",
+        organizer: "CSE of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/sliot.jpeg",
+        category: "IoT & Technology"
+    },
+    {
+        eventName: "IESL Robogames '26",
+        position: "OC member - Design Committee",
+        organizer: "CSE of University of Moratuwa",
+        date: "2025 Dec",
+        logo: "/assets/Logoes/robogames.jpg",
+        category: "Robotics & Technology"
+    },
+    {
+        eventName: "Senehe Yatra 2026",
+        position: "OC member - Design Committee",
+        organizer: "Rotaract Club of University of Moratuwa",
+        date: "2026 Mar",
+        logo: "/assets/Logoes/Rota.jpg",
+        category: "Family & Health"
     }
 ];
