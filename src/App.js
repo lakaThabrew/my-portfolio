@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
-  User, Home, Briefcase, PenTool, FileText, Phone,
-  Award, Image
+  User, Briefcase, PenTool, FileText, Phone,
+  Award, Image, BookOpen
 } from 'lucide-react';
 
 import HomePage from './components/HomePage.jsx';
@@ -14,6 +14,7 @@ import ContactPage from './components/ContactPage.jsx';
 import GalleryPage from './components/GalleryPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
+import BlogPage from './components/BlogPage.jsx';
 
 // Import data from data files
 import {
@@ -229,10 +230,10 @@ const Portfolio = () => {
 
   const renderNavigation = () => {
     const navItems = [
-      { id: 'home', label: 'Home', icon: Home },
       { id: 'about', label: 'About', icon: User },
       { id: 'projects', label: 'Projects', icon: Briefcase },
       { id: 'designs', label: 'Designs', icon: PenTool },
+      { id: 'blogs', label: 'Blogs', icon: BookOpen },
       { id: 'gallery', label: 'Gallery', icon: Image },
       { id: 'experience', label: 'Experience', icon: Award },
       { id: 'cv1', label: 'Education', icon: FileText },
@@ -263,6 +264,8 @@ const Portfolio = () => {
         return renderProjectsPage();
       case 'designs':
         return renderDesignsPage();
+      case 'blogs':
+        return <BlogPage />;
       case 'gallery':
         return <GalleryPage />;
       case 'experience':
