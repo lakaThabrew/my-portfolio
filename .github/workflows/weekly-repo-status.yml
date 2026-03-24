@@ -1,4 +1,5 @@
 name: Weekly Repo Status
+run-name: Weekly Repo Status (#${{ github.run_number }})
 
 on:
   schedule:
@@ -35,8 +36,25 @@ jobs:
             const sinceISO = since.toISOString();
             const sinceDate = sinceISO.slice(0, 10);
 
+            const retry = async (fn, retries = 2) => {
+              let lastError;
+              for (let i = 0; i <= retries; i += 1) {
+                try {
+                  return await fn();
+                } catch (error) {
+                  lastError = error;
+                  if (i === retries) {
+                    break;
+                  }
+                  // Small backoff to reduce transient API failures and secondary-rate-limit noise.
+                  await new Promise((resolve) => setTimeout(resolve, 1500 * (i + 1)));
+                }
+              }
+              throw lastError;
+            };
+
             const query = async (q) => {
-              const result = await github.rest.search.issuesAndPullRequests({ q });
+              const result = await retry(() => github.rest.search.issuesAndPullRequests({ q }));
               return result.data.total_count || 0;
             };
 
@@ -87,24 +105,80 @@ jobs:
               await github.rest.issues.getLabel({ owner, repo, name: labelName });
             } catch (error) {
               if (error.status === 404) {
-                await github.rest.issues.createLabel({
-                  owner,
-                  repo,
-                  name: labelName,
-                  color: "1D76DB",
-                  description: "Automated weekly repository status report",
-                });
+                await retry(() =>
+                  github.rest.issues.createLabel({
+                    owner,
+                    repo,
+                    name: labelName,
+                    color: "1D76DB",
+                    description: "Automated weekly repository status report",
+                  })
+                );
               } else {
                 throw error;
               }
             }
 
-            await github.rest.issues.create({
-              owner,
-              repo,
-              title,
-              body,
-              labels: [labelName],
-            });
+            const openWeeklyIssues = await retry(() =>
+              github.paginate(github.rest.issues.listForRepo, {
+                owner,
+                repo,
+                state: "open",
+                labels: labelName,
+                per_page: 100,
+              })
+            );
 
-            core.info(`Created issue: ${title}`);
+            const statusIssues = openWeeklyIssues.filter(
+              (issue) => !issue.pull_request && issue.title.startsWith("Weekly Repo Status - ")
+            );
+
+            const currentIssue = statusIssues.find((issue) => issue.title === title);
+            let issueNumber;
+            let issueUrl;
+
+            if (currentIssue) {
+              const updated = await retry(() =>
+                github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: currentIssue.number,
+                  body,
+                })
+              );
+              issueNumber = updated.data.number;
+              issueUrl = updated.data.html_url;
+              core.info(`Updated existing issue: #${issueNumber}`);
+            } else {
+              const created = await retry(() =>
+                github.rest.issues.create({
+                  owner,
+                  repo,
+                  title,
+                  body,
+                  labels: [labelName],
+                })
+              );
+              issueNumber = created.data.number;
+              issueUrl = created.data.html_url;
+              core.info(`Created issue: #${issueNumber}`);
+            }
+
+            const staleIssues = statusIssues.filter((issue) => issue.number !== issueNumber);
+            for (const staleIssue of staleIssues) {
+              await retry(() =>
+                github.rest.issues.update({
+                  owner,
+                  repo,
+                  issue_number: staleIssue.number,
+                  state: "closed",
+                })
+              );
+            }
+
+            await core.summary
+              .addHeading("Weekly Repo Status")
+              .addRaw(`Issue: #${issueNumber} (${issueUrl})`).addEOL()
+              .addRaw(`Closed stale status issues: ${staleIssues.length}`).addEOL()
+              .addRaw(`Window start: ${sinceISO}`).addEOL()
+              .write();
