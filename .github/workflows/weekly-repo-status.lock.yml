@@ -203,7 +203,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      issues: read
+      issues: write
       pull-requests: read
     concurrency:
       group: "gh-aw-copilot-${{ github.workflow }}"
