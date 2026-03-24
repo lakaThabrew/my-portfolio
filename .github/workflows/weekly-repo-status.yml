@@ -21,7 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Generate and publish weekly report
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate upbeat weekly report issue
         uses: actions/github-script@v8
         with:
           script: |
@@ -33,9 +36,9 @@ jobs:
             since.setUTCDate(since.getUTCDate() - 7);
 
             const ymd = now.toISOString().slice(0, 10);
-            const sinceISO = since.toISOString();
-            const sinceDate = sinceISO.slice(0, 10);
+            const sinceDate = since.toISOString().slice(0, 10);
 
+            // Retry helper to avoid API transient errors
             const retry = async (fn, retries = 2) => {
               let lastError;
               for (let i = 0; i <= retries; i += 1) {
@@ -43,10 +46,7 @@ jobs:
                   return await fn();
                 } catch (error) {
                   lastError = error;
-                  if (i === retries) {
-                    break;
-                  }
-                  // Small backoff to reduce transient API failures and secondary-rate-limit noise.
+                  if (i === retries) break;
                   await new Promise((resolve) => setTimeout(resolve, 1500 * (i + 1)));
                 }
               }
@@ -70,34 +70,40 @@ jobs:
               const release = await github.rest.repos.getLatestRelease({ owner, repo });
               latestRelease = `[${release.data.tag_name}](${release.data.html_url}) - ${release.data.name || "Latest release"}`;
             } catch (error) {
-              if (error.status !== 404) {
-                core.info(`Could not fetch latest release: ${error.message}`);
-              }
+              if (error.status !== 404) core.info(`Could not fetch latest release: ${error.message}`);
             }
 
-            const title = `Weekly Repo Status - ${ymd}`;
+            const title = `Weekly Repo Status ✨ - ${ymd}`;
+            
+            // Format highly upbeat, matching the generative workflow's .md description!
             const body = [
-              `## Weekly Repo Status (${ymd})`,
+              `# 🌟 Weekly Repo Status (${ymd}) 🌟`,
               "",
-              `Reporting window: ${sinceISO} to ${now.toISOString()}`,
+              `Hello amazing team! 👋 Here's your high-energy recap for **${sinceDate}** to **${ymd}**. Great work on the repository this week! Let's review our progress.`,
               "",
-              "### Activity (Last 7 Days)",
-              `- New issues: **${createdIssues}**`,
-              `- Closed issues: **${closedIssues}**`,
-              `- Opened pull requests: **${openedPRs}**`,
-              `- Merged pull requests: **${mergedPRs}**`,
+              "## 🚀 Activity (Last 7 Days)",
+              `- 🔥 **New issues opened:** ${createdIssues}`,
+              `- 🎉 **Issues closed:** ${closedIssues}`,
+              `- ⚡ **Pull requests opened:** ${openedPRs}`,
+              `- 🚢 **Pull requests merged:** ${mergedPRs}`,
               "",
-              "### Current Backlog",
-              `- Open issues: **${openIssues}**`,
-              `- Open pull requests: **${openPRs}**`,
+              "What a fantastic week! Keep the momentum going! 💪",
               "",
-              "### Release",
-              `- ${latestRelease}`,
+              "## 📌 Current Backlog",
+              `- 📝 **Open issues:** ${openIssues}`,
+              `- 🔄 **Open pull requests:** ${openPRs}`,
               "",
-              "### Suggested Next Steps",
-              "- Triage newly opened issues and set priorities.",
-              "- Review open pull requests and unblock stale items.",
-              "- Plan next milestone based on merged work this week.",
+              "Let's tackle this backlog together! Collaboration makes the dream work! 🤝",
+              "",
+              "## 📦 Latest Release",
+              `- 🎁 ${latestRelease}`,
+              "",
+              "## 🎯 Actionable Next Steps",
+              "1. **Triage newly opened issues:** Let's clarify goals and set priorities for the week! 📋",
+              "2. **Review open PRs:** Help unblock community contributions and merge great awesome code! ✅",
+              "3. **Plan the next milestone:** Focus on what we can achieve this week! 🎯",
+              "",
+              "Stay positive and keep building amazing things! ✨"
             ].join("\n");
 
             const labelName = "weekly-status";
@@ -107,22 +113,19 @@ jobs:
               if (error.status === 404) {
                 await retry(() =>
                   github.rest.issues.createLabel({
-                    owner,
-                    repo,
+                    owner, repo,
                     name: labelName,
                     color: "1D76DB",
-                    description: "Automated weekly repository status report",
+                    description: "Automated weekly repository status report"
                   })
                 );
-              } else {
-                throw error;
-              }
+              } else throw error;
             }
 
+            // Find existing issues and replace/create
             const openWeeklyIssues = await retry(() =>
               github.paginate(github.rest.issues.listForRepo, {
-                owner,
-                repo,
+                owner, repo,
                 state: "open",
                 labels: labelName,
                 per_page: 100,
@@ -130,49 +133,33 @@ jobs:
             );
 
             const statusIssues = openWeeklyIssues.filter(
-              (issue) => !issue.pull_request && issue.title.startsWith("Weekly Repo Status - ")
+              (issue) => !issue.pull_request && issue.title.startsWith("Weekly Repo Status")
             );
 
             const currentIssue = statusIssues.find((issue) => issue.title === title);
-            let issueNumber;
-            let issueUrl;
+            let issueNumber, issueUrl;
 
             if (currentIssue) {
               const updated = await retry(() =>
-                github.rest.issues.update({
-                  owner,
-                  repo,
-                  issue_number: currentIssue.number,
-                  body,
-                })
+                github.rest.issues.update({ owner, repo, issue_number: currentIssue.number, body })
               );
               issueNumber = updated.data.number;
               issueUrl = updated.data.html_url;
-              core.info(`Updated existing issue: #${issueNumber}`);
+              core.info(`Updated existing upbeat issue: #${issueNumber}`);
             } else {
               const created = await retry(() =>
-                github.rest.issues.create({
-                  owner,
-                  repo,
-                  title,
-                  body,
-                  labels: [labelName],
-                })
+                github.rest.issues.create({ owner, repo, title, body, labels: [labelName] })
               );
               issueNumber = created.data.number;
               issueUrl = created.data.html_url;
-              core.info(`Created issue: #${issueNumber}`);
+              core.info(`Created upbeat issue: #${issueNumber}`);
             }
 
+            // Closes old status issues
             const staleIssues = statusIssues.filter((issue) => issue.number !== issueNumber);
             for (const staleIssue of staleIssues) {
               await retry(() =>
-                github.rest.issues.update({
-                  owner,
-                  repo,
-                  issue_number: staleIssue.number,
-                  state: "closed",
-                })
+                github.rest.issues.update({ owner, repo, issue_number: staleIssue.number, state: "closed" })
               );
             }
 
@@ -180,5 +167,4 @@ jobs:
               .addHeading("Weekly Repo Status")
               .addRaw(`Issue: #${issueNumber} (${issueUrl})`).addEOL()
               .addRaw(`Closed stale status issues: ${staleIssues.length}`).addEOL()
-              .addRaw(`Window start: ${sinceISO}`).addEOL()
               .write();
