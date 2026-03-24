@@ -34,7 +34,7 @@ const GalleryPage = () => {
 
   return (
     <div className="pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <motion.div
           className="text-center mb-12 sm:mb-16"
@@ -64,10 +64,10 @@ const GalleryPage = () => {
             A collection of moments and perspectives captured through my lens.
           </motion.p>
         </motion.div>
-
+ 
         {/* Masonry Grid */}
         <motion.div
-          className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
+          className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -109,26 +109,37 @@ const GalleryPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedImage(null)}
-              className="fixed inset-0 z-[60] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 sm:p-8"
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 sm:p-8"
             >
+              {/* Close Button - Viewport Fixed */}
               <button
-                className="absolute top-4 right-4 sm:top-8 sm:right-8 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors z-50 focus:outline-none"
-                onClick={() => setSelectedImage(null)}
+                className="fixed top-24 right-6 sm:right-10 text-white hover:text-white bg-white/10 hover:bg-brand-primary p-3 rounded-full transition-all duration-300 z-[10001] shadow-2xl hover:scale-110 flex items-center justify-center border border-white/10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedImage(null);
+                }}
+                aria-label="Close"
               >
-                <X size={32} />
+                <X size={28} />
               </button>
 
-              <motion.div
-                layoutId={`image-${selectedImage.id}`}
-                className="relative max-w-full max-h-full rounded-lg overflow-hidden shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <img
-                  src={process.env.PUBLIC_URL + selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="max-w-full max-h-[90vh] object-contain rounded-lg"
-                />
-              </motion.div>
+              <div className="relative max-w-full max-h-full" onClick={(e) => e.stopPropagation()}>
+                <motion.div
+                  layoutId={`image-${selectedImage.id}`}
+                  className="rounded-lg overflow-hidden shadow-2xl"
+                >
+                  <img
+                    src={process.env.PUBLIC_URL + selectedImage.src}
+                    alt={selectedImage.alt}
+                    className="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                  />
+                </motion.div>
+                
+                {/* Optional: Add image info/alt text below image for better UX if needed */}
+                <div className="mt-4 text-center">
+                  <p className="text-white/60 text-sm font-medium">{selectedImage.alt}</p>
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
