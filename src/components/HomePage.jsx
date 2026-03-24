@@ -49,7 +49,7 @@ const HomePage = ({
       </div>
 
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20"
+        className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
