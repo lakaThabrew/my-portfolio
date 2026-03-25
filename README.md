@@ -1,51 +1,77 @@
 
-# Lakmana Thabrew - Portfolio
+# 🌟 Lakmana Thabrew - Personal Portfolio
 
-> *Undergraduate CSE @ UOM in Sri Lanka.*
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Three.js-black?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js" />
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions" />
+</p>
 
-A sleek, modern, and responsive personal portfolio website built with **React** and **Tailwind CSS**. This project showcases my journey as a Computer Science Undergraduate, Graphic Designer, and Web Developer, featuring a unique theme with smooth animations and glassmorphism effects.
+> **Computer Science & Engineering Undergraduate @ University of Moratuwa, Sri Lanka.**
 
-## 🚀 Features
+A premium, high-performance personal portfolio website designed to showcase my journey as a developer, designer, and student. This project features a cutting-edge UI with **Glassmorphism**, **3D elements**, and **automated content pipelines**.
 
-*   **Modern Design**: A unique aesthetic with floating elements, glassmorphism, and smooth transitions.
-*   **Fully Responsive**: Optimized for all devices, from mobile phones to large desktop screens.
-*   **Interactive Animations**: Powered by **Framer Motion** for engaging page transitions and scroll effects.
-*   **Dynamic Gallery**: A masonry-layout photo gallery with a built-in lightbox for viewing high-resolution images.
-*   **Project Showcase**: Dedicated sections for coding projects and graphic design work.
-*   **Comprehensive Resume**: Interactive "Experience" and "Education" pages detailing my professional background.
-*   **Contact Form**: Functional contact form powered by **Formspree**.
-*   **Dark/Light Mode Ready**: Built with Tailwind's dark mode capabilities in mind (configured in `tailwind.config.js`).
+---
+
+## ✨ Key Features
+
+-   **🎨 Immersive UI/UX**: A sleek modern aesthetic featuring glassmorphism, floating elements, and smooth scroll animations.
+-   **🧊 3D Experiences**: Integrated with **Three.js** and **React Three Fiber** for interactive 3D components.
+-   **✍️ Automated Blog Feed**: Seamlessly syncs latest **Medium** articles bi-weekly via automated GitHub Actions.
+-   **🖼️ Dynamic Media Showcases**: 
+    -   **Photography Gallery**: Masonry layout with a custom-built, responsive lightbox modal.
+    -   **Graphic Design**: Dedicated portfolio for visual arts and creative work.
+-   **🤖 Repository Automation**: Automated weekly status reports tracking project progress and backlog health.
+-   **📄 Interactive Resume**: Full-featured Education and Experience sections with detailed timelines.
+-   **📧 Smart Contact System**: Fully functional contact form powered by **Formspree** with real-time validation.
+
+---
 
 ## 🛠️ Tech Stack
 
-*   **Frontend**: [React.js](https://reactjs.org/)
-*   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-*   **Animations**: [Framer Motion](https://www.framer.com/motion/)
-*   **Routing**: [React Router](https://reactrouter.com/)
-*   **Icons**: [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
-*   **Deployment**: GitHub Pages (configured)
+### Frontend & Animation
+-   **Core**: [React.js](https://reactjs.org/) (v19)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **Motion**: [Framer Motion](https://www.framer.com/motion/)
+-   **3D Graphics**: [Three.js](https://threejs.org/) & [React Three Fiber](https://r3f.docs.pmnd.rs/)
+-   **Icons**: [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
+
+### Automation & CI/CD
+-   **GitHub Actions**: 
+    -   `fetch-blogs`: Bi-weekly RSS ingestion for Medium posts.
+    -   `weekly-repo-status`: Automated weekly repository health reporting.
+    -   `deploy`: Continuous Deployment to GitHub Pages.
+
+---
+
+## 🤖 Automation Pipelines
+
+This portfolio is built to be "low-maintenance":
+-   **Medium Integration**: Every 1st and 15th of the month, a GitHub Action runs a script (`fetch-blogs.js`) to update `blogs.json` from my Medium RSS feed.
+-   **Repo Analytics**: Every Monday, the repository generates a "Weekly Repo Status" issue to track new issues, closed PRs, and general momentum.
+
+---
 
 ## 📂 Project Structure
 
 ```bash
 my-portfolio/
+├── .github/workflows/   # CI/CD & Automation scripts
 ├── public/
-│   ├── assets/          # Static assets (Gallery images, etc.)
-│   └── index.html
+│   └── assets/          # Static media (Gallery, Icons, etc.)
+├── scripts/             # Utility scripts (e.g., fetch-blogs.js)
 ├── src/
-│   ├── components/      # Reusable React components (Pages, NavBar, Footer)
-│   ├── data/            # Data files for easy content management (personalInfo, projects, gallery)
-│   ├── App.js           # Main application component with Routing
-│   ├── index.css        # Global styles & Tailwind directives
-│   └── index.js         # Entry point
-└── package.json
+│   ├── components/      # Modular React components
+│   ├── data/            # JSON/JS data files for content management
+│   ├── App.js           # Core Routing & Layout logic
+│   └── index.css        # Global styles & Design tokens
+└── package.json         # Dependencies & Build scripts
 ```
 
+---
+
 ## ⚡ Getting Started
-
-### Prerequisites
-
-Make sure you have **Node.js** installed on your machine.
 
 ### Installation
 
@@ -60,56 +86,35 @@ Make sure you have **Node.js** installed on your machine.
     npm install
     ```
 
-3.  **Run the development server**:
+3.  **Launch for Development**:
     ```bash
     npm start
     ```
-    Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    Visit `http://localhost:3000` to see the magic.
+
+---
 
 ## 📝 Configuration
 
-### Updating Content
-All content is managed via the `src/data/` folder. You can easily update your information without touching the component code:
-*   **`personalInfo.js`**: Update your name, titles, bio, and contact links.
-*   **`projects.js`**: Add or edit your coding projects.
-*   **`gallery.js`**: Add new images to the gallery page.
-*   **`skills.js`**, **`experience.js`**, **`education.js`**: Manage your resume content.
-
-### Adding Gallery Images
-1.  Place your images in `public/assets/Gallery/Landscape` or `public/assets/Gallery/portrait`.
-2.  Add a new entry to `src/data/gallery.js`:
-    ```javascript
-    {
-      id: 101, // Unique ID
-      src: "/assets/Gallery/Landscape/your-image.jpg",
-      type: "landscape",
-      alt: "Description"
-    }
-    ```
-
-## 🚀 Deployment
-
-This project depends on GitHub Pages for deployment.
-
-1.  **Build the project**:
-    ```bash
-    npm run build
-    ```
-
-2.  **Deploy**:
-    ```bash
-    npm run deploy
-    ```
-
-## 📬 Contact
-
-**Lakmana Thabrew**  
-*Computer Science & Engineering Undergraduate*
-
-*   📧 **Email**: [lakmanathabrew123@gmail.com](mailto:lakmanathabrew123@gmail.com)
-*   🐙 **GitHub**: [lakaThabrew](https://github.com/lakaThabrew)
-*   💼 **LinkedIn**: [lakmana-thabrew](https://linkedin.com/in/lakmana-thabrew)
-*   🌐 **Website**: [lakaThabrew.dev](https://lakathabrew.github.io/my-portfolio/)
+Content is decoupled from logic. To update information, modify files in `src/data/`:
+-   `personalInfo.js`: Profile details and social links.
+-   `projects.js` / `graphicDesigns.js`: Portfolio items.
+-   `gallery.js`: Image metadata for the photography page.
+-   `experience.js` / `education.js`: Professional history.
 
 ---
-*Designed & Built with ❤️ by Lakmana Thabrew.*
+
+## 📬 Connectivity
+
+**Lakmana Thabrew**  
+*CSE Undergraduate | Web Developer | Graphic Designer*
+
+-   📧 [lakmanathabrew123@gmail.com](mailto:lakmanathabrew123@gmail.com)
+-   🐙 [GitHub Profile](https://github.com/lakaThabrew)
+-   💼 [LinkedIn Profile](https://linkedin.com/in/lakmana-thabrew)
+-   🌐 [Live Portfolio](https://lakathabrew.github.io/my-portfolio/)
+
+---
+<p align="center">
+  <i>Designed & Engineered with ❤️ by Lakmana Thabrew.</i>
+</p>
