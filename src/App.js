@@ -15,6 +15,7 @@ import GalleryPage from './components/GalleryPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 import BlogPage from './components/BlogPage.jsx';
+import GlobalBackground from './components/GlobalBackground.jsx';
 
 // Import data from data files
 import {
@@ -154,7 +155,7 @@ const Portfolio = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "https://drive.google.com/uc?export=download&id=1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-";
+    link.href = "https://drive.google.com/uc?export=download&id=1RCD2nGL4XCft8JBnPAOzBJ3P1kaoI6_T";
     link.setAttribute("download", "My_CV.pdf");
     document.body.appendChild(link);
     link.click();
@@ -163,7 +164,7 @@ const Portfolio = () => {
 
   const handleViewCV = () => {
     window.open(
-      "https://drive.google.com/file/d/1g5iK4EE1rtZm5fzQuncJ9fbeugCbbQs-/view?usp=sharing",
+      "https://drive.google.com/file/d/1RCD2nGL4XCft8JBnPAOzBJ3P1kaoI6_T/view?usp=sharing",
       "_blank"
     );
   };
@@ -282,12 +283,15 @@ const Portfolio = () => {
   };
 
   return (
-    <Footer
-      personalInfo={personalInfo}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-      renderNavigation={renderNavigation}
-      renderCurrentPage={renderCurrentPage} />
+    <>
+      <GlobalBackground />
+      <Footer
+        personalInfo={personalInfo}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        renderNavigation={renderNavigation}
+        renderCurrentPage={renderCurrentPage} />
+    </>
   );
 };
 
