@@ -41,14 +41,9 @@ const HomePage = ({
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-brand-secondary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] bg-brand-accent/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
-      </div>
+    <div className="min-h-screen flex flex-col justify-center relative overflow-hidden bg-transparent">
+      {/* Rest of background is handled by GlobalBackground globally */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-[-1]"></div>
 
       <motion.div
         className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20"
@@ -98,7 +93,7 @@ const HomePage = ({
                 onClick={handleViewCV}
                 className="group px-4 py-3 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base border border-gray-200 dark:border-white/10 hover:border-brand-primary dark:hover:border-brand-primary text-gray-700 dark:text-gray-300 transition-all flex items-center gap-2 bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:scale-105 shadow-sm"
               >
-                <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-primary transition-colors" /> 
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-primary transition-colors" />
                 <span className="whitespace-nowrap">View My CV</span>
               </button>
 
@@ -106,7 +101,7 @@ const HomePage = ({
                 onClick={handleDownloadCV}
                 className="group px-4 py-3 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base border border-gray-200 dark:border-white/10 hover:border-brand-secondary dark:hover:border-brand-secondary text-gray-700 dark:text-gray-300 transition-all flex items-center gap-2 bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:scale-105 shadow-sm"
               >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-secondary transition-colors" /> 
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-secondary transition-colors" />
                 <span className="whitespace-nowrap">Download My CV</span>
               </button>
             </div>
@@ -135,7 +130,7 @@ const HomePage = ({
 
         {/* Right: Modern Profile Visual */}
         <motion.div
-          className="lg:flex-1 relative w-full max-w-[500px] lg:max-w-none aspect-square flex items-center justify-center p-8"
+          className="lg:flex-1 relative w-full max-w-[500px] lg:max-w-[600px] xl:max-w-[650px] aspect-square flex items-center justify-center p-4 sm:p-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -144,16 +139,16 @@ const HomePage = ({
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 border border-gray-200 dark:border-white/5 rounded-full border-dashed"
+            className="absolute inset-0 border-2 border-gray-200 dark:border-white/5 rounded-full border-dashed"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-12 border border-brand-primary/20 rounded-full border-dashed"
+            className="absolute inset-8 sm:inset-12 border-2 border-brand-primary/20 rounded-full border-dashed"
           />
 
           {/* Main Image Container */}
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full p-2 bg-gradient-to-b from-white/80 to-white/20 dark:from-white/10 dark:to-transparent backdrop-blur-sm border border-white/20 shadow-2xl">
+          <div className="relative w-72 h-72 sm:w-[22rem] sm:h-[22rem] md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] rounded-full p-2 bg-gradient-to-b from-white/80 to-white/20 dark:from-white/10 dark:to-transparent backdrop-blur-sm border border-white/20 shadow-2xl">
             <div className="w-full h-full rounded-full overflow-hidden relative z-10">
               <img
                 src={process.env.PUBLIC_URL + "/assets/dp_crop.jpg"}

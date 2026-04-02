@@ -15,6 +15,7 @@ import GalleryPage from './components/GalleryPage.jsx';
 import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 import BlogPage from './components/BlogPage.jsx';
+import GlobalBackground from './components/GlobalBackground.jsx';
 
 // Import data from data files
 import {
@@ -282,12 +283,15 @@ const Portfolio = () => {
   };
 
   return (
-    <Footer
-      personalInfo={personalInfo}
-      currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
-      renderNavigation={renderNavigation}
-      renderCurrentPage={renderCurrentPage} />
+    <>
+      <GlobalBackground />
+      <Footer
+        personalInfo={personalInfo}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        renderNavigation={renderNavigation}
+        renderCurrentPage={renderCurrentPage} />
+    </>
   );
 };
 

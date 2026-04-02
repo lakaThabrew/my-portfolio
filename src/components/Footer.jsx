@@ -59,7 +59,7 @@ const Footer = ({
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 flex flex-col font-sans">
+    <div className="min-h-screen bg-transparent transition-colors duration-300 flex flex-col font-sans">
       {/* Navigation (Sticky & Fixed logic handled in App.js usually, but we render it here as per existing structure) */}
       {renderNavigation()}
 
