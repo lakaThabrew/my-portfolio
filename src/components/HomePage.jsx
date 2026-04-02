@@ -5,6 +5,8 @@ import {
   Linkedin,
   Mail,
   MousePointer2,
+  FileText,
+  Download,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -80,10 +82,10 @@ const HomePage = ({
           </motion.div>
 
           {/* Social Links & CTA */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-6 pt-4 justify-center lg:justify-start">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap items-center gap-4 pt-4 justify-center lg:justify-start">
             <button
               onClick={() => setCurrentPage("projects")}
-              className="group relative px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-lg shadow-2xl hover:shadow-brand-primary/50 transition-all transform hover:-translate-y-1 overflow-hidden"
+              className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold text-base sm:text-lg shadow-xl hover:shadow-brand-primary/50 transition-all transform hover:-translate-y-1 overflow-hidden shrink-0"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center gap-2">
@@ -91,7 +93,27 @@ const HomePage = ({
               </span>
             </button>
 
-            <div className="flex items-center gap-4">
+            <div className="flex gap-20 pt-5">
+              <button
+                onClick={handleViewCV}
+                className="group px-4 py-3 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base border border-gray-200 dark:border-white/10 hover:border-brand-primary dark:hover:border-brand-primary text-gray-700 dark:text-gray-300 transition-all flex items-center gap-2 bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:scale-105 shadow-sm"
+              >
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-primary transition-colors" /> 
+                <span className="whitespace-nowrap">View My CV</span>
+              </button>
+
+              <button
+                onClick={handleDownloadCV}
+                className="group px-4 py-3 sm:px-6 sm:py-3 rounded-full font-bold text-sm sm:text-base border border-gray-200 dark:border-white/10 hover:border-brand-secondary dark:hover:border-brand-secondary text-gray-700 dark:text-gray-300 transition-all flex items-center gap-2 bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:scale-105 shadow-sm"
+              >
+                <Download className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 dark:text-gray-400 group-hover:text-brand-secondary transition-colors" /> 
+                <span className="whitespace-nowrap">Download My CV</span>
+              </button>
+            </div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="flex flex-row items-center gap-4 pt-2 justify-center lg:justify-start">
+            <div className="flex items-center gap-4 mt-2 mb-4">
               {[
                 { href: personalInfo.github, icon: Github },
                 { href: personalInfo.linkedin, icon: Linkedin },
