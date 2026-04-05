@@ -1,11 +1,9 @@
 const fs = require("fs");
 const path = require("path");
-const Parser = require("rss-parser");
-
-const parser = new Parser();
 
 const mediumUsername = "chulankalakmanathabrew";
 const rssUrl = `https://medium.com/feed/@${mediumUsername}`;
+const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 const outputPath = path.join(__dirname, "../src/data/blogs.json");
 
 function ensureDirExists(filePath) {
@@ -15,32 +13,63 @@ function ensureDirExists(filePath) {
   }
 }
 
-function normalizePost(item) {
+function cleanHtml(html = "") {
+  return html
+    .replace(/<img[^>]*>/gi, "")
+    .replace(/<figure[\s\S]*?<\/figure>/gi, "")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractThumbnail(item) {
+  if (item.thumbnail) return item.thumbnail;
+
+  const content = item.content || "";
+  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  return match ? match[1] : "";
+}
+
+function normalizeItem(item) {
   return {
     title: item.title || "",
     link: item.link || "",
     pubDate: item.pubDate || "",
-    isoDate: item.isoDate || "",
-    guid: item.guid || item.id || item.link || "",
+    author: item.author || mediumUsername,
+    guid: item.guid || item.link || "",
+    thumbnail: extractThumbnail(item),
     categories: Array.isArray(item.categories) ? item.categories : [],
-    creator: item.creator || "",
-    contentSnippet: item.contentSnippet || "",
-    thumbnail: item.enclosure?.url || "",
+    description: cleanHtml(item.description || item.content || ""),
   };
 }
 
 async function fetchBlogs() {
   console.log(`Fetching Medium blogs for @${mediumUsername}...`);
-  console.log(`Feed URL: ${rssUrl}`);
+  console.log(`RSS URL: ${rssUrl}`);
 
   try {
-    const feed = await parser.parseURL(rssUrl);
+    const res = await fetch(apiUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "application/json",
+      },
+    });
 
-    if (!feed || !Array.isArray(feed.items)) {
-      throw new Error("Feed parsed, but no items array was found.");
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status} ${res.statusText}`);
     }
 
-    const blogs = feed.items.map(normalizePost);
+    const data = await res.json();
+
+    if (data.status !== "ok") {
+      throw new Error(`rss2json returned non-ok status: ${JSON.stringify(data)}`);
+    }
+
+    if (!Array.isArray(data.items)) {
+      throw new Error("Invalid response: items is not an array");
+    }
+
+    const blogs = data.items.map(normalizeItem);
 
     ensureDirExists(outputPath);
     fs.writeFileSync(outputPath, JSON.stringify(blogs, null, 2), "utf8");
