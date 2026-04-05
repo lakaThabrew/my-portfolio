@@ -1,31 +1,55 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
+const Parser = require("rss-parser");
 
-const mediumUsername = "chulankalakmanathabrew"; 
+const parser = new Parser();
+
+const mediumUsername = "chulankalakmanathabrew";
 const rssUrl = `https://medium.com/feed/@${mediumUsername}`;
-const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+const outputPath = path.join(__dirname, "../src/data/blogs.json");
+
+function ensureDirExists(filePath) {
+  const dir = path.dirname(filePath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+}
+
+function normalizePost(item) {
+  return {
+    title: item.title || "",
+    link: item.link || "",
+    pubDate: item.pubDate || "",
+    isoDate: item.isoDate || "",
+    guid: item.guid || item.id || item.link || "",
+    categories: Array.isArray(item.categories) ? item.categories : [],
+    creator: item.creator || "",
+    contentSnippet: item.contentSnippet || "",
+    thumbnail: item.enclosure?.url || "",
+  };
+}
 
 async function fetchBlogs() {
-  console.log('Fetching blogs from Medium for @', mediumUsername, '...');
-  try {
-    const res = await fetch(apiUrl);
-    const data = await res.json();
-    
-    if (data.status === 'ok') {
-      const outputPath = path.join(__dirname, '../src/data/blogs.json');
-      
-      const dir = path.dirname(outputPath);
-      if (!fs.existsSync(dir)){
-          fs.mkdirSync(dir, { recursive: true });
-      }
+  console.log(`Fetching Medium blogs for @${mediumUsername}...`);
+  console.log(`Feed URL: ${rssUrl}`);
 
-      fs.writeFileSync(outputPath, JSON.stringify(data.items, null, 2));
-      console.log('Successfully stored', data.items.length, 'blogs in src/data/blogs.json');
-    } else {
-      console.error('Failed to fetch blogs. Response status not OK:', data);
+  try {
+    const feed = await parser.parseURL(rssUrl);
+
+    if (!feed || !Array.isArray(feed.items)) {
+      throw new Error("Feed parsed, but no items array was found.");
     }
-  } catch (err) {
-    console.error('Error fetching blogs:', err);
+
+    const blogs = feed.items.map(normalizePost);
+
+    ensureDirExists(outputPath);
+    fs.writeFileSync(outputPath, JSON.stringify(blogs, null, 2), "utf8");
+
+    console.log(`Successfully stored ${blogs.length} blogs in ${outputPath}`);
+  } catch (error) {
+    console.error("Failed to fetch Medium blogs:");
+    console.error(error);
+    process.exit(1);
   }
 }
 
