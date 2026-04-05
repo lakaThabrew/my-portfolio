@@ -2,30 +2,37 @@ name: Fetch Medium Blogs
 
 on:
   schedule:
-    - cron: '0 0 1,15 * *' # Runs at midnight on the 1st and 15th of every month (Bi-weekly)
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+    - cron: '17 0 1,15 * *' # 00:17 UTC on the 1st and 15th
+  workflow_dispatch:
 
 jobs:
   update-blogs:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Needed to push changes
-      
+      contents: write
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
-      - name: Fetch Blogs into JSON
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch blogs into JSON
         run: node scripts/fetch-blogs.js
 
-      - name: Commit and Push Changes
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/blogs.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update medium blogs data" && git push)
+          git diff --cached --quiet || (
+            git commit -m "chore: auto-update medium blogs data"
+            git push
+          )
