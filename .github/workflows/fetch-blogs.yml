@@ -8,6 +8,7 @@ on:
 jobs:
   update-blogs:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
@@ -18,8 +19,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -29,8 +30,14 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add src/data/blogs.json
-          git diff --cached --quiet || git commit -m "chore: auto-update medium blogs data"
-          git diff --cached --quiet || git push
+
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+          else
+            git commit -m "chore: auto-update medium blogs data"
+            git push
+          fi
