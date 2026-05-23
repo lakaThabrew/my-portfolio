@@ -50,10 +50,10 @@ async function fetchBlogs() {
       pubDate: item.pubDate || "",
       author: item.creator || mediumUsername,
       guid: item.guid || item.link || "",
-      thumbnail: extractThumbnail(item.content || ""),
+      thumbnail: extractThumbnail(item['content:encoded'] || ""),
       categories: item.categories || [],
       description: cleanHtml(
-        item.contentSnippet || item.content || ""
+        item['content:encodedSnippet'] || item['content:encoded'] || ""
       ),
     }));
 
