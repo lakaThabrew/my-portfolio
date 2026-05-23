@@ -1,14 +1,17 @@
 const fs = require("fs");
 const path = require("path");
+const Parser = require("rss-parser");
+
+const parser = new Parser();
 
 const mediumUsername = "chulankalakmanathabrew";
 
 const rssUrl = `https://medium.com/feed/@${mediumUsername}`;
 
-const apiUrl =
-  `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-const outputPath = path.join(__dirname, "../src/data/blogs.json");
+const outputPath = path.join(
+  __dirname,
+  "../src/data/blogs.json"
+);
 
 function ensureDirExists(filePath) {
   const dir = path.dirname(filePath);
@@ -27,11 +30,7 @@ function cleanHtml(html = "") {
     .trim();
 }
 
-function extractThumbnail(item) {
-  if (item.thumbnail) return item.thumbnail;
-
-  const content = item.content || "";
-
+function extractThumbnail(content = "") {
   const match = content.match(
     /<img[^>]+src=["']([^"']+)["']/i
   );
@@ -39,81 +38,47 @@ function extractThumbnail(item) {
   return match ? match[1] : "";
 }
 
-function normalizeItem(item) {
-  return {
-    title: item.title || "",
-    link: item.link || "",
-    pubDate: item.pubDate || "",
-    author: item.author || mediumUsername,
-    guid: item.guid || item.link || "",
-    thumbnail: extractThumbnail(item),
-    categories: Array.isArray(item.categories)
-      ? item.categories
-      : [],
-    description: cleanHtml(
-      item.description || item.content || ""
-    ),
-  };
-}
-
 async function fetchBlogs() {
-  console.log(`Fetching Medium blogs for @${mediumUsername}`);
-  console.log(`RSS URL: ${rssUrl}`);
-
-  const controller = new AbortController();
-
-  const timeout = setTimeout(() => {
-    controller.abort();
-  }, 15000);
-
   try {
-    const res = await fetch(apiUrl, {
-      signal: controller.signal,
-      headers: {
-        "User-Agent": "Mozilla/5.0",
-        Accept: "application/json",
-      },
-    });
+    console.log(`Fetching latest Medium blogs...`);
 
-    clearTimeout(timeout);
+    const feed = await parser.parseURL(rssUrl);
 
-    if (!res.ok) {
-      throw new Error(
-        `HTTP ${res.status} ${res.statusText}`
-      );
-    }
-
-    const data = await res.json();
-
-    if (data.status !== "ok") {
-      throw new Error(
-        `rss2json returned non-ok status`
-      );
-    }
-
-    if (!Array.isArray(data.items)) {
-      throw new Error(
-        "Invalid response: items is not an array"
-      );
-    }
-
-    const blogs = data.items.map(normalizeItem);
+    const blogs = feed.items.map((item) => ({
+      title: item.title || "",
+      link: item.link || "",
+      pubDate: item.pubDate || "",
+      author: item.creator || mediumUsername,
+      guid: item.guid || item.link || "",
+      thumbnail: extractThumbnail(item.content || ""),
+      categories: item.categories || [],
+      description: cleanHtml(
+        item.contentSnippet || item.content || ""
+      ),
+    }));
 
     ensureDirExists(outputPath);
 
-    fs.writeFileSync(
-      outputPath,
-      JSON.stringify(blogs, null, 2),
-      "utf8"
-    );
+    const newContent = JSON.stringify(blogs, null, 2);
+
+    let oldContent = "";
+
+    if (fs.existsSync(outputPath)) {
+      oldContent = fs.readFileSync(outputPath, "utf8");
+    }
+
+    if (oldContent === newContent) {
+      console.log("No new blogs found.");
+      return;
+    }
+
+    fs.writeFileSync(outputPath, newContent);
 
     console.log(
-      `Successfully stored ${blogs.length} blogs`
+      `Updated blogs.json with ${blogs.length} posts`
     );
   } catch (error) {
-    console.error("Failed to fetch Medium blogs");
     console.error(error);
-
     process.exit(1);
   }
 }

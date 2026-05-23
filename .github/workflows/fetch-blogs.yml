@@ -35,9 +35,9 @@ jobs:
 
           git add src/data/blogs.json
 
-          if git diff --cached --quiet; then
-            echo "No changes detected"
+          if git diff --staged --quiet; then
+              echo "No changes to commit"
           else
-            git commit -m "chore: auto-update medium blogs data"
-            git push
+              git commit -m "chore: update medium blogs"
+              git push
           fi
