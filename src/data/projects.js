@@ -1,6 +1,166 @@
 export const projects = [
     {
         id: 0,
+        title: "Smart Campus Digital Twin",
+        category: "IoT, AI & Cloud-Native Systems",
+        description: "A cloud-native digital twin platform that combines IoT data streaming, AI-powered analytics, and interactive 3D visualization to enable intelligent campus monitoring, simulation, and decision-making.",
+        longDescription: "Smart Campus Digital Twin is an advanced campus management platform that creates a real-time virtual representation of a physical campus using IoT sensors, data streaming, and AI analytics. The system processes live sensor data through a scalable microservices architecture, provides predictive insights, supports occupancy and environmental monitoring, and visualizes campus infrastructure also using cloud-native technologies, the platform incorporates secure authentication, real-time event processing, monitoring dashboards, and Kubernetes-based deployment to deliver a highly scalable and resilient smart-campus solution.",
+        image: "/assets/projects/twin.jpg",
+        technologies: [
+            "Python",
+            "FastAPI",
+            "TypeScript",
+            "Next.js",
+            "Three.js",
+            "Apache Kafka",
+            "Docker",
+            "Kubernetes",
+            "PostgreSQL",
+            "Grafana",
+            "Prometheus",
+            "Alembic",
+            "GitHub Actions",
+            "Microservices Architecture"
+        ],
+        features: [
+            "Interactive 3D Campus Visualization",
+            "Real-Time IoT Data Streaming",
+            "AI-Powered Analytics & Predictions",
+            "Campus Occupancy Monitoring",
+            "Environmental Sensor Tracking",
+            "Event-Driven Kafka Architecture",
+            "Microservices-Based Backend",
+            "Secure Authentication & Access Control",
+            "Cloud-Native Kubernetes Deployment",
+            "Automated CI/CD Workflows",
+            "Predictive Campus Intelligence"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/Smart-Campus-Digital-Twin-v4",
+        year: "2026"
+    },
+    {
+        id: 1,
+        title: "ProxyMaze '26 – Real-Time Proxy Monitoring Service",
+        category: "Cloud Infrastructure, DevOps & Backend Engineering",
+        description: "A high-availability proxy monitoring platform that continuously tracks proxy health, triggers intelligent alerts, and delivers reliable webhook notifications through an event-driven architecture.",
+        longDescription: "ProxyMaze '26 is a production-ready proxy monitoring and alerting platform developed for the Torch Labs Engineering Challenge. The system continuously monitors proxy pools through real-time health checks, automatically detects service degradation, manages alert lifecycles, and guarantees webhook delivery through retry mechanisms. Built with asynchronous processing, PostgreSQL support, and cloud deployment readiness.",
+        image: "/assets/projects/proxy.jpg",
+        technologies: [
+            "Python",
+            "FastAPI",
+            "PostgreSQL",
+            "SQLite",
+            "SQLAlchemy",
+            "Docker",
+            "Docker Compose",
+            "REST API",
+            "AsyncIO",
+            "Render",
+            "Neon Database",
+            "GitHub Actions"
+        ],
+        features: [
+            "Continuous Proxy Health Monitoring",
+            "Automated Alert Lifecycle Management",
+            "Real-Time Failure Detection",
+            "Webhook Delivery with Retry Logic",
+            "Proxy Pool Management",
+            "Operational Metrics Dashboard",
+            "Slack Integration",
+            "Discord Integration",
+            "Background Task Scheduling",
+            "Threshold-Based Alerting System",
+            "Configurable Monitoring Parameters",
+            "State Consistency Validation",
+            "Cloud Deployment Ready",
+            "High-Concurrency Async Processing"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/TeamEchoBinary/ProxyMaze-26",
+        year: "2026"
+    },
+    {
+        id: 2,
+        title: "NaviLogix – AI-Powered Logistics Management Platform",
+        category: "Logistics Technology, AI & Full Stack Development",
+        description: "An enterprise-grade logistics and parcel management platform that combines AI-powered tracking, smart rider assignment, route optimization, and real-time analytics to streamline modern delivery operations.",
+        longDescription: "NaviLogix is a high-performance logistics ecosystem designed to simplify and automate parcel delivery workflows. The platform features a Gemini-powered AI assistant capable of understanding natural language tracking requests and providing instant parcel status update built with modern UI technologies.",
+        image: "/assets/projects/navilogix.png",
+        technologies: [
+            "React 18",
+            "Vite",
+            "Tailwind CSS",
+            "Framer Motion",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose",
+            "Google Gemini AI",
+            "JWT Authentication",
+            "Chart.js",
+            "Leaflet",
+            "OpenStreetMap",
+            "JavaScript"
+        ],
+        features: [
+            "AI-Powered Parcel Tracking Assistant",
+            "Natural Language Tracking Queries",
+            "Smart Rider Auto-Assignment Algorithm",
+            "Interactive Route Visualization",
+            "Real-Time Logistics Analytics",
+            "Role-Based Access Control (RBAC)",
+            "Branch & User Management",
+            "COD Financial Reporting",
+            "Live Notification System",
+            "Delivery Personnel Dashboard",
+            "Premium Subscription Features",
+            "Secure JWT Authentication",
+            "Parcel Status Monitoring",
+            "Glassmorphism-Based Modern UI"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/navilogix",
+        year: "2026"
+    },
+    {
+        id: 3,
+        title: "AssignMate Pro – AI-Powered Rubric Evaluation Platform",
+        category: "EdTech & Generative AI, Full Stack Development",
+        description: "A rubric-aware academic evaluation platform that leverages Google Gemini AI to generate rubrics, analyze assignments, and provide criterion-based feedback for students and lecturers.",
+        longDescription: "AssignMate Pro is an AI-powered educational platform designed to streamline academic assignment evaluation. The system enables lecturers to create and refine rubrics using natural language prompts, while students can upload assignments for AI-assisted analysis. Using Google Gemini AI, the platform evaluates submissions against rubric criteria, generates structured feedback, and provides score-oriented insight.",
+        image: "/assets/projects/Assignmate.png",
+        technologies: [
+            "React",
+            "Vite",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose",
+            "Google Gemini AI",
+            "JavaScript",
+            "Recharts",
+            "Three.js",
+            "REST API"
+        ],
+        features: [
+            "AI-Assisted Rubric Generation",
+            "Criterion-Based Assignment Evaluation",
+            "PDF and DOCX Assignment Processing",
+            "Structured Feedback Generation",
+            "Performance Analytics Dashboard",
+            "Role-Based Student and Lecturer Workflows",
+            "Evaluation History Tracking",
+            "Rubric Management System",
+            "Secure Authentication",
+            "AI-Powered Academic Insights"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/AssignMate",
+        year: "2026"
+    },
+    {
+        id: 4,
         title: "EduMentor AI – Agent Based Educational Assistant",
         category: "AI & Education, Software Engineering",
         description: "An AI-powered educational assistant built using a multi-agent architecture to deliver personalized learning, real-time tutoring, adaptive quizzes, and intelligent study recommendations for students.",
@@ -31,7 +191,7 @@ export const projects = [
     }
     ,
     {
-        id: 1,
+        id: 5,
         title: "HealthSense – AI Powered Health Monitoring System",
         category: "Healthcare Technology, AI & Software Engineering",
         description: "A smart health monitoring and analysis platform designed to track user health data, provide insights, and support proactive healthcare through intelligent data visualization and analysis.",
@@ -59,9 +219,10 @@ export const projects = [
         githubUrl: "https://github.com/lakaThabrew/HealthSense",
         year: "2025"
     }
+
     ,
     {
-        id: 2,
+        id: 6,
         title: "BrightBuy Online Retail Management System",
         category: "E-Commerce & Inventory Management",
         description: "A comprehensive web-based retail inventory and online order management system for consumer electronics retail chain. Features multi-role user access, variant-based inventory control, and real-time order processing.",
@@ -74,7 +235,7 @@ export const projects = [
         year: "2025"
     },
     {
-        id: 3,
+        id: 7,
         title: "TypeIQ",
         category: "AI & Web Development",
         description: "An AI-powered typing speed and accuracy testing web application that provides real-time feedback, personalized practice sessions, and detailed performance analytics to help users improve their typing skills effectively.",
@@ -88,7 +249,7 @@ export const projects = [
     },
 
     {
-        id: 4,
+        id: 8,
         title: "CineAI",
         category: "AI & Machine Learning",
         description: "AI-powered movie recommendation web application that provides personalized film suggestions based on user preferences and viewing history using advanced machine learning algorithms.",
@@ -101,7 +262,38 @@ export const projects = [
         year: "2025"
     },
     {
-        id: 5,
+        id: 9,
+        title: "LSEG C++ Trading Engine",
+        category: "Systems Programming, Financial Technology",
+        description: "A high-performance order matching engine developed in C++ that simulates a flower exchange by processing, validating, and matching buy and sell orders from CSV files.",
+        longDescription: "The LSEG C++ Trading Engine is a mini exchange simulation built as part of the London Stock Exchange Group (LSEG) C++ program. The system processes client orders from CSV files, validates order data, maintains instrument-specific order books, and performs order matching between buy and sell orders. Execution reports are generated automatically and exported to CSV format.",
+        image: "/assets/projects/LSEG.png",
+        technologies: [
+            "C++",
+            "STL",
+            "Object-Oriented Programming",
+            "File I/O",
+            "CSV Processing",
+            "Data Structures",
+            "Algorithm Design"
+        ],
+        features: [
+            "Order Validation Engine",
+            "Buy and Sell Order Matching",
+            "Instrument-Based Order Books",
+            "CSV Input Processing",
+            "Execution Report Generation",
+            "Support for Multiple Instruments",
+            "Custom Input and Output Files",
+            "Efficient Trade Matching Logic",
+            "Market Exchange Simulation"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/Flower_stack_Exchange",
+        year: "2026"
+    },
+    {
+        id: 10,
         title: "CHaT-BoT Groq",
         category: "Mobile AI Assistant",
         description: "A Flutter mobile chatbot powered by Groq LLM, delivering fast, smart, and context-aware conversational AI directly on mobile devices with advanced natural language processing.",
@@ -114,21 +306,21 @@ export const projects = [
         year: "2025"
     },
     {
-        id: 4,
+        id: 11,
         title: "CineSleuth",
         category: "AI & Web Development",
         description: "AI-powered interactive guessing game I built during my leisure time. The idea came after I watched a video where a human tried to guess someone’s favorite movie using a sequence of smart questions — and I wondered: “Why can’t AI do this too?”",
         longDescription: "This project explores that idea using Python and Google Gemini’s AI reasoning. The agent asks the user a series of yes/no/maybe questions about genres, tones, themes, major plot patterns, and character styles. Based on the answers, it dynamically eliminates options and predicts the user’s favorite movie from a structured movie-attribute database.",
         image: "/assets/projects/cinesleuth.png",
         technologies: ["Python", "Google gemini APIs"],
-        features: ["Intelligent question-selection system using attribute filtering","Dynamic reasoning and decision-making using Gemini","Smooth natural interaction loop","Lightweight and scalable movie dataset","Inspired by traditional 20-questions games and AI agent design"],
+        features: ["Intelligent question-selection system using attribute filtering", "Dynamic reasoning and decision-making using Gemini", "Smooth natural interaction loop", "Lightweight and scalable movie dataset", "Inspired by traditional 20-questions games and AI agent design"],
         liveUrl: "#",
         githubUrl: "https://github.com/lakaThabrew/Cine-Sleuth",
         year: "2025"
     },
 
     {
-        id: 6,
+        id: 12,
         title: "GPS Alarm WebApp",
         category: "Location-Based Services",
         description: "A web-based GPS alarm system that triggers location-based alerts, helping users get notified when reaching or approaching their chosen destinations with precise geolocation tracking.",
@@ -141,7 +333,7 @@ export const projects = [
         year: "2025"
     },
     {
-        id: 7,
+        id: 13,
         title: "Steamnoodles Feedback AI Agent System",
         category: "AI & Natural Language Processing",
         description: "Intelligent customer feedback analysis system using LangChain and LLMs to automate sentiment analysis, generate contextual responses, and create dynamic sentiment visualization reports for restaurant chains.",
@@ -155,7 +347,7 @@ export const projects = [
     },
 
     {
-        id: 8,
+        id: 14,
         title: "Nano Processor Version I,II & III",
         category: "Computer Architecture",
         description: "An optimized 4-bit nanoprocessor implementation in VHDL for BASYS 3 FPGA, featuring enhanced instruction decoder, ROM modules, and improved performance for embedded systems.",
@@ -169,7 +361,7 @@ export const projects = [
     },
 
     {
-        id: 9,
+        id: 15,
         title: "Etherion: Clash of Realms",
         category: "Game Development",
         description: "A command-line RPG game built in Java featuring elemental battles, character progression, shop system, and immersive fantasy gameplay with strategic combat mechanics.",
