@@ -312,5 +312,115 @@ export const graphicDesigns = [
         tools: ["canva", 'Adobe Photoshop'],
         year: "2025",
         type: "image"
+    },
+    {
+        id: 29,
+        title: "Extended submission Closing in 2 Days",
+        client: "AdScAI 2026",
+        description: "An extended submission closing countdown flyer",
+        image: "/assets/Designs/5days more (4).png",
+        tools: ["canva"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 30,
+        title: "Extended submission Closing Today",
+        client: "AdScAI 2026",
+        description: "An extended submission closing countdown flyer",
+        image: "/assets/Designs/closing today.png",
+        tools: ["canva"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 31,
+        title: "Acceptance Notifications Released",
+        client: "AdScAI 2026",
+        description: "An announcement flyer for acceptance notification release",
+        image: "/assets/Designs/Acceptane notifications released.png",
+        tools: ["Figma", "Canva"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 32,
+        title: "CSESS Vesak Flyer",
+        client: "CSESS UOM",
+        description: "A promotional flyer for Computer Science Engineering Student Society event",
+        image: "/assets/Designs/CSESS Flyers.png",
+        tools: ["Canva"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 33,
+        title: "Video Submission Closing 3 hours more",
+        client: "SLIoT 2026",
+        description: "A countdown flyer notifying that video submission is closing in 3 hours",
+        image: "/assets/Designs/Frame 290.png",
+        tools: ["canva"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 34,
+        title: "Video Submission closed",
+        client: "SLIoT 2026",
+        description: "A countdown flyer notifying that video submission is closing in 3 hours",
+        image: "/assets/Designs/Frame 291.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 35,
+        title: "SLIoT Banner 01",
+        client: "SLIoT 2026",
+        description: "A banner for SLIoT 2026",
+        image: "/assets/Designs/Frame 321.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 36,
+        title: "SLIoT Banner 02",
+        client: "SLIoT 2026",
+        description: "A banner for SLIoT 2026",
+        image: "/assets/Designs/Frame 326.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 37,
+        title: "SLIoT Banner 03",
+        client: "SLIoT 2026",
+        description: "A banner for SLIoT 2026",
+        image: "/assets/Designs/Frame 328.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 38,
+        title: "SLIoT Banner 04",
+        client: "SLIoT 2026",
+        description: "A banner for SLIoT 2026",
+        image: "/assets/Designs/Frame 331.png",
+        tools: ["Figma"],
+        year: "2026",
+        type: "image"
+    },
+    {
+        id: 39,
+        title: "Extended Deadline",
+        client: "Agri Tech StartUp",
+        description: "An illustrated Instagram post announcing extended deadline",
+        image: "/assets/Designs/Green Illustrated Modern Agriculture Farming Services Instagram Post.png",
+        tools: ["Canva"],
+        year: "2026",
+        type: "image"
     }
 ];

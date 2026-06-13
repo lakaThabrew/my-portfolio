@@ -51,6 +51,14 @@ export const experiences = [
 
 export const volunteering = [
     {
+        eventName: "Octwave 2.0",
+        position: "Co-Chair",
+        organizer: "IEEE IAS Student Branch Chapter of University of Moratuwa",
+        date: "2026 Apr",
+        logo: "/assets/Logoes/IAS.png",
+        category: "AI & Machine Learning"
+    },
+    {
         eventName: "Beyond the Frame",
         position: "Chair Person",
         organizer: "Rotaract Club of University of Moratuwa",
@@ -145,5 +153,14 @@ export const volunteering = [
         date: "2026 Mar",
         logo: "/assets/Logoes/Rota.jpg",
         category: "Family & Health"
-    }
+    },
+    {
+        eventName: "Mora Foresight 4.0",
+        position: "OC Member - Design Committee",
+        organizer: "IEEE Student Branch of University of Moratuwa",
+        date: "2026 May",
+        logo: "/assets/Logoes/icon.png",
+        category: "Design & Technology"
+    },
+
 ];
