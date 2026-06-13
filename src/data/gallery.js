@@ -27,6 +27,14 @@ export const galleryImages = [
   { id: 124, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-02-15 at 07.20.11 (1).jpeg", type: "landscape", alt: "Gallery Image" },
   { id: 125, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-02-15 at 07.20.11.jpeg", type: "landscape", alt: "Gallery Image" },
   { id: 126, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-02-15 at 07.20.13.jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 127, src: "/assets/Gallery/Landscape/20260612_112748(0).heic", type: "landscape", alt: "Gallery Image" },
+  { id: 128, src: "/assets/Gallery/Landscape/IMG_4817.JPG", type: "landscape", alt: "Gallery Image" },
+  { id: 129, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-05-07 at 3.14.57 PM.jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 130, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-06-12 at 10.33.01 PM (1).jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 131, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-06-12 at 10.33.01 PM.jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 132, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-06-12 at 10.33.19 PM.jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 133, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-06-12 at 10.33.20 PM (1).jpeg", type: "landscape", alt: "Gallery Image" },
+  { id: 134, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-06-12 at 10.33.20 PM.jpeg", type: "landscape", alt: "Gallery Image" },
 
   // Portrait Images
   { id: 201, src: "/assets/Gallery/portrait/WhatsApp Image 2025-10-22 at 18.52.51_7df4e4fc.jpg", type: "portrait", alt: "Gallery Image" },
@@ -36,5 +44,9 @@ export const galleryImages = [
   { id: 205, src: "/assets/Gallery/portrait/WhatsApp Image 2026-02-15 at 07.20.02 (1).jpeg", type: "portrait", alt: "Gallery Image" },
   { id: 206, src: "/assets/Gallery/portrait/WhatsApp Image 2026-02-15 at 07.20.05.jpeg", type: "portrait", alt: "Gallery Image" },
   { id: 207, src: "/assets/Gallery/portrait/WhatsApp Image 2026-02-15 at 07.20.07.jpeg", type: "portrait", alt: "Gallery Image" },
-  { id: 208, src: "/assets/Gallery/portrait/WhatsApp Image 2026-02-15 at 07.20.08.jpeg", type: "portrait", alt: "Gallery Image" }
+  { id: 208, src: "/assets/Gallery/portrait/WhatsApp Image 2026-02-15 at 07.20.08.jpeg", type: "portrait", alt: "Gallery Image" },
+  { id: 209, src: "/assets/Gallery/portrait/WhatsApp Image 2026-06-12 at 10.33.02 PM.jpeg", type: "portrait", alt: "Gallery Image" },
+  { id: 210, src: "/assets/Gallery/portrait/WhatsApp Image 2026-06-12 at 10.33.21 PM (1).jpeg", type: "portrait", alt: "Gallery Image" },
+  { id: 211, src: "/assets/Gallery/portrait/WhatsApp Image 2026-06-12 at 10.33.21 PM (2).jpeg", type: "portrait", alt: "Gallery Image" },
+  { id: 212, src: "/assets/Gallery/portrait/WhatsApp Image 2026-06-12 at 10.33.21 PM.jpeg", type: "portrait", alt: "Gallery Image" }
 ].sort(() => Math.random() - 0.5); // Randomize order for a dynamic feel
