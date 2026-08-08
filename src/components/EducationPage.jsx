@@ -1,6 +1,6 @@
-import React from 'react';
-import { GraduationCapIcon, Calendar, Award, Code, BookOpen } from 'lucide-react';
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { GraduationCapIcon, Calendar, Award, Code, BookOpen, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from "framer-motion";
 
 const EducationPage = ({
   skills,
@@ -8,6 +8,24 @@ const EducationPage = ({
   certifications,
   personalInfo,
 }) => {
+  const [expandedCategories, setExpandedCategories] = useState({});
+
+  const groupedCertifications = certifications.reduce((acc, cert) => {
+    const category = cert.category || "Others";
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(cert);
+    return acc;
+  }, {});
+
+  const toggleCategory = (category) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category]
+    }));
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -106,38 +124,69 @@ const EducationPage = ({
               Certifications
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ y: -5 }}
-                  className="glass dark:glass-dark p-6 rounded-2xl shadow-md border border-gray-100 dark:border-white/5 flex items-start gap-4 hover:border-brand-primary/30 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white dark:bg-white/5 rounded-xl p-2 shadow-sm flex-shrink-0">
-                    {cert.logo && (
-                      <img
-                        src={process.env.PUBLIC_URL + cert.logo}
-                        alt={cert.issuer}
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-bold text-gray-900 dark:text-white text-lg leading-tight mb-1">
-                      {cert.name}
+            <div className="space-y-4">
+              {Object.entries(groupedCertifications).map(([category, certs]) => (
+                <div key={category} className="glass dark:glass-dark rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden">
+                  <button
+                    onClick={() => toggleCategory(category)}
+                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-white/5 transition-colors focus:outline-none"
+                  >
+                    <h3 className="font-bold text-gray-900 dark:text-white text-lg sm:text-xl flex items-center gap-2">
+                      {category} <span className="text-sm font-normal text-gray-500 bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded-full ml-2">{certs.length}</span>
                     </h3>
-                    <p className="text-brand-primary text-sm font-semibold mb-2">
-                      {cert.issuer}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                      <span>{cert.date}</span>
-                      {cert.credentialId && (
-                        <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded">ID: {cert.credentialId}</span>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
+                    <motion.div
+                      animate={{ rotate: expandedCategories[category] ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown className="text-gray-500 dark:text-gray-400" size={24} />
+                    </motion.div>
+                  </button>
+                  <AnimatePresence>
+                    {expandedCategories[category] && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="p-6 pt-0 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-100 dark:border-white/5 mt-2 pt-6">
+                          {certs.map((cert, index) => (
+                            <motion.div
+                              key={index}
+                              whileHover={{ y: -5 }}
+                              className="glass dark:glass-dark p-6 rounded-2xl shadow-md border border-gray-100 dark:border-white/5 flex items-start gap-4 hover:border-brand-primary/30 transition-all duration-300 bg-white/40 dark:bg-black/20"
+                            >
+                              <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white dark:bg-white/5 rounded-xl p-2 shadow-sm flex-shrink-0">
+                                {cert.logo && (
+                                  <img
+                                    src={process.env.PUBLIC_URL + cert.logo}
+                                    alt={cert.issuer}
+                                    className="max-w-full max-h-full object-contain"
+                                  />
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <h3 className="font-bold text-gray-900 dark:text-white text-lg leading-tight mb-1">
+                                  {cert.name}
+                                </h3>
+                                <p className="text-brand-primary text-sm font-semibold mb-2">
+                                  {cert.issuer}
+                                </p>
+                                <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                                  <span>{cert.date}</span>
+                                  {cert.credentialId && (
+                                    <span className="font-mono bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded">ID: {cert.credentialId}</span>
+                                  )}
+                                </div>
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ))}
             </div>
           </section>

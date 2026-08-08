@@ -51,7 +51,7 @@ export const experiences = [
 
 export const volunteering = [
     {
-        eventName: "Octwave 2.0",
+        eventName: "Octwave 3.0",
         position: "Co-Chair",
         organizer: "IEEE IAS Student Branch Chapter of University of Moratuwa",
         date: "2026 Apr",
@@ -162,5 +162,86 @@ export const volunteering = [
         logo: "/assets/Logoes/icon.png",
         category: "Design & Technology"
     },
+    {
+        eventName: "PhysicAI 1.0",
+        position: "Lead of Design committee",
+        organizer: "IEEE PES Student Branch Chapter of University of Moratuwa",
+        date: "2026 Jun",
+        logo: "/assets/Logoes/PES.jpg",
+        category: "Design & Technology"
+    },
+    {
+        eventName: "MERCon 2026",
+        position: "Design Team member",
+        organizer: "Moratuwa Engineering Research Conference",
+        date: "2026 Apr",
+        logo: "/assets/Logoes/mercon.jpg",
+        category: "Design & Technology"
+    }
+];
 
+export const achievements = [
+    {
+        title: "3rd Place - HaXtreme 4.0",
+        organizer: "IEEE Student branch, University of Ruhuna",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/ieee-ruhuna.jpg"
+    },
+    {
+        title: "3rd Place - Launch'26",
+        organizer: "IEEE CS Society, University of Kelaniya",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/CS-kelaniya.jpg"
+    },
+    {
+        title: "Finalist - Codemania 6.0",
+        organizer: "IEEE CS of SLTC",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/SLTC.jpg"
+    },
+    {
+        title: "Finalist - Cryptx Hackathon 2.0",
+        organizer: "ICTS of University of Jayawardhanapura",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/icts-jpura.jpg"
+    },
+    {
+        title: "Finalist - Duothon 6.0",
+        organizer: "IEEE CS Society of NSBM University",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/CS-NSBM.png"
+    },
+    {
+        title: "Top 25 Teams - {PROXY}maze '26",
+        organizer: "Torch Proxies",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/torch.jpg"
+    },
+    {
+        title: "Finalist - ANIMUS 1.0",
+        organizer: "CSSC Society of University of Ruhuna",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/CSSC-ruhuna.jpg"
+    },
+    {
+        title: "Finalist - BotWars",
+        organizer: "IEEE CIS SB of IIT University",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/CIS.png"
+    },
+    {
+        title: "Finalist - Bitcode V6.0",
+        organizer: "Business Information Technology Students' Association of University of Rajarata",
+        date: "2026",
+        category: "Hackathon",
+        logo: "/assets/Logoes/BITSA.jpg"
+    }
 ];

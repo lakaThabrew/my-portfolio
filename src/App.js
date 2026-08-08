@@ -26,7 +26,8 @@ import {
   experiences,
   volunteering,
   education,
-  certifications
+  certifications,
+  achievements
 } from './data';
 
 const Portfolio = () => {
@@ -207,6 +208,7 @@ const Portfolio = () => {
     <ExperiencePage
       experiences={experiences}
       volunteering={volunteering}
+      achievements={achievements}
     />
   );
 
@@ -232,12 +234,12 @@ const Portfolio = () => {
   const renderNavigation = () => {
     const navItems = [
       { id: 'about', label: 'About', icon: User },
-      { id: 'projects', label: 'Projects', icon: Briefcase },
-      { id: 'designs', label: 'Designs', icon: PenTool },
-      { id: 'blogs', label: 'Blogs', icon: BookOpen },
-      { id: 'gallery', label: 'Gallery', icon: Image },
-      { id: 'experience', label: 'Experience', icon: Award },
       { id: 'cv1', label: 'Education', icon: FileText },
+      { id: 'projects', label: 'Projects', icon: Briefcase },
+      { id: 'experience', label: 'Experience', icon: Award },
+      { id: 'blogs', label: 'Blogs', icon: BookOpen },
+      { id: 'designs', label: 'Designs', icon: PenTool },
+      { id: 'gallery', label: 'Gallery', icon: Image },
       { id: 'contact', label: 'Contact', icon: Phone }
     ];
 

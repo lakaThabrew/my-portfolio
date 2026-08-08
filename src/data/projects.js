@@ -1,5 +1,154 @@
 export const projects = [
     {
+        id: 99,
+        title: "ExfilTrack",
+        category: "Forensics, Windows Artifact Analysis",
+        description: "A forensically sound USB exfiltration triage tool that correlates Windows artifacts to identify suspicious file-copy activity with explainable risk scoring.",
+        longDescription: "ExfilTrack automates the collection, normalization, and correlation of Windows evidence sources such as Registry hives, Event Logs, shortcut files, and Jump Lists into a single evidence-backed investigative timeline. It emphasizes forensic soundness through read-only evidence handling, isolated output directories, SHA-256 integrity verification, traceable findings, preserved timestamps, and reproducible analysis. The tool produces calibrated risk scores and confidence levels rather than definitive accusations.",
+        image: "/assets/projects/exfiltrack.png",
+        technologies: [
+            "Python",
+            "Forensics",
+            "Windows Artifact Analysis",
+            "Registry Parsing",
+            "EVTX Parsing",
+            "LNK Analysis",
+            "Jump Lists",
+            "Risk Scoring"
+        ],
+        features: [
+            "USB exfiltration triage workflow",
+            "Evidence-backed correlation timeline",
+            "Calibrated risk scoring",
+            "Forensic soundness controls",
+            "Traceable findings and integrity reporting"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/ExfilTrack/Exfiltrack",
+        year: "2026"
+    },
+    {
+        id: 16,
+        title: "Grocera – Proxy-Powered Retail Intelligence Platform",
+        category: "Full-Stack Development, Retail Intelligence",
+        description: "A full-stack retail intelligence platform that aggregates supermarket pricing data to support product comparison, price alerts, and market-positioning insights.",
+        longDescription: "Developed Grocera after qualifying among the top 25 teams of ProxyMaze’26. Originally proposed for the Phase 02 “The API Gap” challenge, Grocera was transformed from a competition concept into a working full-stack retail intelligence platform. The platform aggregates supermarket pricing data to support product comparison, multi-store basket optimization, price alerts, AI-assisted recommendations, historical price analysis, competitor heatmaps, and market-positioning insights.",
+        image: "/assets/projects/grocera.png",
+        technologies: [
+            "Next.js",
+            "NestJS",
+            "TypeScript",
+            "PostgreSQL",
+            "Web Scraping",
+            "Playwright",
+            "Redis",
+            "Prisma ORM",
+            "REST APIs",
+            "Docker",
+            "CI/CD"
+        ],
+        features: [
+            "JWT-based role management",
+            "PostgreSQL persistence",
+            "Redis caching and background queues",
+            "Scraper-health monitoring",
+            "API-key-secured REST API",
+            "Docker containerization",
+            "GitHub Actions CI/CD"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/Grocera",
+        year: "2026"
+    },
+    {
+        id: 17,
+        title: "Zeta-26: AI-Powered Interplanetary Routing & Active-Defence Co-Pilot",
+        category: "Artificial Intelligence, Routing Optimization",
+        description: "An AI-powered interplanetary routing and active-defence platform featuring a routing simulator with physics-based latency calculations and Gemini-powered routing co-pilot.",
+        longDescription: "Developed Zeta-26 as part of Team Echo Binary for LAUNCH’26, securing the 2nd Runner-Up position. Phase 01 introduced a browser-based routing simulator using Dijkstra’s algorithm and physics-based latency calculations (interplanetary vacuum travel, atmospheric refraction, etc.). Phase 02 extended it into an AI-assisted routing co-pilot with Gemini-powered natural-language command parsing, congestion prediction, telemetry-spoofing detection, and dynamic rerouting.",
+        image: "/assets/projects/zeta26.png",
+        technologies: [
+            "Python",
+            "FastAPI",
+            "Scikit-learn",
+            "Gemini API",
+            "JavaScript",
+            "HTML5 Canvas",
+            "REST APIs",
+            "Docker",
+            "Nginx",
+            "Dijkstra’s algorithm"
+        ],
+        features: [
+            "Physics-based latency calculations",
+            "Base-N payload conversion",
+            "Hop-by-hop latency analysis",
+            "Interactive route visualization",
+            "Gemini-powered natural-language command parsing",
+            "Congestion prediction",
+            "Telemetry-spoofing detection"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/Launch26/echo-binary",
+        year: "2026"
+    },
+    {
+        id: 18,
+        title: "Box Box Box – F1 Pit Strategy Optimization Challenge",
+        category: "Data Analysis, Optimization",
+        description: "A Formula 1 race simulation solution that predicts the finishing order of drivers based on pit-stop strategies, tyre compounds, and race logic.",
+        longDescription: "Developed a Formula 1 race simulation solution for the 'Box Box Box' coding challenge by Sansa Technologies. The challenge involved analysing data from 30,000 historical races and reverse-engineering the underlying race simulation logic to predict the complete finishing order of 20 drivers based on pit-stop strategies, tyre degradation, temperature, and penalties.",
+        image: "/assets/projects/boxbox.png",
+        technologies: [
+            "Python",
+            "JSON",
+            "Data Analysis",
+            "Algorithms"
+        ],
+        features: [
+            "Historical race data analysis",
+            "Lap-by-lap race simulation algorithms",
+            "Tyre performance and degradation modeling",
+            "Pit-stop behaviour logic",
+            "JSON input and output processing"
+        ],
+        liveUrl: "#",
+        githubUrl: "#",
+        year: "2025"
+    },
+    {
+        id: 19,
+        title: "Indian House Price Prediction & Recommendation System",
+        category: "Machine Learning, Data Science",
+        description: "An end-to-end machine learning system for predicting residential property prices in India and recommending similar properties according to user preferences.",
+        longDescription: "Developed and enhanced a modular machine learning pipeline for data ingestion, preprocessing, model training, evaluation, and prediction. Evaluated multiple ensemble regression models (Random Forest, XGBoost, etc.) and implemented an optimized Voting Regressor. Features a property recommendation engine using cosine similarity and REST APIs for deployment.",
+        image: "/assets/projects/houseprice.png",
+        technologies: [
+            "Python",
+            "Pandas",
+            "NumPy",
+            "Scikit-learn",
+            "XGBoost",
+            "Random Forest",
+            "Flask",
+            "FastAPI",
+            "Docker",
+            "Jupyter Notebook",
+            "REST APIs"
+        ],
+        features: [
+            "Modular machine learning pipeline",
+            "Voting Regressor combining XGBoost and Random Forest",
+            "Property recommendation engine (Cosine Similarity)",
+            "On-demand hyperparameter tuning (RandomizedSearchCV)",
+            "Custom logging and exception handling",
+            "Docker-based deployment support"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/IDET_AI-capstone_project1",
+        year: "2025"
+    },
+    {
         id: 0,
         title: "Smart Campus Digital Twin",
         category: "IoT, AI & Cloud-Native Systems",
