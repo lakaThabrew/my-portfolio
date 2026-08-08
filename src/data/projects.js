@@ -1,4 +1,47 @@
-export const projects = [
+const projectsRaw = [
+    {
+        id: 20,
+        title: "Aegis Finance - Secure AI-Powered Digital Banking Platform",
+        category: "FinTech, Cybersecurity, Microservices",
+        description: "A security-focused, AI-assisted digital/core banking prototype with customer web/mobile apps, admin SOC workflows, and ML-driven fraud evaluation.",
+        longDescription: "Aegis Finance is a microservice-based banking platform built for Duothon 6.0. It separates identity, gateway, core banking, fraud, notification, and ML fraud evaluation into dedicated services while providing role-separated customer and administrative interfaces. The platform integrates Keycloak OAuth2/OIDC with JWT, Vault-based secrets management, PostgreSQL, Redis, Kafka, and Spring Security. It supports held-transfer fraud workflows, trusted-device and card controls, AI financial insights via Gemini, and observability with Prometheus and Grafana.",
+        image: "/assets/projects/aegis_finance.png",
+        technologies: [
+            "Java",
+            "Spring Boot",
+            "Spring Security",
+            "Spring Cloud Gateway",
+            "React",
+            "Flutter",
+            "Python",
+            "PostgreSQL",
+            "Redis",
+            "Apache Kafka",
+            "Keycloak",
+            "OAuth2/OIDC",
+            "JWT",
+            "HashiCorp Vault",
+            "Flyway",
+            "Prometheus",
+            "Grafana",
+            "Docker Compose"
+        ],
+        features: [
+            "Microservice-based banking architecture",
+            "Customer web and mobile banking experience",
+            "Admin and SOC operational portal",
+            "Held-transaction fraud review workflow",
+            "ML-assisted fraud scoring pipeline",
+            "Gemini-powered financial assistant with fallback strategy",
+            "Card controls: freeze, online, international, contactless",
+            "Trusted-device and security-event tracking",
+            "Audit logging and transaction traceability",
+            "Prometheus and Grafana observability dashboards"
+        ],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/aegis-Finance",
+        year: "2026"
+    },
     {
         id: 99,
         title: "ExfilTrack",
@@ -523,3 +566,35 @@ export const projects = [
         year: "2025"
     }
 ];
+
+const projectPriority = {
+    "Aegis Finance - Secure AI-Powered Digital Banking Platform": 1,
+    "Smart Campus Digital Twin": 2,
+    "Grocera – Proxy-Powered Retail Intelligence Platform": 3,
+    "NaviLogix – AI-Powered Logistics Management Platform": 4,
+    "Indian House Price Prediction & Recommendation System": 5,
+    "Zeta-26: AI-Powered Interplanetary Routing & Active-Defence Co-Pilot": 6,
+    "ProxyMaze '26 – Real-Time Proxy Monitoring Service": 7,
+    "AssignMate Pro – AI-Powered Rubric Evaluation Platform": 8,
+    "ExfilTrack": 9,
+    "EduMentor AI – Agent Based Educational Assistant": 10,
+    "Steamnoodles Feedback AI Agent System": 11,
+    "LSEG C++ Trading Engine": 12,
+    "Box Box Box – F1 Pit Strategy Optimization Challenge": 13,
+    "BrightBuy Online Retail Management System": 14,
+    "HealthSense – AI Powered Health Monitoring System": 15,
+    "TypeIQ": 16,
+    "CHaT-BoT Groq": 17,
+    "Nano Processor Version I,II & III": 18,
+    "CineAI": 19,
+    "CineSleuth": 20,
+    "GPS Alarm WebApp": 21,
+    "Etherion: Clash of Realms": 22
+};
+
+export const projects = [...projectsRaw].sort((a, b) => {
+    const aRank = projectPriority[a.title] ?? 999;
+    const bRank = projectPriority[b.title] ?? 999;
+    if (aRank !== bRank) return aRank - bRank;
+    return (b.year || "").localeCompare(a.year || "");
+});

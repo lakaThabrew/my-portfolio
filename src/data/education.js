@@ -36,7 +36,7 @@ export const education = [
     }
 ];
 
-export const certifications = [
+const certificationsRaw = [
     {
         name: "Introduction of Cyber Security",
         issuer: "Cisco Networking Academy",
@@ -326,3 +326,62 @@ export const certifications = [
         category: "Artificial Intelligence & Machine Learning"
     }
 ];
+
+const certificationCategoryPriority = {
+    "Cloud & Infrastructure": 1,
+    "Cybersecurity & Networking": 2,
+    "Artificial Intelligence & Machine Learning": 3,
+    "Software Engineering & Programming": 4,
+    "Professional Development & Workshops": 5
+};
+
+const certificationPriority = {
+    "AWS Academy Graduate - Microservices and CI/CD Pipeline Builder": 1,
+    "AWS Academy Graduate - Cloud Foundations": 2,
+    "Fundermentals of Accerlerated Data Science": 3,
+    "5 Day AI Agents Intensive course with Google": 4,
+    "AI/ML Engineer - stage 2": 5,
+    "AI/ML Engineer - stage I": 6,
+    "Introduction of Google Cloud Platform": 7,
+    "IEEEXtreme 19.0 Programming": 8,
+    "MoraXtreme 10.0 - Algorithmic Coding Competition": 9,
+    "Codemania v6.0 – Finalist Recognition (Top 15 Teams)": 10,
+    "Bio Fusion Hackathon – Certificate of Participation": 11,
+    "Pitch Arena 2025 – Participant": 12,
+    "Introduction of Cyber Security": 13,
+    "Security in 6G Era": 14,
+    "Crash Course: Linux For Absolute Beginners": 15,
+    "Crash Course: MCP For Beginners": 16,
+    "Cloud 103": 17,
+    "Intro to Machine Learning": 18,
+    "Intermediate ML": 19,
+    "Feature Engineering": 20,
+    "Data Visualization with Python": 21,
+    "Pandas": 22,
+    "Data Cleaning": 23,
+    "Program Solving (Solve)": 24,
+    "Python for Beginners": 25,
+    "Java Intermediate": 26,
+    "Introduction for C++": 27,
+    "Introduction for Java": 28,
+    "AI in Data Analysis": 29,
+    "ML for beginners": 30,
+    "Accelerating manuscript preparation using AI": 31,
+    "AI for Engineering; Shaping the next Generation of Intelligent Solutions": 32,
+    "AgentX Bootcamp": 33,
+    "Research into Words: Writing clear & effective abstracts": 34,
+    "Humanitarian Engineering - For a Better World": 35,
+    "Financial Literacy for Engineers: Salary to Smart wealth": 36
+};
+
+export const certifications = [...certificationsRaw].sort((a, b) => {
+    const aRank = certificationPriority[a.name] ?? 999;
+    const bRank = certificationPriority[b.name] ?? 999;
+    if (aRank !== bRank) return aRank - bRank;
+
+    const aCatRank = certificationCategoryPriority[a.category] ?? 999;
+    const bCatRank = certificationCategoryPriority[b.category] ?? 999;
+    if (aCatRank !== bCatRank) return aCatRank - bCatRank;
+
+    return a.name.localeCompare(b.name);
+});
