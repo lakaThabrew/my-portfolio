@@ -1,8 +1,8 @@
 import React from "react";
-import { User, Briefcase, Calendar, MapPin, Award } from "lucide-react";
+import { User, Briefcase, Calendar, MapPin, Award, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
-const ExperiencePage = ({ experiences, volunteering, achievements }) => {
+const ExperiencePage = ({ experiences, volunteering, achievements, publications }) => {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,6 +98,64 @@ const ExperiencePage = ({ experiences, volunteering, achievements }) => {
                         <div className="prose dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
                           <p>{vol.description}</p>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Publications Grid */}
+          <section>
+            <motion.h2 variants={itemVariants} className="text-2xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-3 mt-16">
+              <BookOpen className="text-brand-primary" size={28} />
+              Publications
+            </motion.h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+              {publications && publications.map((pub, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="group relative bg-white dark:bg-gray-800/40 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-white/5 hover:border-brand-primary/40 transition-all duration-300"
+                >
+                  <div className="flex flex-col h-full gap-5">
+                    <div className="flex items-center gap-4">
+                      {pub.logo && (
+                        <div className="relative flex-shrink-0">
+                          <div className="absolute -inset-1 bg-gradient-to-tr from-brand-primary to-brand-accent rounded-2xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
+                          <img
+                            loading="lazy"
+                            decoding="async"
+                            src={process.env.PUBLIC_URL + pub.logo}
+                            alt={pub.conference}
+                            className="relative w-16 h-16 object-cover rounded-2xl bg-white p-1.5 shadow-sm border border-gray-100 dark:border-gray-700"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 dark:text-white text-lg leading-tight mb-1 group-hover:text-brand-primary transition-colors line-clamp-3">
+                          {pub.title}
+                        </h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm font-semibold">
+                          {pub.authors}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-snug">
+                      {pub.conference} • {pub.location}
+                    </p>
+                    <div className="flex flex-col flex-1 space-y-3">
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/5 mt-auto">
+                        <div className="flex items-center gap-1.5 text-xs text-brand-primary font-bold">
+                          <Calendar size={14} />
+                          {pub.date}
+                        </div>
+                        <a href={pub.link} target="_blank" rel="noreferrer" className="px-3 py-1.5 bg-brand-primary/10 text-brand-primary hover:bg-brand-primary hover:text-white transition-colors text-[11px] font-bold rounded-md uppercase tracking-wider cursor-pointer">
+                          {pub.status}
+                        </a>
                       </div>
                     </div>
                   </div>

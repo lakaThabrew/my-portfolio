@@ -27,7 +27,8 @@ import {
   volunteering,
   education,
   certifications,
-  achievements
+  achievements,
+  publications
 } from './data';
 
 const Portfolio = () => {
@@ -209,6 +210,7 @@ const Portfolio = () => {
       experiences={experiences}
       volunteering={volunteering}
       achievements={achievements}
+      publications={publications}
     />
   );
 
