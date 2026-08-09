@@ -157,7 +157,7 @@ const Portfolio = () => {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "https://drive.google.com/uc?export=download&id=1RCD2nGL4XCft8JBnPAOzBJ3P1kaoI6_T";
+    link.href = "https://drive.google.com/uc?export=download&id=1ql2fLVlaKX9Tcxd_qdaJRac3Sk09L2FN";
     link.setAttribute("download", "My_CV.pdf");
     document.body.appendChild(link);
     link.click();
@@ -166,7 +166,7 @@ const Portfolio = () => {
 
   const handleViewCV = () => {
     window.open(
-      "https://drive.google.com/file/d/1RCD2nGL4XCft8JBnPAOzBJ3P1kaoI6_T/view?usp=sharing",
+      "https://drive.google.com/file/d/1ql2fLVlaKX9Tcxd_qdaJRac3Sk09L2FN/view?usp=sharing",
       "_blank"
     );
   };
