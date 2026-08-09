@@ -245,3 +245,5 @@ export const achievements = [
         logo: "/assets/Logoes/BITSA.jpg"
     }
 ];
+
+export const publications = [];
