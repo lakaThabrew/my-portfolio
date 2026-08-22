@@ -16,6 +16,7 @@ import NavBar from './components/NavBar.jsx';
 import Footer from './components/Footer.jsx';
 import BlogPage from './components/BlogPage.jsx';
 import GlobalBackground from './components/GlobalBackground.jsx';
+import LoadingState from './components/ui/loading-state.jsx';
 
 // Import data from data files
 import {
@@ -32,6 +33,7 @@ import {
 } from './data';
 
 const Portfolio = () => {
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -63,6 +65,13 @@ const Portfolio = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [isDarkMode]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -285,6 +294,18 @@ const Portfolio = () => {
         return renderHomePage();
     }
   };
+
+  if (isInitialLoading) {
+    return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div className="flex flex-col gap-12">
+          <LoadingState label="Churning" variant="Drive" />
+          <LoadingState label="Thinking" variant="Dots" />
+          <LoadingState label="Searching" variant="Orbit" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
