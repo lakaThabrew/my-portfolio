@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        foreground: "hsl(var(--foreground))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
         brand: {
           dark: '#4300FF',
           primary: '#0065F8',
