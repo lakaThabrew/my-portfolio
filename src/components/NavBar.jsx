@@ -1,6 +1,7 @@
 import React from "react";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { RandomLetterSwap } from "./ui/random-letter-swap";
 
 const NavBar = ({
   personalInfo,
@@ -46,7 +47,7 @@ const NavBar = ({
               )}
               <span className="relative z-10 flex items-center gap-2">
                 <Icon size={16} />
-                {label}
+                <RandomLetterSwap label={label} />
               </span>
             </button>
           ))}
@@ -98,7 +99,9 @@ const NavBar = ({
                     }`}
                 >
                   <Icon size={18} />
-                  <span className="font-medium">{label}</span>
+                  <span className="font-medium">
+                    <RandomLetterSwap label={label} />
+                  </span>
                 </button>
               ))}
             </div>
