@@ -39,7 +39,14 @@ const Portfolio = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDesign, setSelectedDesign] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return true;
+  });
   // Contact form state
   const [contactFirstName, setContactFirstName] = useState('');
   const [contactLastName, setContactLastName] = useState('');
@@ -74,7 +81,11 @@ const Portfolio = () => {
   }, []);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode(prev => {
+      const newMode = !prev;
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      return newMode;
+    });
   }
 
   // Contact form submit handler
