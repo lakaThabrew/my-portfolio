@@ -72,7 +72,7 @@ export default function LoadingState({
         {delays.map((d, i) => (
           <span
             key={i}
-            className={`size-[10px] bg-foreground ${round ? "rounded-full" : "rounded-[2px]"}`}
+            className={`size-[10px] bg-gray-900 dark:bg-white ${round ? "rounded-full" : "rounded-[2px]"}`}
             style={{
               opacity: d === null ? 0.07 : 0.15,
               animation:
@@ -84,17 +84,15 @@ export default function LoadingState({
         ))}
       </span>
       <span
-        className="bg-clip-text text-xl font-medium text-transparent"
+        className="bg-clip-text text-xl font-medium text-transparent bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-gray-500 dark:via-white dark:to-gray-500"
         style={{
-          backgroundImage:
-            "linear-gradient(90deg, hsl(var(--muted-foreground)) 35%, hsl(var(--foreground)) 50%, hsl(var(--muted-foreground)) 65%)",
           backgroundSize: "200% 100%",
           animation: "shimmer-text 1.4s linear infinite",
         }}
       >
         {label}
       </span>
-      <span className="font-mono text-lg text-muted-foreground tabular-nums min-w-[3ch] text-right">
+      <span className="font-mono text-lg text-gray-500 dark:text-gray-400 tabular-nums min-w-[3ch] text-right">
         {progress}
       </span>
     </div>
