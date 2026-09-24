@@ -564,6 +564,32 @@ const projectsRaw = [
         liveUrl: "#",
         githubUrl: "https://github.com/lakaThabrew/Etherion_Clash_of_the_Realm",
         year: "2025"
+    },
+    {
+        id: 21,
+        title: "End-to-End Image Captioning System",
+        category: "Deep Learning, Computer Vision, NLP",
+        description: "A professional-grade Image Captioning System utilizing VGG16 for feature extraction and LSTM for sequence generation, built on the Flickr8k dataset.",
+        longDescription: "This project bridges computer vision and natural language processing to automatically generate descriptive textual captions for raw images. It implements a 'Merge Architecture' comprising a Convolutional Neural Network (CNN) for image feature extraction and an LSTM network for sequence generation. The system features a Progressive DataGenerator for scalable training, advanced decoding strategies like Beam Search, and a responsive Streamlit interactive web dashboard with Text-to-Speech (TTS) integration.",
+        image: "/assets/projects/idet_dl_final.jpg",
+        technologies: ["Python", "TensorFlow/Keras", "VGG16", "LSTM", "Streamlit", "Pytest", "GitHub Actions"],
+        features: ["VGG16 Feature Extraction", "Merge Architecture (CNN + LSTM)", "Progressive DataGenerator", "Greedy & Beam Search Decoding", "Interactive Web Dashboard", "Robust CI/CD & Testing"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/IDET-DL-FinalProject",
+        year: "2026"
+    },
+    {
+        id: 22,
+        title: "HackerRank Orchestrate - Buy or Wait?",
+        category: "Artificial Intelligence, Financial Technology",
+        description: "An AI-powered financial agent that evaluates personal affordability by analyzing recurring expenses, pending payments, and relevant details from messages and images.",
+        longDescription: "A sophisticated AI-powered financial agent built for the HackerRank Orchestrate 24-hour hackathon (September 2026). The system decides whether a user can safely afford a requested expense by generating a personalized recommendation—pay in full, use installments, wait, or decline. It analyzes historical transactions, extracts hidden details from uploaded receipts, and accurately forecasts cash flow to ensure minimum balance preservation across multiple currencies.",
+        image: "/assets/projects/hackerrank_orchestrate.jpg",
+        technologies: ["Python", "Financial Modeling", "Data Analysis", "AI/OCR", "Predictive Analytics"],
+        features: ["Personalized Affordability Evaluation", "Cross-Currency Forecasting", "Installment & Partial Payment Plans", "Flexible Expense Adjustments", "Deterministic Financial Logic"],
+        liveUrl: "#",
+        githubUrl: "https://github.com/lakaThabrew/hackerrank-orchestrate-september26",
+        year: "2026"
     }
 ];
 
@@ -578,18 +604,20 @@ const projectPriority = {
     "AssignMate Pro – AI-Powered Rubric Evaluation Platform": 8,
     "ExfilTrack": 9,
     "EduMentor AI – Agent Based Educational Assistant": 10,
-    "Steamnoodles Feedback AI Agent System": 11,
-    "LSEG C++ Trading Engine": 12,
-    "Box Box Box – F1 Pit Strategy Optimization Challenge": 13,
-    "BrightBuy Online Retail Management System": 14,
-    "HealthSense – AI Powered Health Monitoring System": 15,
-    "TypeIQ": 16,
-    "CHaT-BoT Groq": 17,
-    "Nano Processor Version I,II & III": 18,
-    "CineAI": 19,
-    "CineSleuth": 20,
-    "GPS Alarm WebApp": 21,
-    "Etherion: Clash of Realms": 22
+        "End-to-End Image Captioning System": 11,
+    "HackerRank Orchestrate - Buy or Wait?": 12,
+    "Steamnoodles Feedback AI Agent System": 13,
+    "LSEG C++ Trading Engine": 14,
+    "Box Box Box – F1 Pit Strategy Optimization Challenge": 15,
+    "BrightBuy Online Retail Management System": 16,
+    "HealthSense – AI Powered Health Monitoring System": 17,
+    "TypeIQ": 18,
+    "CHaT-BoT Groq": 19,
+    "Nano Processor Version I,II & III": 20,
+    "CineAI": 21,
+    "CineSleuth": 22,
+    "GPS Alarm WebApp": 23,
+    "Etherion: Clash of Realms": 24,
 };
 
 export const projects = [...projectsRaw].sort((a, b) => {
