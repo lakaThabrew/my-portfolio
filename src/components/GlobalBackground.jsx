@@ -1,23 +1,34 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { MeshDistortMaterial, Sphere, Float, Stars, Sparkles } from '@react-three/drei';
+import ASMRStaticBackground from './ui/asmr-background.jsx';
 
-export default function GlobalBackground() {
+export default function GlobalBackground({ isDarkMode }) {
+  // Dark mode: ASMR canvas particle background
+  if (isDarkMode) {
+    return (
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-[-1]">
+        <ASMRStaticBackground />
+      </div>
+    );
+  }
+
+  // Light mode: Original Three.js scene
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-      
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-[-1] overflow-hidden bg-gray-50 transition-colors duration-500">
+
       <Canvas camera={{ position: [0, 0, 5], fov: 60 }} className="absolute inset-0 w-full h-full z-0 opacity-70">
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1.5} color="#1ace5cff" />
         <directionalLight position={[-10, -10, -5]} intensity={1} color="#60a5fa" />
-        
+
         {/* Subtle Stars */}
         <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1.5} />
-        
+
         {/* Glowing Sparkles */}
         <Sparkles count={200} scale={15} size={3} speed={0.4} opacity={0.5} color="#ffffff" />
-        
-        {/* Large floating abstract wireframe shapes in the background far away */}
+
+        {/* Large floating abstract wireframe shapes */}
         <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
           <mesh position={[-8, 4, -10]} scale={2}>
             <icosahedronGeometry args={[1, 0]} />
@@ -45,6 +56,7 @@ export default function GlobalBackground() {
             />
           </Sphere>
         </Float>
+
         <Float speed={1.2} rotationIntensity={2} floatIntensity={1.5}>
           <mesh position={[-12, -8, -15]} scale={2.5}>
             <tetrahedronGeometry args={[1, 0]} />
@@ -72,10 +84,9 @@ export default function GlobalBackground() {
             <meshStandardMaterial color="#a78bfa" roughness={0.3} metalness={0.7} wireframe />
           </mesh>
         </Float>
-
       </Canvas>
 
-      {/* Existing stylistic layers on top of 3D Canvas */}
+      {/* Stylistic layers on top of 3D Canvas */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>
       <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-primary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob pointer-events-none"></div>
       <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-brand-secondary/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000 pointer-events-none"></div>
@@ -83,3 +94,4 @@ export default function GlobalBackground() {
     </div>
   );
 }
+
