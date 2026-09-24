@@ -45,6 +45,9 @@ export const galleryImages = [
     { id: 142, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-08-08 at 12.11.07 AM.jpeg", type: "landscape", alt: "Gallery Image" },
     { id: 143, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-08-08 at 12.11.08 AM.jpeg", type: "landscape", alt: "Gallery Image" },
     { id: 144, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-08-08 at 12.11.12 AM.jpeg", type: "landscape", alt: "Gallery Image" },
+    { id: 145, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-09-05 at 11.48.35 PM.jpeg", type: "landscape", alt: "Gallery Image" },
+    { id: 146, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-09-05 at 11.48.36 PM (1).jpeg", type: "landscape", alt: "Gallery Image" },
+    { id: 147, src: "/assets/Gallery/Landscape/WhatsApp Image 2026-09-05 at 11.48.37 PM.jpeg", type: "landscape", alt: "Gallery Image" },
 
     // Portrait Images
     { id: 201, src: "/assets/Gallery/portrait/WhatsApp Image 2025-10-22 at 18.52.51_7df4e4fc.jpg", type: "portrait", alt: "Gallery Image" },
