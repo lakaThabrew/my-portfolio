@@ -42,10 +42,10 @@ const Portfolio = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
+      // Default to dark to match ASMR background
       if (saved) return saved === 'dark';
-      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return true;
+    return true; // Always dark by default for ASMR theme
   });
   // Contact form state
   const [contactFirstName, setContactFirstName] = useState('');
@@ -66,6 +66,8 @@ const Portfolio = () => {
   }
 
   useEffect(() => {
+    // Always apply dark class immediately for ASMR background compatibility
+    document.documentElement.classList.add('dark');
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {
@@ -308,7 +310,10 @@ const Portfolio = () => {
 
   if (isInitialLoading) {
     return (
-      <div className="flex min-h-screen w-full items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+      <div
+        className="flex min-h-screen w-full items-center justify-center transition-colors duration-300"
+        style={{ backgroundColor: isDarkMode ? '#0a0a0c' : '#f9fafb' }}
+      >
         <div className="flex flex-col gap-12">
           <LoadingState label="Churning" variant="Drive" />
           <LoadingState label="Thinking" variant="Dots" />
@@ -320,7 +325,7 @@ const Portfolio = () => {
 
   return (
     <>
-      <GlobalBackground />
+      <GlobalBackground isDarkMode={isDarkMode} />
       <Footer
         personalInfo={personalInfo}
         currentPage={currentPage}

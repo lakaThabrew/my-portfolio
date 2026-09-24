@@ -54,7 +54,7 @@ const BlogPage = () => {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             My{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
-              Blog
+              Blogs
             </span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
